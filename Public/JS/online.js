@@ -1,4 +1,4 @@
-const port = "http://localhost:" + process.env.PORT || 5000;
+const port = "http://localhost:" + 80;
 console.log(port);
 
 let socket = io.connect(port);
