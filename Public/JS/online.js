@@ -1,7 +1,4 @@
-const port = "http://localhost:" + 80;
-console.log(port);
-
-let socket = io.connect(port);
+let socket = io();
 
 const mensagensField = document.querySelector(".msgs");
 const textbox = document.querySelector(".chat-txtbox");
