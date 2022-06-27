@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="CSS/output.css">
+        <script src="JS/online.js" defer> </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js">  </script>
+        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous">  </script>
+        <title> Jeek Online </title>
+
+    </head>
+
+
+    <body class="bg-jeek-gray-600 text-white overflow-x-hidden">
+
+        <div class="tela-carregamento text-center absolute w-screen h-screen">
+            <div class="w-full flex justify-center pt-60">
+                <img src="imgs/loading" alt="" class="w-8 h-8">
+            </div>
+
+            <p class="font-bold pt-2"> Procurando oponente... </p>
+        </div>
+
+        <main class="pt-20 hidden">
+
+            <div class="px-16 flex pl-[38vw] justify-between">
+
+                <div class="tabuleiro-div">
+                    <!-- Tabuleiro -->
+                    <div class="tabuleiro mt-12">
+                        
+                    </div>
+
+                </div>
+
+                <section class="">
+
+                    <!-- Tempo -->
+                    <div class="mt-12">
+                        <div class="relogio-brancas">
+                            <p class="tempo-white">  </p>
+                        </div>
+
+                        <div class="relogio-pretas">
+                            <p class="tempo-black">  </p>
+                        </div>
+                    </div>
+
+                    <!-- Texto de conclusão do jogo -->
+                    <div class="w-40 pt-12 text-center">
+                        <p class="endgame-p italic">  </p>
+                    </div>
+
+                    <!-- Botões -->
+                    <div class="botoes">
+                        <button class="botao-jogo botao-passar" title="Passar vez"> <i class="fa fa-arrow-right"> </i> </button> <br>
+
+                        <button class="botao-jogo botao-desistir" title="Desistir"> <i class="fa-regular fa-flag"> </i> </button>
+
+                        <button class="botao-jogo botao-restart hidden" title="Solicitar revanche"> <i class="fa fa-arrow-rotate-right"> </i> </button>
+                    </div>
+
+                </section>
+
+
+                <div class="md:absolute md:top-8 md:left-12">
+                    <!-- Espectadores -->
+                    <div class="specs-div hidden">
+                        <i class="specs-icon fa-solid fa-eye"> </i>
+                    </div>
+
+                    <!-- Chat -->
+                    <div class="chat bg-jeek-gray-400 w-80 h-[36rem] rounded-lg">
+                        <div class="msgs pt-8">
+                            
+                        </div>
+                        <div class="absolute bottom-4 px-6 w-80 flex">
+                            <input type="text" class="chat-txtbox border-none outline-none bg-jeek-gray text-jeek-gray-700 w-full rounded-3xl pl-3 p-1" placeholder="Escreva algo aqui!">
+                            <button class="chat-btn bg-jeek-gray-500 rounded-full ml-2 px-4 text-center"> > </button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-bt">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="CSS/output.css">
+        <script src="JS/menu.js" defer>  </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js">  </script>
+        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="imgs/aberturadomestre.ico" type="image/x-icon">
+        <title> Jeek Online </title>
+
+    </head>
+
+
+    <body class="bg-jeek-gray-600 text-white overflow-x-hidden md:overflow-y-hidden">
+        
+        <nav class="pt-4 px-6 hidden md:flex">
+            <img src="imgs/aberturadomestre.ico" class="rounded-md w-8 h-auto shadow-md" alt="Logo Jeek Online">
+            <h2 class="text-jeek-gray-100 font-bold pt-1 pl-4"> Jeek Online </h2>
+        </nav>
+
+        <main class="md:flex w-screen sm:pt-16 pt-4">
+
+            <!-- Parte da esquerda -->
+            <div class="md:w-[50%] md:pt-20 px-12 sm:px-20 pb-12 md:py-20 text-center">
+
+                <h1 class="font-bold text-6xl menu-title"> Jeek Online </h1>
+
+                <p class="pt-10 text-lg"> 
+                    Jogue Jeek em qualquer lugar e a qualquer hora 
+                    de forma totalmente gratuita! 
+                </p>
+
+                <div class="w-full flex justify-center gap-2 sm:gap-6 pt-8">
+                    <a href="offline.html"> <button class="mt-1 p-3 py-4 rounded-full border-2 border-white w-40 text-xl font-bold transition-all hover:scale-110"> Jogar offline </button> </a>
+                    <a href="online.html"> <button class="p-3 rounded-full bg-white text-jeek-gray-600 w-40 text-xl font-bold transition-all hover:scale-110"> Jogar online <br> <p class="text-sm font-normal"> (em breve) </p> </button> </a>
+                </div>
+
+            </div>
+
+            <!-- Tabuleiro -->
+            <div class="w-full md:w-[50%] flex justify-center">
+                <div class="tabuleiro-simulacao lg:pr-20">
+
+                </div>
+            </div>
+
+        </main>
+
+    </body>
+
+</html>
