@@ -337,6 +337,13 @@ io.on("connection", (socket) => {
             specs--;
             io.sockets.emit("updateSpecs", specs);
         }
+
+        if (connections == 0){
+            dados.player.brancas.pontos = 0;
+            dados.player.pretas.pontos = 0;
+            restart();
+        }
+
     });
 });
 
