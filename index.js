@@ -325,6 +325,9 @@ io.on("connection", (socket) => {
     });
 
     socket.on("disconnect", () => {
+        connections--;
+        io.sockets.emit("updateConnections", connections);
+
         if (socket.id == dados.player.brancas.playerId){
             endGame(false);
             io.sockets.emit("desconexao", "brancas");
@@ -341,6 +344,9 @@ io.on("connection", (socket) => {
         if (connections == 0){
             dados.player.brancas.pontos = 0;
             dados.player.pretas.pontos = 0;
+            dados.player.brancas.playerId = null;
+            dados.player.pretas.playerId = null;
+
             restart();
         }
 
