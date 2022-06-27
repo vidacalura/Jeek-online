@@ -1,5 +1,5 @@
 let express = require("express");
-let socket = require("socket.io");
+const socket = require("socket.io");
 
 let app = express();
 const port = process.env.PORT || 5000;
@@ -7,7 +7,6 @@ let server = app.listen(port);
 
 
 app.use(express.static("Public"));
-
 
 let jogadas = 3;
 let specs = 0;
