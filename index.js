@@ -341,7 +341,7 @@ io.on("connection", (socket) => {
             io.sockets.emit("updateSpecs", specs);
         }
 
-        if (connections == 0){
+        if (connections == 0 || connections == specs){
             dados.player.brancas.pontos = 0;
             dados.player.pretas.pontos = 0;
             dados.player.brancas.playerId = null;
@@ -355,14 +355,14 @@ io.on("connection", (socket) => {
 
 /* to do
 
-- Criar players apenas quando o botão na tela principal for apertado
+- adicionar sons e navbar
 - isGameOver
 - game room (com captcha)
-- Tela de espera
+- Menu
 - revanche
 - isConnected()
 - autoPass()
 - Voltar lances
-- Tempo
+- Mudar lados após partida
 
 */

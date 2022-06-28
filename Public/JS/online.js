@@ -1,5 +1,10 @@
 let socket = io();
 
+let startSound = new Audio("../imgs/startSound.mkv");
+startSound.crossOrigin = "anonymous";
+let endSound = new Audio("../imgs/lichessCheckmate.mkv");
+endSound.crossOrigin = "anonymous";
+
 const mensagensField = document.querySelector(".msgs");
 const textbox = document.querySelector(".chat-txtbox");
 const enviarBtn = document.querySelector(".chat-btn ");
@@ -140,6 +145,15 @@ function specs(quant_specs){
 
 }
 
+function startGame(){
+
+    telaCarregamento.classList.add("hidden");
+    main.classList.remove("hidden");
+
+    startSound.play();
+
+}
+
 function endGame(data){
 
     desistirBtn.classList.add("hidden");
@@ -152,6 +166,8 @@ function endGame(data){
     // Mostrar quem foi vitorioso
     endgame_p.textContent += "Vitória das " + (data.brancasGanham == true ? "brancas" : "pretas") + "!";
 
+    endSound.play();
+
 }
 
 function mensagemJogo(msg){
@@ -159,7 +175,7 @@ function mensagemJogo(msg){
     const mensagem_jogo = document.createElement("p");
 
     mensagem_jogo.textContent = msg;
-    mensagem_jogo.className = "italic text-center px-6 text-jeek-gray-300";
+    mensagem_jogo.className = "msg-jogo";
 
     mensagensField.appendChild(mensagem_jogo);
 
@@ -185,16 +201,24 @@ function restart(){
 }
 
 /* Chat */
+textbox.addEventListener("keyup", (event) => {
+    event.preventDefault();
+
+    if (event.key == "Enter"){
+        enviarMsg();
+    }
+});
+
 function enviarMsg(){
 
-    socket.emit("chat", textbox.value);
-    clearTextbox();
+    if (textbox.value[0] != " " && textbox.value != ""){
+        socket.emit("chat", textbox.value);
+        clearTextbox();
+    }
 
 }
 
 function regMsg(data){
-
-    console.log(data.chatPlayer);
 
     if (data.chatPlayer != null){
 
@@ -256,7 +280,6 @@ socket.on("updateSpecs", (data) => {
 /* Tela de espera */
 socket.on("updateConnections", (con) => {
     if (con >= 2){
-        telaCarregamento.classList.add("hidden");
-        main.classList.remove("hidden");
+        startGame();
     }
 });

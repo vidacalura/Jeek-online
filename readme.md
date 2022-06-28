@@ -11,11 +11,10 @@ Regras e táticas básicas do jogo: https://www.youtube.com/watch?v=f6vMVXrniAc
 # Jeek Online
 
 O Jeek online é um site feito em HTML, CSS (com Tailwind CSS) e JavaScript padrão para o frontend,
-junto das tecnologias Express.js e Node.js para o backend. No momento apenas o modo local está em
-funcionamento, porém o modo online está em desenvolvimento neste exato momento.
+junto das tecnologias Express.js e Node.js para o backend.
 
 
-Você pode acessar o site pela URL: https://jeek-online.web.app/
+Você pode acessar o site pela URL: https://jeek-online.herokuapp.com/
 
 #
 
