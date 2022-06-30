@@ -5,6 +5,7 @@ startSound.crossOrigin = "anonymous";
 let endSound = new Audio("../imgs/lichessCheckmate.mkv");
 endSound.crossOrigin = "anonymous";
 
+let gameRoom = null;
 const mensagensField = document.querySelector(".msgs");
 const textbox = document.querySelector(".chat-txtbox");
 const enviarBtn = document.querySelector(".chat-btn ");
@@ -18,8 +19,8 @@ revancheBtn.addEventListener("click", pedirRevanche);
 const endgame_p = document.querySelector(".endgame-p");
 const tempo_w_p = document.querySelector(".tempo-white");
 const tempo_b_p = document.querySelector(".tempo-black");
-const specsDiv = document.querySelector(".specs-div");
-const specsIcon = document.querySelector(".specs-icon");
+//const specsDiv = document.querySelector(".specs-div");
+//const specsIcon = document.querySelector(".specs-icon");
 const telaCarregamento = document.querySelector(".tela-carregamento");
 const main = document.querySelector("main");
 let board = document.querySelector(".tabuleiro");
@@ -82,7 +83,7 @@ function gridEventListener(){
 
             tabuleiro[y][x].addEventListener("click", () => {
                 if (!tabuleiro[y][x].hasChildNodes()){
-                    socket.emit("addPecaBackend", { y: y, x: x });
+                    socket.emit("addPecaBackend", { y: y, x: x, room: gameRoom });
                 }
             });
         }
@@ -90,39 +91,44 @@ function gridEventListener(){
 
 }
 
-function addPeca(y, x, vezBrancas){
-
-    // Registro do lance - Visual
-    const peca = document.createElement("div");
-                    
-    if (vezBrancas == true)
-        peca.classList.add("peca-branca");
-    else
-        peca.classList.add("peca-preta");
+function renderGrid(){
 
 
-    tabuleiro[y][x].appendChild(peca);
 
+}
+
+function addPeca(y, x, vezBrancas, room){
+    if (gameRoom == room){
+        // Registro do lance - Visual
+        const peca = document.createElement("div");
+                        
+        if (vezBrancas == true)
+            peca.classList.add("peca-branca");
+        else
+            peca.classList.add("peca-preta");
+
+
+        tabuleiro[y][x].appendChild(peca);
+    }
 
 }
 
 function desistir(){
 
-    socket.emit("desistir", null);
+    socket.emit("desistir", gameRoom);
 
 }
 
 function passarVez(){
 
-    socket.emit("passarVez", null);
+    socket.emit("passarVez", gameRoom);
 
 }
 
 function pedirRevanche(){
 
     // Se o pedido for aceito
-        socket.emit("restart", null);
-        restart();
+        socket.emit("restart", gameRoom);
 
 }
 
@@ -147,8 +153,10 @@ function specs(quant_specs){
 
 function startGame(){
 
-    telaCarregamento.classList.add("hidden");
-    main.classList.remove("hidden");
+    if (!telaCarregamento.className.includes("hidden") || main.className.includes("hidden")){
+        telaCarregamento.classList.add("hidden");
+        main.classList.remove("hidden");
+    }
 
     startSound.play();
 
@@ -156,17 +164,19 @@ function startGame(){
 
 function endGame(data){
 
-    desistirBtn.classList.add("hidden");
-    passarBtn.classList.add("hidden");
-    revancheBtn.classList.remove("hidden");
+    if (data.roomNumber == gameRoom){
+        desistirBtn.classList.add("hidden");
+        passarBtn.classList.add("hidden");
+        revancheBtn.classList.remove("hidden");
 
-    // Mostrar placar
-    endgame_p.textContent = data.brancasPontos + " - " + data.pretasPontos + "   ";
+        // Mostrar placar
+        endgame_p.textContent = data.brancasPontos + " - " + data.pretasPontos + "   ";
 
-    // Mostrar quem foi vitorioso
-    endgame_p.textContent += "Vitória das " + (data.brancasGanham == true ? "brancas" : "pretas") + "!";
+        // Mostrar quem foi vitorioso
+        endgame_p.textContent += "Vitória das " + (data.brancasGanham == true ? "brancas" : "pretas") + "!";
 
-    endSound.play();
+        endSound.play();
+    }
 
 }
 
@@ -181,22 +191,24 @@ function mensagemJogo(msg){
 
 }
 
-function restart(){
+function restart(roomNumber){
 
-    tabuleiro = [];
-    board.remove();
-    board = document.createElement("section");
-    board.classList = "tabuleiro mt-12";
-    tabuleiroDiv.appendChild(board);
+    if (roomNumber == gameRoom){
+        tabuleiro = [];
+        board.remove();
+        board = document.createElement("section");
+        board.classList = "tabuleiro mt-12";
+        tabuleiroDiv.appendChild(board);
 
-    createGrid();
-    gridEventListener();
+        createGrid();
+        gridEventListener();
 
-    desistirBtn.classList.remove("hidden");
-    passarBtn.classList.remove("hidden");
-    revancheBtn.classList.add("hidden");
+        desistirBtn.classList.remove("hidden");
+        passarBtn.classList.remove("hidden");
+        revancheBtn.classList.add("hidden");
 
-    endgame_p.textContent = " ";
+        endgame_p.textContent = " ";
+    }
 
 }
 
@@ -212,31 +224,35 @@ textbox.addEventListener("keyup", (event) => {
 function enviarMsg(){
 
     if (textbox.value[0] != " " && textbox.value != ""){
-        socket.emit("chat", textbox.value);
+        const text = textbox.value;
+
+        socket.emit("chat", { text, gameRoom });
         clearTextbox();
     }
 
 }
 
-function regMsg(data){
+function regMsg(data, chatPlayer){
 
-    if (data.chatPlayer != null){
+    if (data.gameRoom == gameRoom){
+        if (chatPlayer != null){
 
-        const mensagem = document.createElement("div");
-        mensagem.classList.add("msg");
+            const mensagem = document.createElement("div");
+            mensagem.classList.add("msg");
 
-        const peca = document.createElement("div");
-        peca.className = (data.chatPlayer == "brancas" ? "peca-branca-chat" : "peca-preta-chat");
+            const peca = document.createElement("div");
+            peca.className = (chatPlayer == "brancas" ? "peca-branca-chat" : "peca-preta-chat");
 
-        const mensagem_p = document.createElement("p");
-        mensagem_p.classList.add("msg-p");
+            const mensagem_p = document.createElement("p");
+            mensagem_p.classList.add("msg-p");
 
-        mensagem_p.textContent = data.data;
+            mensagem_p.textContent = data.text;
 
-        mensagem.appendChild(peca);
-        mensagem.appendChild(mensagem_p);
-        mensagensField.appendChild(mensagem);
-        
+            mensagem.appendChild(peca);
+            mensagem.appendChild(mensagem_p);
+            mensagensField.appendChild(mensagem);
+            
+        }
     }
 
 }
@@ -250,11 +266,11 @@ function clearTextbox(){
 
 /* Listeners do server */
 socket.on("chat", (data) => {
-    regMsg(data);
+    regMsg(data.data, data.chatPlayer);
 });
 
 socket.on("addPecaBackend", (data) => {
-    addPeca(data.y, data.x, data.vezBrancas);
+    addPeca(data.y, data.x, data.vezBrancas, data.room);
 });
 
 socket.on("endGame", (data) => {
@@ -262,7 +278,7 @@ socket.on("endGame", (data) => {
 });
 
 socket.on("restart", (data) => {
-    restart();
+    restart(data);
 });
 
 socket.on("desconexao", (data) => {
@@ -277,9 +293,20 @@ socket.on("updateSpecs", (data) => {
     specs(data);
 });
 
+socket.on("regRoom", (data) => {
+    if (gameRoom == null){
+        gameRoom = data;
+    }
+});
+
+socket.on("serverFull", (data) => {
+    alert("Os servidores estão cheios no momento, tente novamente mais tarde.");
+    window.location = "index.html";
+});
+
 /* Tela de espera */
 socket.on("updateConnections", (con) => {
-    if (con >= 2){
+    if (con % 2 == 0){
         startGame();
     }
 });
