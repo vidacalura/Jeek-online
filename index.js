@@ -12,11 +12,11 @@ let rooms_count = [];
 let fila_espera = [];
 //let specs = 0;
 let connections_server = 0;
-let tempo = 300;
+let tempo = 120;
 
 const rooms = [];
 
-for (let i = 0; i < 10; i++){
+for (let i = 0; i < 100; i++){
     rooms_count.push(i);
 
     rooms[i] = {
@@ -193,10 +193,10 @@ async function relogio(){
                 io.sockets.emit("updateRelogio", {tempo_w , tempo_b, roomNumber });
 
                 if (tempo_w == 0){
-                    endGame(false);
+                    endGame(false, roomNumber);
                 }
                 else if (tempo_b == 0){
-                    endGame(true);
+                    endGame(true, roomNumber);
                 }
             }
         }
@@ -438,6 +438,14 @@ io.on("connection", (socket) => {
         passarVez(socket.id, data);
     });
 
+    socket.on("pedirRevanche", (data) => {
+        io.sockets.emit("confirmarRevanche", data);
+    });
+
+    socket.on("recusarRevanche", (data) => {
+        io.sockets.emit("revancheRecusada", data);
+    });
+
     socket.on("restart", (data) => {
         restart(data);
         io.sockets.emit("restart", data);
@@ -455,17 +463,12 @@ io.on("connection", (socket) => {
 - mostrar quantidade de pessoas online
 - adicionar navbar
 - isGameOver
-- game room 
-- Menu
-- revanche
 - isConnected()
 - autoPass()
 - Voltar lances
-- Mudar lados após partida
 
 Bugs
 
-- tempo
 - duas vitórias (quando o oponente sai após perder)
 
 */

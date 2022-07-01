@@ -137,6 +137,21 @@
     @apply w-16 md:w-28 p-3 py-4 md:p-4 bg-jeek-gray-400 rounded-full mb-4 text-xl font-bold;
 
 }
+.botao-revanche{
+
+    @apply w-14 p-3 bg-jeek-gray-400 rounded-full text-xl font-bold;
+
+}
+.botao-aceitar-revanche{
+
+    @apply bg-green;
+
+}
+.botao-recusar-revanche{
+
+    @apply bg-red;
+
+}
 .botao-passar{
 
     @apply bg-blue;

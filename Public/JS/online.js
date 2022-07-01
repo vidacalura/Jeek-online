@@ -17,6 +17,13 @@ const passarBtn = document.querySelector(".botao-passar");
 passarBtn.addEventListener("click", passarVez);
 const revancheBtn = document.querySelector(".botao-restart");
 revancheBtn.addEventListener("click", pedirRevanche);
+const revancheAceitarBtn = document.querySelector(".botao-aceitar-revanche");
+revancheAceitarBtn.addEventListener("click", aceitarRevanche);
+const revancheRecusarBtn = document.querySelector(".botao-recusar-revanche");
+revancheRecusarBtn.addEventListener("click", recusarRevanche);
+let loadingImgContainer = null;
+const revancheIcon = document.querySelector(".revanche-icon");
+const revancheDiv = document.querySelector(".revanche-div");
 const endgame_p = document.querySelector(".endgame-p");
 const tempo_w_p = document.querySelector(".tempo-white");
 const tempo_b_p = document.querySelector(".tempo-black");
@@ -128,8 +135,42 @@ function passarVez(){
 
 function pedirRevanche(){
 
-    // aceitarRevanche()
-        socket.emit("restart", gameRoom);
+    socket.emit("pedirRevanche", gameRoom);
+    revancheBtn.removeChild(revancheIcon);
+    
+    const loadingImg = document.createElement("img");
+    loadingImgContainer = document.createElement("div");
+    loadingImg.src = "../imgs/loadingRevanche";
+    loadingImg.classList = "w-8 h-8";
+    loadingImgContainer.classList = "w-full flex justify-center";
+
+    loadingImgContainer.appendChild(loadingImg)
+    revancheBtn.appendChild(loadingImgContainer);
+
+}
+
+function solicitarRevanche(roomNumber){
+
+    if (roomNumber == gameRoom){
+        if (loadingImgContainer == null){
+            revancheBtn.classList.add("hidden");
+            revancheDiv.classList.remove("hidden");
+        }
+    }
+
+}
+
+function aceitarRevanche(){
+
+    socket.emit("restart", gameRoom);
+
+}
+
+function recusarRevanche(){
+
+    socket.emit("recusarRevanche", gameRoom);
+
+    revancheDiv.classList.add("hidden");
 
 }
 
@@ -185,14 +226,16 @@ function endGame(data){
 
 }
 
-function mensagemJogo(msg){
+function mensagemJogo(msg, roomNumber){
 
-    const mensagem_jogo = document.createElement("p");
+    if (gameRoom == roomNumber){
+        const mensagem_jogo = document.createElement("p");
 
-    mensagem_jogo.textContent = msg;
-    mensagem_jogo.className = "msg-jogo";
+        mensagem_jogo.textContent = msg;
+        mensagem_jogo.className = "msg-jogo";
 
-    mensagensField.appendChild(mensagem_jogo);
+        mensagensField.appendChild(mensagem_jogo);
+    }
 
 }
 
@@ -210,9 +253,20 @@ function restart(roomNumber){
 
         desistirBtn.classList.remove("hidden");
         passarBtn.classList.remove("hidden");
-        revancheBtn.classList.add("hidden");
+
+        if (!revancheDiv.className.includes("hidden")){
+            revancheDiv.classList.add("hidden");
+        }
+        if (loadingImgContainer != null){
+            revancheBtn.removeChild(loadingImgContainer);
+            revancheBtn.appendChild(revancheIcon);
+        }
+        
+        revancheBtn.classList = "botao-jogo botao-restart hidden";
 
         endgame_p.textContent = " ";
+
+        loadingImgContainer = null;
     }
 
 }
@@ -282,14 +336,20 @@ socket.on("endGame", (data) => {
     endGame(data);
 });
 
+socket.on("confirmarRevanche", (data) => {
+    solicitarRevanche(data);
+});
+
+socket.on("revancheRecusada", (data) => {
+    mensagemJogo("Proposta de revanche recusada.", data);
+});
+
 socket.on("restart", (data) => {
     restart(data);
 });
 
 socket.on("desconexao", (data) => {
-    if (data.roomNumber == gameRoom){
-        mensagemJogo(data.cor + " saíram do jogo. Encerrando partida...");
-    }
+    mensagemJogo(data.cor + " saíram do jogo. Encerrando partida...", data.roomNumber);
 });
 
 socket.on("updateRelogio", (data) => {

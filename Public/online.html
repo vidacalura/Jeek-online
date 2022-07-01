@@ -10,6 +10,7 @@
         <script src="JS/online.js" defer> </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js">  </script>
         <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous">  </script>
+        <link rel="shortcut icon" href="imgs/aberturadomestre.ico" type="image/x-icon">
         <title> Jeek Online </title>
 
     </head>
@@ -52,7 +53,16 @@
 
                     <!-- Texto de conclusão do jogo -->
                     <div class="w-40 pt-12 text-center">
-                        <p class="endgame-p italic">  </p>
+                        <p class="endgame-p font-bold italic">  </p>
+                    </div>
+
+                    <!-- pedido de revanche -->
+                    <div class="revanche-div hidden text-center justify-center italic w-40 pt-8">
+                        <p class="pb-2"> Pedido de revanche recebido. </p> <p class="pt-1 pb-4"> Aceitar revanche? </p>
+                        <div class="flex justify-center gap-4">
+                            <button class="botao-revanche botao-aceitar-revanche" title="Aceitar revanche"> <i class="fa-solid fa-check"> </i> </button>
+                            <button class="botao-revanche botao-recusar-revanche" title="Recusar revanche"> <i class="fa-solid fa-xmark"> </i> </button>
+                        </div>
                     </div>
 
                     <!-- Botões -->
@@ -61,7 +71,7 @@
 
                         <button class="botao-jogo botao-desistir" title="Desistir"> <i class="fa-regular fa-flag"> </i> </button>
 
-                        <button class="botao-jogo botao-restart hidden" title="Solicitar revanche"> <i class="fa fa-arrow-rotate-right"> </i> </button>
+                        <button class="botao-jogo botao-restart hidden" title="Solicitar revanche"> <i class="revanche-icon fa fa-arrow-rotate-right"> </i> </button>
                     </div>
 
                 </section>
