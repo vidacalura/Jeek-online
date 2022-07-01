@@ -5,6 +5,7 @@ startSound.crossOrigin = "anonymous";
 let endSound = new Audio("../imgs/lichessCheckmate.mkv");
 endSound.crossOrigin = "anonymous";
 
+let connections = 0;
 let gameRoom = null;
 const mensagensField = document.querySelector(".msgs");
 const textbox = document.querySelector(".chat-txtbox");
@@ -127,18 +128,20 @@ function passarVez(){
 
 function pedirRevanche(){
 
-    // Se o pedido for aceito
+    // aceitarRevanche()
         socket.emit("restart", gameRoom);
 
 }
 
-function relogio(tempo_w, tempo_b){
+function relogio(tempo_w, tempo_b, roomNumber){
 
-    tempo_w_p.textContent = (tempo_w % 60 < 10 ? Math.floor(tempo_w / 60) + ":" + "0" + Math.floor(tempo_w % 60)
-    : Math.floor(tempo_w / 60) + ":" + Math.floor(tempo_w % 60));
+    if (roomNumber == gameRoom){
+        tempo_w_p.textContent = (tempo_w % 60 < 10 ? Math.floor(tempo_w / 60) + ":" + "0" + Math.floor(tempo_w % 60)
+        : Math.floor(tempo_w / 60) + ":" + Math.floor(tempo_w % 60));
 
-    tempo_b_p.textContent = (tempo_b % 60 < 10 ? Math.floor(tempo_b / 60) + ":" + "0" + Math.floor(tempo_b % 60)
-    : Math.floor(tempo_b / 60) + ":" + Math.floor(tempo_b % 60));
+        tempo_b_p.textContent = (tempo_b % 60 < 10 ? Math.floor(tempo_b / 60) + ":" + "0" + Math.floor(tempo_b % 60)
+        : Math.floor(tempo_b / 60) + ":" + Math.floor(tempo_b % 60));
+    }
 
 }
 
@@ -151,14 +154,16 @@ function specs(quant_specs){
 
 }
 
-function startGame(){
+function startGame(roomNumber){
 
-    if (!telaCarregamento.className.includes("hidden") || main.className.includes("hidden")){
-        telaCarregamento.classList.add("hidden");
-        main.classList.remove("hidden");
+    if (roomNumber == gameRoom){
+        if (!telaCarregamento.className.includes("hidden") || main.className.includes("hidden")){
+            telaCarregamento.classList.add("hidden");
+            main.classList.remove("hidden");
+        }
+
+        startSound.play();
     }
-
-    startSound.play();
 
 }
 
@@ -282,11 +287,13 @@ socket.on("restart", (data) => {
 });
 
 socket.on("desconexao", (data) => {
-    mensagemJogo(data + " saíram do jogo, encerrando partida...");
+    if (data.roomNumber == gameRoom){
+        mensagemJogo(data.cor + " saíram do jogo. Encerrando partida...");
+    }
 });
 
 socket.on("updateRelogio", (data) => {
-    relogio(data.tempo_w, data.tempo_b);
+    relogio(data.tempo_w, data.tempo_b, data.roomNumber);
 });
 
 socket.on("updateSpecs", (data) => {
@@ -296,6 +303,7 @@ socket.on("updateSpecs", (data) => {
 socket.on("regRoom", (data) => {
     if (gameRoom == null){
         gameRoom = data;
+        startGame(gameRoom);
     }
 });
 
@@ -306,7 +314,5 @@ socket.on("serverFull", (data) => {
 
 /* Tela de espera */
 socket.on("updateConnections", (con) => {
-    if (con % 2 == 0){
-        startGame();
-    }
+    connections++;
 });

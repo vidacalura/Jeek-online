@@ -60,7 +60,7 @@ for (let i = 0; i < 10; i++){
     };
 }
 
-//relogio();
+relogio();
 
 function isConnected(x, y, dados){ 
 
@@ -181,15 +181,23 @@ function checkTurn(data){
 async function relogio(){
 
     setInterval(() => {
-        if (room.connections >= 2){
-            (vezBrancas == true ? tempo_w-- : tempo_b--);
-            io.sockets.emit("updateRelogio", { tempo_w, tempo_b });
+        for (let i = 0; i < rooms_count.length; i++){
+            // mudar para isGameOver
+            if (rooms[i].dados.connections >= 2){
+                (rooms[i].dados.vezBrancas == true ? rooms[i].player.brancas.tempo-- : rooms[i].player.pretas.tempo--);
 
-            if (tempo_w == 0){
-                endGame(false);
-            }
-            else if (tempo_b == 0){
-                endGame(true);
+                const tempo_w = rooms[i].player.brancas.tempo;
+                const tempo_b = rooms[i].player.pretas.tempo;
+                const roomNumber = i;
+
+                io.sockets.emit("updateRelogio", {tempo_w , tempo_b, roomNumber });
+
+                if (tempo_w == 0){
+                    endGame(false);
+                }
+                else if (tempo_b == 0){
+                    endGame(true);
+                }
             }
         }
     }, 1000);
@@ -338,13 +346,17 @@ function disconnect(id){
 
         if (rooms[roomNumber].dados.connections == 2){
             if (id == rooms[roomNumber].player.brancas.playerId){
+                const cor = "Brancas";
+
                 endGame(false, roomNumber);
-                io.sockets.emit("desconexao", "brancas");
+                io.sockets.emit("desconexao", { cor, roomNumber });
                 rooms[roomNumber].dados.connections--;
             }
             else if (id == rooms[roomNumber].player.pretas.playerId){
+                const cor = "Pretas";
+
                 endGame(true, roomNumber);
-                io.sockets.emit("desconexao", "pretas");
+                io.sockets.emit("desconexao", { cor, roomNumber });
                 rooms[roomNumber].dados.connections--;
             }
         }
@@ -439,6 +451,7 @@ io.on("connection", (socket) => {
 
 /* to do
 
+- responsividade
 - mostrar quantidade de pessoas online
 - adicionar navbar
 - isGameOver
@@ -449,5 +462,10 @@ io.on("connection", (socket) => {
 - autoPass()
 - Voltar lances
 - Mudar lados após partida
+
+Bugs
+
+- tempo
+- duas vitórias (quando o oponente sai após perder)
 
 */

@@ -526,10 +526,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0.5rem;
 }
 
-.mb-8{
-  margin-bottom: 2rem;
-}
-
 .flex{
   display: flex;
 }
@@ -772,6 +768,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 1.5rem;
 }
 
+.pr-2{
+  padding-right: 0.5rem;
+}
+
 .pt-10{
   padding-top: 2.5rem;
 }
@@ -806,6 +806,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pl-3{
   padding-left: 0.75rem;
+}
+
+.pl-2{
+  padding-left: 0.5rem;
 }
 
 .text-left{
@@ -857,6 +861,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-jeek-gray-100{
   --tw-text-opacity: 1;
   color: rgb(199 199 199 / var(--tw-text-opacity));
+}
+
+.text-jeek-gray-200{
+  --tw-text-opacity: 1;
+  color: rgb(171 171 171 / var(--tw-text-opacity));
 }
 
 .text-jeek-gray-600{
