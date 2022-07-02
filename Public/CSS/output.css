@@ -539,6 +539,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0.5rem;
 }
 
+.mt-6{
+  margin-top: 1.5rem;
+}
+
+.mt-10{
+  margin-top: 2.5rem;
+}
+
 .flex{
   display: flex;
 }
@@ -615,12 +623,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 15rem;
 }
 
-.w-20{
-  width: 5rem;
-}
-
-.w-32{
-  width: 8rem;
+.w-44{
+  width: 11rem;
 }
 
 .cursor-text{
@@ -829,20 +833,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 38vw;
 }
 
-.pl-3{
-  padding-left: 0.75rem;
-}
-
-.pl-10{
-  padding-left: 2.5rem;
-}
-
 .pb-4{
   padding-bottom: 1rem;
 }
 
-.pt-\[-10rem\]{
-  padding-top: -10rem;
+.pl-3{
+  padding-left: 0.75rem;
+}
+
+.pb-8{
+  padding-bottom: 2rem;
 }
 
 .text-left{

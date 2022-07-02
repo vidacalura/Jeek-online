@@ -216,10 +216,10 @@ function endGame(data){
         revancheBtn.classList.remove("hidden");
 
         // Mostrar placar
-        endgame_p.textContent = data.brancasPontos + " - " + data.pretasPontos + "   ";
+        endgame_p.innerHTML = '<p class="endgame-p text-lg">' + data.brancasPontos + ' - ' + data.pretasPontos + '<br>';
 
         // Mostrar quem foi vitorioso
-        endgame_p.textContent += "Vitória das " + (data.brancasGanham == true ? "brancas" : "pretas") + "!";
+        endgame_p.innerHTML += 'Vitória das ' + (data.brancasGanham == true ? 'brancas' : 'pretas') + '!' + '</p>';
 
         endSound.play();
     }

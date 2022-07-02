@@ -23,7 +23,8 @@ for (let i = 0; i < 100; i++){
         dados: {
             'jogadas': 3,
             'vezBrancas': true,
-            'connections': 0
+            'connections': 0,
+            'isGameOver': false
         },
         player: {
             'brancas': { playerId: null, pontos: 0, lances: 0, tempo: tempo },
@@ -63,6 +64,9 @@ for (let i = 0; i < 100; i++){
 relogio();
 
 function isConnected(x, y, dados){ 
+
+    if (dados.dados.isGameOver)
+        return false;
 
     const lances_brancas = dados.player.brancas.lances;
     const lances_pretas = dados.player.pretas.lances;
@@ -183,7 +187,7 @@ async function relogio(){
     setInterval(() => {
         for (let i = 0; i < rooms_count.length; i++){
             // mudar para isGameOver
-            if (rooms[i].dados.connections >= 2){
+            if (rooms[i].dados.connections >= 2 && rooms[i].dados.isGameOver == false){
                 (rooms[i].dados.vezBrancas == true ? rooms[i].player.brancas.tempo-- : rooms[i].player.pretas.tempo--);
 
                 const tempo_w = rooms[i].player.brancas.tempo;
@@ -218,7 +222,7 @@ function endGame(brancasGanham, roomNumber){
 
     io.sockets.emit("endGame", { brancasPontos, pretasPontos, brancasGanham, roomNumber });
 
-    // Parar relógio
+    rooms[roomNumber].dados.isGameOver = true;
 
 }
 
@@ -278,6 +282,7 @@ function restart(roomNumber){
     rooms[roomNumber].player.brancas.pontos = rooms[roomNumber].player.pretas.pontos;
     rooms[roomNumber].player.pretas.pontos = tempPont;
 
+    rooms[roomNumber].dados.isGameOver = false;
 
 }
 
@@ -345,19 +350,21 @@ function disconnect(id){
         }
 
         if (rooms[roomNumber].dados.connections == 2){
-            if (id == rooms[roomNumber].player.brancas.playerId){
-                const cor = "Brancas";
+            if (rooms[roomNumber].dados.isGameOver == false){
+                if (id == rooms[roomNumber].player.brancas.playerId){
+                    const cor = "Brancas";
 
-                endGame(false, roomNumber);
-                io.sockets.emit("desconexao", { cor, roomNumber });
-                rooms[roomNumber].dados.connections--;
-            }
-            else if (id == rooms[roomNumber].player.pretas.playerId){
-                const cor = "Pretas";
+                    endGame(false, roomNumber);
+                    io.sockets.emit("desconexao", { cor, roomNumber });
+                    rooms[roomNumber].dados.connections--;
+                }
+                else if (id == rooms[roomNumber].player.pretas.playerId){
+                    const cor = "Pretas";
 
-                endGame(true, roomNumber);
-                io.sockets.emit("desconexao", { cor, roomNumber });
-                rooms[roomNumber].dados.connections--;
+                    endGame(true, roomNumber);
+                    io.sockets.emit("desconexao", { cor, roomNumber });
+                    rooms[roomNumber].dados.connections--;
+                }
             }
         }
 /*    else{
@@ -462,13 +469,8 @@ io.on("connection", (socket) => {
 - responsividade
 - mostrar quantidade de pessoas online
 - adicionar navbar
-- isGameOver
 - isConnected()
 - autoPass()
 - Voltar lances
-
-Bugs
-
-- duas vitórias (quando o oponente sai após perder)
 
 */
