@@ -18,6 +18,15 @@
 
     <body class="bg-jeek-gray-600 text-white overflow-x-hidden md:overflow-y-hidden">
 
+        <nav class="pt-4 px-6 flex">
+            <a href="index.html">
+                <img src="imgs/aberturadomestre.ico" class="rounded-md w-8 h-auto shadow-md" alt="Logo Jeek Online">
+            </a>
+            <a href="index.html">
+                <h1 class="text-jeek-gray-100 font-bold pt-1 pl-4 flex"> Jeek Online <p class="text-jeek-gray-200 pl-2"> Beta </p> </h1>
+            </a>
+        </nav>
+
         <div class="tela-carregamento text-center absolute w-screen h-screen">
             <div class="w-full flex justify-center pt-60">
                 <img src="imgs/loading" alt="" class="w-8 h-8">
@@ -26,7 +35,7 @@
             <p class="font-bold pt-2"> Procurando oponente... </p>
         </div>
 
-        <main class="pt-20 hidden">
+        <main class="pt-8 hidden">
 
             <div class="px-16 flex pl-[38vw] justify-between">
 
@@ -36,6 +45,10 @@
                         
                     </div>
 
+                    <div class="absolute top-[36.7rem] w-[28rem] flex justify-between text-2xl">
+                        <button class="move-back"> <i class="fa-solid fa-angle-left">  </i> </button>
+                        <button class="move-forward"> <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
                 </div>
 
                 <section class="">
@@ -77,15 +90,15 @@
                 </section>
 
 
-                <div class="md:absolute md:top-8 md:left-12">
+                <div class="md:absolute md:top-20 md:left-12">
                     <!-- Espectadores -->
                     <div class="specs-div hidden">
                         <i class="specs-icon fa-solid fa-eye"> </i>
                     </div>
 
                     <!-- Chat -->
-                    <div class="chat bg-jeek-gray-400 w-80 h-[36rem] rounded-lg">
-                        <div class="msgs pt-8 h-[32rem] overflow-y-scroll">
+                    <div class="chat bg-jeek-gray-400 w-80 h-[32rem] rounded-lg">
+                        <div class="msgs pt-8 h-[28rem] overflow-y-scroll">
                             
                         </div>
                         <div class="absolute bottom-4 px-6 w-80 flex">

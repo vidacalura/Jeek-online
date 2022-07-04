@@ -43,10 +43,17 @@ dropboxTempoItens[3].addEventListener("click", () => {
     dropboxTempoItensSelected = true;
     dropboxTempo.classList.remove("active");
 });
+dropboxTempoItens[4].addEventListener("click", () => {
+    tempo = null;
+    dropboxTempoItensSelected = true;
+    dropboxTempo.classList.remove("active");
+    relogio_w.classList.add("hidden");
+    relogio_b.classList.add("hidden");
+});
 
 for (const item of dropboxTempoItens){
     item.addEventListener("click", () => {
-        tempoLabel.textContent = "Tempo: " + (tempo < 60 ? tempo + " s" : tempo / 60 + " min");
+        tempoLabel.textContent = "Tempo: " + (tempo == null ? "Sem tempo" : tempo < 60 ? tempo + " s" : tempo / 60 + " min");
     });
 }
 
@@ -109,7 +116,7 @@ createGrid();
 async function clock(){
 
     setInterval(() => {
-        if (gameIsOver == false){
+        if (gameIsOver == false && tempo != null){
             (turn == "white" ? tempo_w-- : tempo_b--);
 
             if (turn == "white"){

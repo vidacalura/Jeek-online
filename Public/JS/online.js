@@ -6,6 +6,8 @@ let endSound = new Audio("../imgs/lichessCheckmate.mkv");
 endSound.crossOrigin = "anonymous";
 
 let connections = 0;
+let movesBack = 0;
+let casasAtivas = [];
 let gameRoom = null;
 const mensagensField = document.querySelector(".msgs");
 const textbox = document.querySelector(".chat-txtbox");
@@ -22,6 +24,10 @@ revancheAceitarBtn.addEventListener("click", aceitarRevanche);
 const revancheRecusarBtn = document.querySelector(".botao-recusar-revanche");
 revancheRecusarBtn.addEventListener("click", recusarRevanche);
 let loadingImgContainer = null;
+const backBtn = document.querySelector(".move-back");
+backBtn.addEventListener("click", moveBack);
+const forwardBtn = document.querySelector(".move-forward");
+forwardBtn.addEventListener("click", moveForward);
 const revancheIcon = document.querySelector(".revanche-icon");
 const revancheDiv = document.querySelector(".revanche-div");
 const endgame_p = document.querySelector(".endgame-p");
@@ -90,7 +96,7 @@ function gridEventListener(){
             const x = j;
 
             tabuleiro[y][x].addEventListener("click", () => {
-                if (!tabuleiro[y][x].hasChildNodes()){
+                if (!tabuleiro[y][x].hasChildNodes() && movesBack == 0){
                     socket.emit("addPecaBackend", { y: y, x: x, room: gameRoom });
                 }
             });
@@ -114,6 +120,11 @@ function addPeca(y, x, vezBrancas, room){
             peca.classList.add("peca-branca");
         else
             peca.classList.add("peca-preta");
+
+        if (movesBack > 0){
+            peca.classList.add("hidden");
+            movesBack++;
+        }
 
 
         tabuleiro[y][x].appendChild(peca);
@@ -183,6 +194,34 @@ function relogio(tempo_w, tempo_b, roomNumber){
         tempo_b_p.textContent = (tempo_b % 60 < 10 ? Math.floor(tempo_b / 60) + ":" + "0" + Math.floor(tempo_b % 60)
         : Math.floor(tempo_b / 60) + ":" + Math.floor(tempo_b % 60));
     }
+
+}
+
+function moveBack(){
+
+    if (movesBack < casasAtivas.length)
+        movesBack++;
+
+    const lastIndex = casasAtivas.length - movesBack;
+
+    const x = casasAtivas[lastIndex][1];
+    const y = casasAtivas[lastIndex][0];
+
+    tabuleiro[y][x].firstChild.classList.add("hidden");
+
+}
+
+function moveForward(){
+
+    const lastIndex = casasAtivas.length - movesBack;
+
+    const x = casasAtivas[lastIndex][1];
+    const y = casasAtivas[lastIndex][0];
+
+    tabuleiro[y][x].firstChild.classList.remove("hidden");
+
+    if (movesBack > 0)
+        movesBack--;
 
 }
 
@@ -370,6 +409,12 @@ socket.on("regRoom", (data) => {
 socket.on("serverFull", (data) => {
     alert("Os servidores estão cheios no momento, tente novamente mais tarde.");
     window.location = "index.html";
+});
+
+socket.on("updateCasasAtivas", (data) => {
+    if (data.roomNumber == gameRoom){
+        casasAtivas = data.casasAtivas;
+    }
 });
 
 /* Tela de espera */

@@ -24,6 +24,7 @@ for (let i = 0; i < 100; i++){
             'jogadas': 3,
             'vezBrancas': true,
             'connections': 0,
+            'casasAtivas': [],
             'isGameOver': false
         },
         player: {
@@ -79,8 +80,11 @@ function isConnected(x, y, dados){
     if ((x < 0 || x > 3) || (y < 0 || y > 3))
         return false;
 
-    if (dados.dados.jogadas == 3){
+    if (dados.dados.jogadas == 3 && dados.player.brancas.lances == 1){
         // Verificação de lance simétrico (1)
+        if (dados.pecas_brancas.peca_branca1.x + dados.pecas_brancas.peca_branca1.y + x + y == 6){
+            return false;
+        }
 
         return true;
     }
@@ -139,11 +143,32 @@ function isConnected(x, y, dados){
     // Verfica se os lances são simétricos (2 e 3)
     if (!dados.dados.vezBrancas){
         if (lances_brancas == lances_pretas + 1){
-            if (lances_brancas == 3){
-                // soma 6
+            let pecas_brancas = [];
+            let pecas_pretas = [];
+
+            for (let i = 0; i < lances_brancas; i++){
+                lance = Object.values(dados.pecas_brancas); 
+                pecas_brancas.push(4 * Number(lance[i].y) + Number(lance[i].x));
             }
-            else if (lances_brancas == 2){
-                // soma 6
+
+            for (let i = 0; i < lances_pretas; i++){
+                lance = Object.values(dados.pecas_pretas); 
+                pecas_pretas.push(4 * Number(lance[i].y) + Number(lance[i].x));
+            }
+            pecas_pretas.push(4 * y + x);
+
+
+            if (dados.dados.jogadas == 1){
+                if (pecas_brancas[0] + pecas_brancas[1] + pecas_brancas[2] ==
+                    (15 - pecas_pretas[0]) + (15 - pecas_pretas[1]) + (15 - pecas_pretas[2])){
+                        return false;
+                    }
+            }
+            if (dados.dados.jogadas == 2){
+                if (pecas_brancas[0] + pecas_brancas[1] ==
+                    (15 - pecas_pretas[0]) + (15 - pecas_pretas[1])){
+                        return false;
+                    }
             }
         }
     }
@@ -155,17 +180,25 @@ function isConnected(x, y, dados){
 
 function regLance(lance, quant_lances, data){
 
+    const roomNumber = data.room;
+
     // Registro do lance - JS
     lance[quant_lances].x = data.x;
     lance[quant_lances].y = data.y;
 
-    rooms[data.room].dados.jogadas--;
+    rooms[roomNumber].dados.jogadas--;
 
-    data.vezBrancas = rooms[data.room].dados.vezBrancas;
+    data.vezBrancas = rooms[roomNumber].dados.vezBrancas;
 
     checkTurn(data);
     
     io.sockets.emit("addPecaBackend", data);
+
+    rooms[roomNumber].dados.casasAtivas.push([data.y, data.x]);
+
+    const casasAtivas = rooms[roomNumber].dados.casasAtivas;
+
+    io.sockets.emit("updateCasasAtivas", { roomNumber, casasAtivas });
 
 }
 
@@ -186,7 +219,6 @@ async function relogio(){
 
     setInterval(() => {
         for (let i = 0; i < rooms_count.length; i++){
-            // mudar para isGameOver
             if (rooms[i].dados.connections >= 2 && rooms[i].dados.isGameOver == false){
                 (rooms[i].dados.vezBrancas == true ? rooms[i].player.brancas.tempo-- : rooms[i].player.pretas.tempo--);
 
@@ -272,6 +304,8 @@ function restart(roomNumber){
 
     rooms[roomNumber].player.brancas.tempo = tempo;
     rooms[roomNumber].player.pretas.tempo = tempo;
+
+    rooms[roomNumber].dados.casasAtivas = [];
 
     // Trocar lados
     const tempId = rooms[roomNumber].player.brancas.playerId;
@@ -467,10 +501,6 @@ io.on("connection", (socket) => {
 /* to do
 
 - responsividade
-- mostrar quantidade de pessoas online
-- adicionar navbar
-- isConnected()
-- autoPass()
-- Voltar lances
+- Mandar moveBack e moveForward pro back end
 
 */
