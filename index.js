@@ -500,7 +500,6 @@ io.on("connection", (socket) => {
 
 /* to do
 
-- responsividade
-- Mandar moveBack e moveForward pro back end
+- Menu para mostrar conexão do adversário (igual ao lichess)
 
 */

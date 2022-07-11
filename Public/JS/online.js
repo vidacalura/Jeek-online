@@ -105,11 +105,13 @@ function gridEventListener(){
 
 }
 
+/*
 function renderGrid(){
 
 
 
 }
+*/
 
 function addPeca(y, x, vezBrancas, room){
     if (gameRoom == room){
@@ -125,7 +127,6 @@ function addPeca(y, x, vezBrancas, room){
             peca.classList.add("hidden");
             movesBack++;
         }
-
 
         tabuleiro[y][x].appendChild(peca);
     }
@@ -249,16 +250,18 @@ function startGame(roomNumber){
 
 function endGame(data){
 
-    if (data.roomNumber == gameRoom){
+    const { roomNumber, brancasPontos, pretasPontos, brancasGanham } = data;
+
+    if (roomNumber == gameRoom){
         desistirBtn.classList.add("hidden");
         passarBtn.classList.add("hidden");
         revancheBtn.classList.remove("hidden");
 
         // Mostrar placar
-        endgame_p.innerHTML = '<p class="endgame-p text-lg">' + data.brancasPontos + ' - ' + data.pretasPontos + '<br>';
+        endgame_p.innerHTML = `<p class="endgame-p text-lg"> ${brancasPontos} - ${pretasPontos} <br>`;
 
         // Mostrar quem foi vitorioso
-        endgame_p.innerHTML += 'Vitória das ' + (data.brancasGanham == true ? 'brancas' : 'pretas') + '!' + '</p>';
+        endgame_p.innerHTML += `Vitória das ${(brancasGanham == true ? 'brancas' : 'pretas')}! </p>`;
 
         endSound.play();
     }
@@ -332,7 +335,9 @@ function enviarMsg(){
 
 function regMsg(data, chatPlayer){
 
-    if (data.gameRoom == gameRoom){
+    const { text, roomNumber } = data;
+
+    if (roomNumber == gameRoom){
         if (chatPlayer != null){
 
             const mensagem = document.createElement("div");
@@ -344,7 +349,7 @@ function regMsg(data, chatPlayer){
             const mensagem_p = document.createElement("p");
             mensagem_p.classList.add("msg-p");
 
-            mensagem_p.textContent = data.text;
+            mensagem_p.textContent = text;
 
             mensagem.appendChild(peca);
             mensagem.appendChild(mensagem_p);
@@ -364,7 +369,9 @@ function clearTextbox(){
 
 /* Listeners do server */
 socket.on("chat", (data) => {
-    regMsg(data.data, data.chatPlayer);
+    const { text, gameRoom } = data.data;
+
+    regMsg({ text, roomNumber: gameRoom }, data.chatPlayer);
 });
 
 socket.on("addPecaBackend", (data) => {
@@ -388,7 +395,7 @@ socket.on("restart", (data) => {
 });
 
 socket.on("desconexao", (data) => {
-    mensagemJogo(data.cor + " saíram do jogo. Encerrando partida...", data.roomNumber);
+    mensagemJogo(`${data.cor} saíram do jogo. Encerrando partida...`, data.roomNumber);
 });
 
 socket.on("updateRelogio", (data) => {

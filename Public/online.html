@@ -37,15 +37,15 @@
 
         <main class="pt-8 hidden">
 
-            <div class="px-16 flex pl-[38vw] justify-between">
+            <div class="px-16 md:flex md:pl-[38vw] justify-between">
 
-                <div class="tabuleiro-div">
+                <div class="flex justify-center md:block tabuleiro-div">
                     <!-- Tabuleiro -->
                     <div class="tabuleiro mt-12">
                         
                     </div>
 
-                    <div class="absolute top-[36.7rem] w-[28rem] flex justify-between text-2xl">
+                    <div class="absolute top-96 md:top-[36.7rem] w-64 md:w-[28rem] flex justify-between text-2xl">
                         <button class="move-back"> <i class="fa-solid fa-angle-left">  </i> </button>
                         <button class="move-forward"> <i class="fa-solid fa-angle-right"></i> </button>
                     </div>
@@ -54,7 +54,7 @@
                 <section class="">
 
                     <!-- Tempo -->
-                    <div class="mt-12">
+                    <div class="mt-12 flex justify-center gap-2 md:inline-block">
                         <div class="relogio-brancas">
                             <p class="tempo-white">  </p>
                         </div>
@@ -65,21 +65,23 @@
                     </div>
 
                     <!-- Texto de conclusão do jogo -->
-                    <div class="w-40 pt-12 text-center">
+                    <div class="w-64 md:w-40 pt-12 text-center">
                         <p class="endgame-p text-lg">  </p>
                     </div>
 
                     <!-- pedido de revanche -->
-                    <div class="revanche-div hidden bg-jeek-gray-700 mt-10 py-4 rounded-lg shadow-md text-center justify-center italic w-44">
-                        <p class="pb-2"> Pedido de revanche recebido. </p> <p class="pt-1 pb-4"> Aceitar revanche? </p>
-                        <div class="flex justify-center gap-4">
-                            <button class="botao-revanche botao-aceitar-revanche" title="Aceitar revanche"> <i class="fa-solid fa-check"> </i> </button>
-                            <button class="botao-revanche botao-recusar-revanche" title="Recusar revanche"> <i class="fa-solid fa-xmark"> </i> </button>
+                    <div class="flex justify-center md:block">
+                        <div class="revanche-div hidden bg-jeek-gray-700 mt-10 py-4 rounded-lg shadow-md text-center justify-center italic w-44">
+                            <p class="pb-2"> Pedido de revanche recebido. </p> <p class="pt-1 pb-4"> Aceitar revanche? </p>
+                            <div class="flex justify-center gap-4">
+                                <button class="botao-revanche botao-aceitar-revanche" title="Aceitar revanche"> <i class="fa-solid fa-check"> </i> </button>
+                                <button class="botao-revanche botao-recusar-revanche" title="Recusar revanche"> <i class="fa-solid fa-xmark"> </i> </button>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Botões -->
-                    <div class="botoes">
+                    <div class="botoes flex justify-center gap-4 md:block">
                         <button class="botao-jogo botao-passar" title="Passar vez"> <i class="fa fa-arrow-right"> </i> </button> <br>
 
                         <button class="botao-jogo botao-desistir" title="Desistir"> <i class="fa-regular fa-flag"> </i> </button>
@@ -90,7 +92,7 @@
                 </section>
 
 
-                <div class="md:absolute md:top-20 md:left-12">
+                <div class="hidden md:block md:absolute md:top-20 left-12">
                     <!-- Espectadores -->
                     <div class="specs-div hidden">
                         <i class="specs-icon fa-solid fa-eye"> </i>

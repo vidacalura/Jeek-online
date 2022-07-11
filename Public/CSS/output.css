@@ -478,10 +478,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: relative;
 }
 
-.bottom-0{
-  bottom: 0px;
-}
-
 .top-\[36\.7rem\]{
   top: 36.7rem;
 }
@@ -496,6 +492,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bottom-4{
   bottom: 1rem;
+}
+
+.top-64{
+  top: 16rem;
+}
+
+.top-80{
+  top: 20rem;
+}
+
+.top-96{
+  top: 24rem;
+}
+
+.left-12{
+  left: 3rem;
 }
 
 .z-10{
@@ -627,6 +639,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 11rem;
 }
 
+.w-\[100\%\]{
+  width: 100%;
+}
+
+.w-64{
+  width: 16rem;
+}
+
 .cursor-text{
   cursor: text;
 }
@@ -649,6 +669,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .gap-4{
   gap: 1rem;
+}
+
+.gap-8{
+  gap: 2rem;
 }
 
 .overflow-hidden{
@@ -823,10 +847,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-60{
   padding-top: 15rem;
-}
-
-.pl-\[38vw\]{
-  padding-left: 38vw;
 }
 
 .pb-4{
@@ -1248,12 +1268,28 @@ Ensure the default browser behavior of the `hidden` attribute.
     position: absolute;
   }
 
+  .md\:bottom-0{
+    bottom: 0px;
+  }
+
   .md\:top-20{
     top: 5rem;
   }
 
   .md\:left-12{
     left: 3rem;
+  }
+
+  .md\:bottom-4{
+    bottom: 1rem;
+  }
+
+  .md\:top-\[36\.7rem\]{
+    top: 36.7rem;
+  }
+
+  .md\:block{
+    display: block;
   }
 
   .md\:inline-block{
@@ -1272,6 +1308,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 28rem;
   }
 
+  .md\:w-40{
+    width: 10rem;
+  }
+
   .md\:overflow-y-hidden{
     overflow-y: hidden;
   }
@@ -1288,6 +1328,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:pt-20{
     padding-top: 5rem;
+  }
+
+  .md\:pl-\[38vw\]{
+    padding-left: 38vw;
   }
 }
 
