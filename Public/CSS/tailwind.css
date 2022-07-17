@@ -147,11 +147,6 @@
     @apply bg-green-200;
 
 }
-.botao-recusar-revanche{
-
-    @apply bg-red;
-
-}
 .botao-passar{
 
     @apply bg-blue;

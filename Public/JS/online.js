@@ -415,6 +415,8 @@ function regMsg(data, chatPlayer){
         }
     }
 
+    mensagensField.scrollTop = mensagensField.scrollHeight - mensagensField.clientHeight;
+
 }
 
 function clearTextbox(){
