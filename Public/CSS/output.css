@@ -490,24 +490,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
-.bottom-4{
-  bottom: 1rem;
-}
-
-.top-64{
-  top: 16rem;
-}
-
-.top-80{
-  top: 20rem;
-}
-
 .top-96{
   top: 24rem;
 }
 
 .left-12{
   left: 3rem;
+}
+
+.bottom-4{
+  bottom: 1rem;
 }
 
 .z-10{
@@ -555,6 +547,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 2.5rem;
 }
 
+.mt-1{
+  margin-top: 0.25rem;
+}
+
 .ml-2{
   margin-left: 0.5rem;
 }
@@ -579,16 +575,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 100vh;
 }
 
-.h-8{
-  height: 2rem;
+.h-12{
+  height: 3rem;
 }
 
-.h-\[32rem\]{
-  height: 32rem;
+.h-32{
+  height: 8rem;
 }
 
-.h-\[28rem\]{
-  height: 28rem;
+.h-4{
+  height: 1rem;
+}
+
+.h-\[22rem\]{
+  height: 22rem;
+}
+
+.h-72{
+  height: 18rem;
 }
 
 .max-h-0{
@@ -635,16 +639,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 15rem;
 }
 
-.w-44{
-  width: 11rem;
-}
-
-.w-\[100\%\]{
-  width: 100%;
+.w-12{
+  width: 3rem;
 }
 
 .w-64{
   width: 16rem;
+}
+
+.w-44{
+  width: 11rem;
+}
+
+.w-4{
+  width: 1rem;
 }
 
 .cursor-text{
@@ -669,10 +677,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .gap-4{
   gap: 1rem;
-}
-
-.gap-8{
-  gap: 2rem;
 }
 
 .overflow-hidden{
@@ -738,6 +742,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-jeek-gray-300{
+  --tw-bg-opacity: 1;
+  background-color: rgb(169 169 169 / var(--tw-bg-opacity));
+}
+
+.bg-green-100{
+  --tw-bg-opacity: 1;
+  background-color: rgb(180 255 159 / var(--tw-bg-opacity));
 }
 
 .bg-jeek-gray-400{
@@ -845,8 +859,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.5rem;
 }
 
-.pt-60{
-  padding-top: 15rem;
+.pt-56{
+  padding-top: 14rem;
 }
 
 .pb-4{
@@ -1272,20 +1286,12 @@ Ensure the default browser behavior of the `hidden` attribute.
     bottom: 0px;
   }
 
-  .md\:top-20{
-    top: 5rem;
-  }
-
-  .md\:left-12{
-    left: 3rem;
-  }
-
-  .md\:bottom-4{
-    bottom: 1rem;
-  }
-
   .md\:top-\[36\.7rem\]{
     top: 36.7rem;
+  }
+
+  .md\:top-20{
+    top: 5rem;
   }
 
   .md\:block{

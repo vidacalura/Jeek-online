@@ -2,15 +2,14 @@ let express = require("express");
 const socket = require("socket.io");
 
 let app = express();
+
 const port = process.env.PORT || 5000;
 let server = app.listen(port);
-
 
 app.use(express.static("Public"));
 
 let rooms_count = [];
 let fila_espera = [];
-//let specs = 0;
 let connections_server = 0;
 let tempo = 120;
 
@@ -400,6 +399,18 @@ function disconnect(id){
                     rooms[roomNumber].dados.connections--;
                 }
             }
+            else{
+                if (id == rooms[roomNumber].player.brancas.playerId){
+                    const cor = "Brancas";
+
+                    io.sockets.emit("desconexao", { cor, roomNumber });
+                }
+                else if (id == rooms[roomNumber].player.pretas.playerId){
+                    const cor = "Pretas";
+
+                    io.sockets.emit("desconexao", { cor, roomNumber });
+                }   
+            }
         }
 /*    else{
         specs--;
@@ -498,8 +509,10 @@ io.on("connection", (socket) => {
 
 });
 
+
 /* to do
 
-- Menu para mostrar conexão do adversário (igual ao lichess)
+- Chat responsivo
+- Montar server em Node.js (app.get())
 
 */

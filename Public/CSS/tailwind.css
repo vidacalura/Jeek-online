@@ -144,7 +144,7 @@
 }
 .botao-aceitar-revanche{
 
-    @apply bg-green;
+    @apply bg-green-200;
 
 }
 .botao-recusar-revanche{

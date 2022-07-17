@@ -12,6 +12,8 @@ let gameRoom = null;
 const mensagensField = document.querySelector(".msgs");
 const textbox = document.querySelector(".chat-txtbox");
 const enviarBtn = document.querySelector(".chat-btn ");
+const conexaoBrancas = document.querySelector(".conexao-brancas");
+const conexaoPretas = document.querySelector(".conexao-pretas");
 enviarBtn.addEventListener("click", enviarMsg);
 const desistirBtn = document.querySelector(".botao-desistir");
 desistirBtn.addEventListener("click", desistir);
@@ -36,6 +38,8 @@ const tempo_b_p = document.querySelector(".tempo-black");
 //const specsDiv = document.querySelector(".specs-div");
 //const specsIcon = document.querySelector(".specs-icon");
 const telaCarregamento = document.querySelector(".tela-carregamento");
+const procurandoOponentes = document.querySelector(".procurando-oponentes");
+const jogadoresOnline = document.querySelector(".num-oponentes");
 const main = document.querySelector("main");
 let board = document.querySelector(".tabuleiro");
 const tabuleiroDiv = document.querySelector(".tabuleiro-div");
@@ -43,13 +47,11 @@ let tabuleiro = [];
 
 createGrid();
 gridEventListener();
+procurandoOponentesAnimacao();
 socket.emit("createPlayer", socket.id);
 
 
 function createGrid(){
-
-    let count = 0;
-    let col_list = [];
 
     for (let i = 0; i < 4; i++){
 
@@ -60,19 +62,18 @@ function createGrid(){
 
         for (let j = 0; j < 4; j++){
             const casa = document.createElement("div");
-            casa.dataset.id = count;
             casa.classList.add("casa");
 
-            if (count == 0){
+            if (i == 0 && j == 0){
                 casa.classList.add("casa1");
             }
-            else if(count == 3){
+            else if(i == 0 && j == 3){
                 casa.classList.add("casa2");
             }
-            else if(count == 12){
+            else if(i == 3 && j == 0){
                 casa.classList.add("casa3");
             }
-            else if(count == 15){
+            else if(i == 3 && j == 3){
                 casa.classList.add("casa4");
             }
 
@@ -80,7 +81,6 @@ function createGrid(){
 
             col.appendChild(casa);
 
-            count++;
         }
 
         tabuleiro.push(col_list);
@@ -106,7 +106,7 @@ function gridEventListener(){
 }
 
 /*
-function renderGrid(){
+async function renderGrid(){
 
 
 
@@ -130,6 +130,35 @@ function addPeca(y, x, vezBrancas, room){
 
         tabuleiro[y][x].appendChild(peca);
     }
+
+}
+
+async function procurandoOponentesAnimacao(){
+
+    let i = 0;
+
+    const interval = setInterval(() =>{
+
+        procurandoOponentes.textContent += ".";
+
+        i++;
+
+        if (i == 4){
+            i = 0;
+            procurandoOponentes.textContent = "Procurando oponente";
+        }
+
+        if (telaCarregamento.className.includes("hidden")){
+            clearInterval(interval);
+        }
+
+    }, 1000);
+
+}
+
+function jogadoresOnlineCounter(con){
+
+    jogadoresOnline.textContent = `${con - 1} jogadores online`;
 
 }
 
@@ -226,6 +255,7 @@ function moveForward(){
 
 }
 
+/*
 function specs(quant_specs){
 
     if (specsDiv.className.includes("hidden"))
@@ -234,6 +264,7 @@ function specs(quant_specs){
     specsIcon.textContent = " " + quant_specs;
 
 }
+*/
 
 function startGame(roomNumber){
 
@@ -293,6 +324,15 @@ function restart(roomNumber){
         createGrid();
         gridEventListener();
 
+        if (conexaoBrancas.className.includes("bg-red")){
+            conexaoBrancas.classList.add("bg-green-100");
+            conexaoBrancas.classList.remove("bg-red");   
+        }
+        if (conexaoPretas.className.includes("bg-red")){
+            conexaoPretas.classList.add("bg-green-100");
+            conexaoPretas.classList.remove("bg-red");   
+        }
+
         desistirBtn.classList.remove("hidden");
         passarBtn.classList.remove("hidden");
 
@@ -309,6 +349,23 @@ function restart(roomNumber){
         endgame_p.textContent = " ";
 
         loadingImgContainer = null;
+    }
+
+}
+
+function desconexao(data){
+
+    const { cor, roomNumber } = data;
+
+    mensagemJogo(`${cor} saíram do jogo. Encerrando partida...`, roomNumber);
+
+    if (cor == "Brancas"){
+        conexaoBrancas.classList.remove("bg-green-100");
+        conexaoBrancas.classList.add("bg-red");
+    }
+    else if (cor == "Pretas"){
+        conexaoPretas.classList.remove("bg-green-100");
+        conexaoPretas.classList.add("bg-red");
     }
 
 }
@@ -395,16 +452,18 @@ socket.on("restart", (data) => {
 });
 
 socket.on("desconexao", (data) => {
-    mensagemJogo(`${data.cor} saíram do jogo. Encerrando partida...`, data.roomNumber);
+    desconexao(data);
 });
 
 socket.on("updateRelogio", (data) => {
     relogio(data.tempo_w, data.tempo_b, data.roomNumber);
 });
 
+/*
 socket.on("updateSpecs", (data) => {
     specs(data);
 });
+*/
 
 socket.on("regRoom", (data) => {
     if (gameRoom == null){
@@ -426,5 +485,6 @@ socket.on("updateCasasAtivas", (data) => {
 
 /* Tela de espera */
 socket.on("updateConnections", (con) => {
-    connections++;
+    connections = con;
+    jogadoresOnlineCounter(con);
 });

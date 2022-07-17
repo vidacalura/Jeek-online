@@ -27,12 +27,14 @@
             </a>
         </nav>
 
-        <div class="tela-carregamento text-center absolute w-screen h-screen">
-            <div class="w-full flex justify-center pt-60">
-                <img src="imgs/loading" alt="" class="w-8 h-8">
+        <div class="tela-carregamento text-lg text-center absolute w-screen h-screen">
+            <div class="w-full flex justify-center pt-56">
+                <img src="imgs/loading" alt="" class="w-12 h-12">
             </div>
 
-            <p class="font-bold pt-2"> Procurando oponente... </p>
+            <p class="num-oponentes pt-4"> 0 jogadores online </p>
+
+            <p class="procurando-oponentes font-bold text-xl">Procurando oponente</p>
         </div>
 
         <main class="pt-8 hidden">
@@ -65,11 +67,11 @@
                     </div>
 
                     <!-- Texto de conclusão do jogo -->
-                    <div class="w-64 md:w-40 pt-12 text-center">
+                    <div class="w-auto md:w-40 pt-12 text-center">
                         <p class="endgame-p text-lg">  </p>
                     </div>
 
-                    <!-- pedido de revanche -->
+                    <!-- Pedido de revanche -->
                     <div class="flex justify-center md:block">
                         <div class="revanche-div hidden bg-jeek-gray-700 mt-10 py-4 rounded-lg shadow-md text-center justify-center italic w-44">
                             <p class="pb-2"> Pedido de revanche recebido. </p> <p class="pt-1 pb-4"> Aceitar revanche? </p>
@@ -93,14 +95,32 @@
 
 
                 <div class="hidden md:block md:absolute md:top-20 left-12">
-                    <!-- Espectadores -->
+                    <!-- Espectadores
                     <div class="specs-div hidden">
                         <i class="specs-icon fa-solid fa-eye"> </i>
+                    </div> -->
+
+                    <!-- Menu de conexão -->
+                    <div class="conexao-div bg-jeek-gray-300 w-80 h-32 rounded-lg p-6 hidden md:block">
+                        <div class="flex w-full gap-4">
+                            <div class="peca-branca-chat"> </div>
+                            <div class="flex pt-1 gap-4">
+                                <p class="font-bold"> Anônimo </p>
+                                <div class="conexao-brancas mt-1 bg-green-100 rounded-full w-4 h-4">  </div>
+                            </div>
+                        </div>
+                        <div class="flex w-full gap-4 pt-4">
+                            <div class="peca-preta-chat"> </div>
+                            <div class="flex pt-1 gap-4">
+                                <p class="font-bold"> Anônimo </p>
+                                <div class="conexao-pretas mt-1 bg-green-100 rounded-full w-4 h-4">  </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Chat -->
-                    <div class="chat bg-jeek-gray-400 w-80 h-[32rem] rounded-lg">
-                        <div class="msgs pt-8 h-[28rem] overflow-y-scroll">
+                    <div class="chat bg-jeek-gray-400 w-80 h-[22rem] mt-2 rounded-lg">
+                        <div class="msgs pt-8 h-72 overflow-y-scroll">
                             
                         </div>
                         <div class="absolute bottom-4 px-6 w-80 flex">
