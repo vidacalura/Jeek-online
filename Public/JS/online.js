@@ -37,6 +37,8 @@ const tempo_w_p = document.querySelector(".tempo-white");
 const tempo_b_p = document.querySelector(".tempo-black");
 //const specsDiv = document.querySelector(".specs-div");
 //const specsIcon = document.querySelector(".specs-icon");
+const nomeBrancas = document.querySelector(".anon-brancas");
+const nomePretas = document.querySelector(".anon-pretas");
 const telaCarregamento = document.querySelector(".tela-carregamento");
 const procurandoOponentes = document.querySelector(".procurando-oponentes");
 const jogadoresOnline = document.querySelector(".num-oponentes");
@@ -469,8 +471,15 @@ socket.on("updateSpecs", (data) => {
 
 socket.on("regRoom", (data) => {
     if (gameRoom == null){
-        gameRoom = data;
+        gameRoom = data.roomNumber;
         startGame(gameRoom);
+
+        if(socket.id == data.idBrancas){
+            nomeBrancas.textContent = "Anônimo (você)";
+        }
+        else{
+            nomePretas.textContent = "Anônimo (você)";
+        }
     }
 });
 

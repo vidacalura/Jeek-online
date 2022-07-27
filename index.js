@@ -329,7 +329,7 @@ function createRoom(id1, id2){
             rooms[rooms_count[0]].player.pretas.playerId = id2;
         }
 
-        io.sockets.emit("regRoom", rooms_count[0]);
+        io.sockets.emit("regRoom", { roomNumber: rooms_count[0], idBrancas: rooms[rooms_count[0]].player.brancas.playerId } );
 
         rooms[rooms_count[0]].dados.connections = 2;
 
