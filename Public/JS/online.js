@@ -382,10 +382,14 @@ chatBtn.addEventListener("click", () => {
         containerLeft.classList.add("top-20");
         containerLeft.classList.add("left-0");
         containerLeft.classList.add("z-100");
+
+        chatBtn.className = "fa-solid fa-xmark";
     }
     else{
         containerLeft.className = "left-div-container hidden w-screen h-screen bg-jeek-gray-600 \
         opacity-[0.98] md:w-auto md:h-auto md:bg-none md:opacity-100 md:block md:absolute top-20 md:left-12";
+
+        chatBtn.className = "fa-solid fa-bars";
     }
 });
 

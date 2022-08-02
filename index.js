@@ -512,7 +512,6 @@ io.on("connection", (socket) => {
 
 /* to do
 
-- Chat responsivo
 - Montar server em Node.js (app.get())
 
 */

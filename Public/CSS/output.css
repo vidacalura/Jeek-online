@@ -519,16 +519,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 1rem;
 }
 
-.mx-6{
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
-
-.mx-\[5vw\]{
-  margin-left: 5vw;
-  margin-right: 5vw;
-}
-
 .mt-12{
   margin-top: 3rem;
 }
@@ -553,32 +543,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 2.5rem;
 }
 
-.mt-1{
-  margin-top: 0.25rem;
-}
-
-.ml-2{
-  margin-left: 0.5rem;
-}
-
 .ml-\[5vw\]{
   margin-left: 5vw;
 }
 
-.ml-\[4vw\]{
-  margin-left: 4vw;
-}
-
-.ml-\[3vw\]{
-  margin-left: 3vw;
-}
-
-.ml-\[3\.5vw\]{
-  margin-left: 3.5vw;
+.mt-1{
+  margin-top: 0.25rem;
 }
 
 .mb-4{
   margin-bottom: 1rem;
+}
+
+.ml-2{
+  margin-left: 0.5rem;
 }
 
 .block{
@@ -617,52 +595,36 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 1rem;
 }
 
-.h-\[22rem\]{
-  height: 22rem;
-}
-
-.h-72{
-  height: 18rem;
-}
-
-.h-full{
-  height: 100%;
-}
-
-.h-\[80vh\]{
-  height: 80vh;
-}
-
-.h-\[72vh\]{
-  height: 72vh;
-}
-
-.h-\[70vh\]{
-  height: 70vh;
-}
-
-.h-\[68vh\]{
-  height: 68vh;
-}
-
 .h-\[66vh\]{
   height: 66vh;
 }
 
-.h-\[50vh\]{
-  height: 50vh;
-}
-
-.h-\[60vh\]{
-  height: 60vh;
-}
-
-.h-\[58vh\]{
-  height: 58vh;
-}
-
 .h-\[56vh\]{
   height: 56vh;
+}
+
+.h-\[36rem\]{
+  height: 36rem;
+}
+
+.h-\[32rem\]{
+  height: 32rem;
+}
+
+.h-\[30rem\]{
+  height: 30rem;
+}
+
+.h-\[26rem\]{
+  height: 26rem;
+}
+
+.h-\[28rem\]{
+  height: 28rem;
+}
+
+.h-\[24rem\]{
+  height: 24rem;
 }
 
 .max-h-0{
@@ -717,12 +679,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 11rem;
 }
 
-.w-4{
-  width: 1rem;
-}
-
 .w-\[90vw\]{
   width: 90vw;
+}
+
+.w-4{
+  width: 1rem;
 }
 
 .cursor-pointer{
@@ -1005,22 +967,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .opacity-0{
   opacity: 0;
-}
-
-.opacity-95{
-  opacity: 0.95;
-}
-
-.opacity-\[97\%\]{
-  opacity: 97%;
-}
-
-.opacity-\[0\.975\]{
-  opacity: 0.975;
-}
-
-.opacity-\[0\.985\]{
-  opacity: 0.985;
 }
 
 .opacity-\[0\.98\]{
@@ -1374,15 +1320,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:left-12{
     left: 3rem;
-  }
-
-  .md\:bottom-4{
-    bottom: 1rem;
-  }
-
-  .md\:mx-0{
-    margin-left: 0px;
-    margin-right: 0px;
   }
 
   .md\:ml-0{
