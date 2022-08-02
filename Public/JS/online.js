@@ -9,6 +9,8 @@ let connections = 0;
 let movesBack = 0;
 let casasAtivas = [];
 let gameRoom = null;
+const chatBtn = document.getElementById("chat-hamburger");
+const containerLeft = document.querySelector(".left-div-container");
 const mensagensField = document.querySelector(".msgs");
 const textbox = document.querySelector(".chat-txtbox");
 const enviarBtn = document.querySelector(".chat-btn ");
@@ -373,6 +375,20 @@ function desconexao(data){
 }
 
 /* Chat */
+chatBtn.addEventListener("click", () => {
+    if (containerLeft.className.includes("hidden")){
+        containerLeft.classList.remove("hidden");
+        containerLeft.classList.add("absolute");
+        containerLeft.classList.add("top-20");
+        containerLeft.classList.add("left-0");
+        containerLeft.classList.add("z-100");
+    }
+    else{
+        containerLeft.className = "left-div-container hidden w-screen h-screen bg-jeek-gray-600 \
+        opacity-[0.98] md:w-auto md:h-auto md:bg-none md:opacity-100 md:block md:absolute top-20 md:left-12";
+    }
+});
+
 textbox.addEventListener("keyup", (event) => {
     event.preventDefault();
 

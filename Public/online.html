@@ -18,13 +18,17 @@
 
     <body class="bg-jeek-gray-600 text-white overflow-x-hidden md:overflow-y-hidden">
 
-        <nav class="pt-4 px-6 flex">
-            <a href="index.html">
-                <img src="imgs/aberturadomestre.ico" class="rounded-md w-8 h-auto shadow-md" alt="Logo Jeek Online">
-            </a>
-            <a href="index.html">
-                <h1 class="text-jeek-gray-100 font-bold pt-1 pl-4 flex"> Jeek Online <p class="text-jeek-gray-200 pl-2"> Beta </p> </h1>
-            </a>
+        <nav class="pt-4 px-6 flex justify-between">
+            <div class="flex">
+                <a href="index.html">
+                    <img src="imgs/aberturadomestre.ico" class="rounded-md w-8 h-auto shadow-md" alt="Logo Jeek Online">
+                </a>
+                <a href="index.html">
+                    <h1 class="text-jeek-gray-100 font-bold pt-1 pl-4 flex"> Jeek Online <p class="text-jeek-gray-200 pl-2"> Beta </p> </h1>
+                </a>
+            </div>
+
+            <div class="pt-2 text-jeek-gray-100 block cursor-pointer md:hidden"> <i id="chat-hamburger" class="fa-solid fa-bars"> </i> </div>
         </nav>
 
         <div class="tela-carregamento text-lg text-center absolute w-screen h-screen">
@@ -94,14 +98,14 @@
                 </section>
 
 
-                <div class="hidden md:block md:absolute md:top-20 left-12">
+                <div class="left-div-container hidden w-screen h-screen bg-jeek-gray-600 opacity-[0.98] md:w-auto md:h-auto md:bg-none md:opacity-100 md:block md:absolute top-20 md:left-12">
                     <!-- Espectadores
                     <div class="specs-div hidden">
                         <i class="specs-icon fa-solid fa-eye"> </i>
                     </div> -->
 
                     <!-- Menu de conexão -->
-                    <div class="conexao-div bg-jeek-gray-300 w-80 h-32 rounded-lg p-6 hidden shadow-lg md:block">
+                    <div class="conexao-div bg-jeek-gray-300 ml-[5vw] w-[90vw] md:ml-0 md:w-80 h-32 rounded-lg p-6 shadow-lg">
                         <div class="flex w-full gap-4">
                             <div class="peca-branca-chat"> </div>
                             <div class="flex pt-1 gap-4">
@@ -119,11 +123,11 @@
                     </div>
 
                     <!-- Chat -->
-                    <div class="chat bg-jeek-gray-400 w-80 h-[22rem] mt-2 rounded-lg">
-                        <div class="msgs pt-8 h-72 overflow-y-scroll">
+                    <div class="chat bg-jeek-gray-400 ml-[5vw] w-[90vw] h-[66vh] md:ml-0 md:w-80 md:h-[22rem] mt-2 rounded-lg">
+                        <div class="msgs pt-8 h-[56vh] mb-4 md:mb-0 md:h-72 overflow-y-scroll">
                             
                         </div>
-                        <div class="absolute bottom-4 px-6 w-80 flex">
+                        <div class="md:absolute bottom-4 px-6 w-full md:w-80 flex">
                             <input type="text" class="chat-txtbox border-none outline-none bg-jeek-gray text-jeek-gray-700 w-full rounded-3xl pl-3 p-1" placeholder="Escreva algo aqui!">
                             <button class="chat-btn bg-jeek-gray-500 rounded-full ml-2 px-4 text-center"> > </button>
                         </div> 
