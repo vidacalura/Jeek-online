@@ -210,7 +210,7 @@ function ping(){
 
         socket.emit("ping", { pingDate, gameRoom });
 
-    }, 1000);
+    }, 2000);
 
 }
 
@@ -222,8 +222,6 @@ function latencia(data){
 
         const { resTime, cor } = data;
         let icon;
-        console.log(resTime)
-
 
         if (resTime < 100){
             icon = "./imgs/ping_bom.png";
