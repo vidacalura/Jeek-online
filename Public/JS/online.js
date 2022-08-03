@@ -516,7 +516,7 @@ socket.on("restart", (data) => {
 });
 
 socket.on("trocarLados", (data) => {
-    if (gameRoom == roomNumber){
+    if (gameRoom == data){
         if (nomeBrancas.textContent == "Anônimo (você)"){
             nomeBrancas.textContent = "Anônimo";
             nomePretas.textContent = "Anônimo (você)";
