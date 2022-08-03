@@ -583,40 +583,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 100vh;
 }
 
-.h-12{
-  height: 3rem;
-}
-
 .h-32{
   height: 8rem;
 }
 
 .h-4{
   height: 1rem;
-}
-
-.h-\[66vh\]{
-  height: 66vh;
-}
-
-.h-\[56vh\]{
-  height: 56vh;
-}
-
-.h-\[36rem\]{
-  height: 36rem;
-}
-
-.h-\[32rem\]{
-  height: 32rem;
-}
-
-.h-\[30rem\]{
-  height: 30rem;
-}
-
-.h-\[26rem\]{
-  height: 26rem;
 }
 
 .h-\[28rem\]{
@@ -665,10 +637,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-60{
   width: 15rem;
-}
-
-.w-12{
-  width: 3rem;
 }
 
 .w-64{
@@ -795,6 +763,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-jeek-gray-500{
   --tw-bg-opacity: 1;
   background-color: rgb(58 58 58 / var(--tw-bg-opacity));
+}
+
+.bg-opacity-70{
+  --tw-bg-opacity: 0.7;
 }
 
 .p-3{
@@ -1140,12 +1112,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   box-shadow: -2px -2px 8px #C9C9C9, 6px 6px 14px rgba(0, 0, 0, 0.4);
 }
 
-.peca-branca, .peca-branca-chat{
+.peca-branca-loading, .peca-preta-loading{
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 9999px;
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.peca-branca, .peca-branca-chat, .peca-branca-loading{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.peca-preta, .peca-preta-chat{
+.peca-preta, .peca-preta-chat, .peca-preta-loading{
   --tw-bg-opacity: 1;
   background-color: rgb(48 48 48 / var(--tw-bg-opacity));
 }

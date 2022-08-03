@@ -31,17 +31,17 @@
             <div class="pt-2 text-jeek-gray-100 block cursor-pointer md:hidden"> <i id="chat-hamburger" class="fa-solid fa-bars"> </i> </div>
         </nav>
 
-        <div class="tela-carregamento text-lg text-center absolute w-screen h-screen">
-            <div class="w-full flex justify-center pt-56">
-                <img src="imgs/loading" alt="" class="w-12 h-12">
+        <!-- Tela de pareamento -->
+        <div class="tela-carregamento bg-jeek-gray-600 bg-opacity-70 text-lg text-center absolute z-10 w-screen h-screen pt-56">
+            <div class="animacao-pecas-loading w-full flex justify-center gap-2">
             </div>
 
-            <p class="num-oponentes pt-4"> 0 jogadores online </p>
+            <p class="num-oponentes text-xl pt-4"> 0 jogadores online </p>
 
-            <p class="procurando-oponentes font-bold text-xl">Procurando oponente</p>
+            <p class="procurando-oponentes font-bold text-2xl">Procurando oponente</p>
         </div>
 
-        <main class="pt-8 hidden">
+        <main class="pt-8">
 
             <div class="px-16 md:flex md:pl-[38vw] justify-between">
 
@@ -51,6 +51,7 @@
                         
                     </div>
 
+                    <!-- Botões de voltar/avançar lance -->
                     <div class="absolute top-96 md:top-[36.7rem] w-64 md:w-[28rem] flex justify-between text-2xl">
                         <button class="move-back"> <i class="fa-solid fa-angle-left">  </i> </button>
                         <button class="move-forward"> <i class="fa-solid fa-angle-right"></i> </button>
@@ -112,6 +113,7 @@
                                 <p class="anon-brancas font-bold"> Anônimo </p>
                                 <div class="conexao-brancas mt-1 bg-green-100 rounded-full w-4 h-4">  </div>
                             </div>
+                            <div class="ping-bom"> </div>
                         </div>
                         <div class="flex w-full gap-4 pt-4">
                             <div class="peca-preta-chat"> </div>
@@ -119,6 +121,7 @@
                                 <p class="anon-pretas font-bold"> Anônimo </p>
                                 <div class="conexao-pretas mt-1 bg-green-100 rounded-full w-4 h-4">  </div>
                             </div>
+                            <div class="ping-medio"> </div>
                         </div>
                     </div>
 

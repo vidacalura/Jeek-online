@@ -317,6 +317,8 @@ function restart(roomNumber){
 
     rooms[roomNumber].dados.isGameOver = false;
 
+    io.sockets.emit("trocarLados", null);
+
 }
 
 function createRoom(id1, id2){
@@ -512,6 +514,8 @@ io.on("connection", (socket) => {
 
 /* to do
 
+- Chat responsivo
 - Montar server em Node.js (app.get())
+- Ping
 
 */

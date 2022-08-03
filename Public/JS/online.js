@@ -43,6 +43,7 @@ const nomeBrancas = document.querySelector(".anon-brancas");
 const nomePretas = document.querySelector(".anon-pretas");
 const telaCarregamento = document.querySelector(".tela-carregamento");
 const procurandoOponentes = document.querySelector(".procurando-oponentes");
+const divAnimacaoPecasLoading = document.querySelector(".animacao-pecas-loading");
 const jogadoresOnline = document.querySelector(".num-oponentes");
 const main = document.querySelector("main");
 let board = document.querySelector(".tabuleiro");
@@ -51,7 +52,8 @@ let tabuleiro = [];
 
 createGrid();
 gridEventListener();
-procurandoOponentesAnimacao();
+procurandoOponentesPecasAnimacao();
+procurandoOponentesTextoAnimacao();
 socket.emit("createPlayer", socket.id);
 
 
@@ -109,14 +111,6 @@ function gridEventListener(){
 
 }
 
-/*
-async function renderGrid(){
-
-
-
-}
-*/
-
 function addPeca(y, x, vezBrancas, room){
     if (gameRoom == room){
         // Registro do lance - Visual
@@ -137,7 +131,7 @@ function addPeca(y, x, vezBrancas, room){
 
 }
 
-async function procurandoOponentesAnimacao(){
+async function procurandoOponentesTextoAnimacao(){
 
     let i = 0;
 
@@ -157,6 +151,52 @@ async function procurandoOponentesAnimacao(){
         }
 
     }, 1000);
+
+}
+
+async function procurandoOponentesPecasAnimacao(){
+
+    let i = 0;
+    let pecaBrancaCounter = 0;
+    let pecaPretaCounter = 0;
+
+    const interval = setInterval(() => {
+
+        let randN = Math.floor(Math.random() * 2);
+
+        if (pecaBrancaCounter == 3){
+            pecaBrancaCounter = 0;
+            randN = 1;
+        }
+        else if (pecaPretaCounter == 3){
+            pecaPretaCounter = 0;
+            randN = 0;
+        }
+
+        if (randN == 1){
+            pecaPretaCounter++;
+            pecaBrancaCounter = 0;
+        }
+        else if (randN == 0){
+            pecaBrancaCounter++;
+            pecaPretaCounter = 0;
+        }
+
+        const peca = document.createElement("div");
+        peca.className = (randN == 1 ? "peca-preta-loading" : "peca-branca-loading");
+        divAnimacaoPecasLoading.appendChild(peca);
+
+        i++;
+
+        if (i >= 4){
+            divAnimacaoPecasLoading.removeChild(divAnimacaoPecasLoading.firstChild);
+        }
+
+        if (telaCarregamento.className.includes("hidden")){
+            clearInterval(interval);
+        }
+
+    }, 800);
 
 }
 
@@ -473,6 +513,17 @@ socket.on("revancheRecusada", (data) => {
 
 socket.on("restart", (data) => {
     restart(data);
+});
+
+socket.on("trocarLados", (data) => {
+    if (nomeBrancas.textContent == "Anônimo (você)"){
+        nomeBrancas.textContent = "Anônimo";
+        nomePretas.textContent = "Anônimo (você)";
+    }
+    else{
+        nomeBrancas.textContent = "Anônimo (você)";
+        nomePretas.textContent = "Anônimo";
+    }
 });
 
 socket.on("desconexao", (data) => {

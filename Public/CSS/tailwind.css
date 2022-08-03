@@ -101,14 +101,23 @@
 
 }
 
+.peca-branca-loading,
+.peca-preta-loading{
+
+    @apply w-6 h-6 rounded-full shadow-md;
+
+}
+
 .peca-branca,
-.peca-branca-chat{
+.peca-branca-chat,
+.peca-branca-loading{
 
     @apply bg-white;
 
 }
 .peca-preta,
-.peca-preta-chat{
+.peca-preta-chat,
+.peca-preta-loading{
 
     @apply bg-black;
 
