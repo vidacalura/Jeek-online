@@ -43,6 +43,8 @@ const nomeBrancas = document.querySelector(".anon-brancas");
 const nomePretas = document.querySelector(".anon-pretas");
 const telaCarregamento = document.querySelector(".tela-carregamento");
 const procurandoOponentes = document.querySelector(".procurando-oponentes");
+const pingBrancasIcon = document.querySelector(".ping-brancas");
+const pingPretasIcon = document.querySelector(".ping-pretas");
 const divAnimacaoPecasLoading = document.querySelector(".animacao-pecas-loading");
 const jogadoresOnline = document.querySelector(".num-oponentes");
 const main = document.querySelector("main");
@@ -200,6 +202,52 @@ async function procurandoOponentesPecasAnimacao(){
 
 }
 
+function ping(){
+
+    const interval = setInterval(() => {
+
+        let pingDate = new Date();
+
+        socket.emit("ping", { pingDate, gameRoom });
+
+    }, 1000);
+
+}
+
+function latencia(data){
+
+    const roomNumber = data.gameRoom;
+
+    if (gameRoom == roomNumber){
+
+        const { resTime, cor } = data;
+        let icon;
+        console.log(resTime)
+
+
+        if (resTime < 100){
+            icon = "./imgs/ping_bom.png";
+        }
+        else if (resTime <= 200){
+            icon = "./imgs/ping_medio.png";
+        }
+        else {
+            icon = "./imgs/ping_ruim.png";
+        }
+
+        switch (cor){
+            case "Brancas":
+                pingBrancasIcon.src = icon;
+                break;
+            case "Pretas":
+                pingPretasIcon.src = icon;
+                break;
+        }
+
+    }
+
+}
+
 function jogadoresOnlineCounter(con){
 
     jogadoresOnline.textContent = `${con - 1} jogadores online`;
@@ -318,6 +366,8 @@ function startGame(roomNumber){
             main.classList.remove("hidden");
         }
 
+        ping();
+
         startSound.play();
     }
 
@@ -393,6 +443,21 @@ function restart(roomNumber){
         endgame_p.textContent = " ";
 
         loadingImgContainer = null;
+    }
+
+}
+
+function trocarLados(data){
+
+    if (gameRoom == data){
+        if (nomeBrancas.textContent == "Anônimo (você)"){
+            nomeBrancas.textContent = "Anônimo";
+            nomePretas.textContent = "Anônimo (você)";
+        }
+        else{
+            nomeBrancas.textContent = "Anônimo (você)";
+            nomePretas.textContent = "Anônimo";
+        }
     }
 
 }
@@ -516,16 +581,7 @@ socket.on("restart", (data) => {
 });
 
 socket.on("trocarLados", (data) => {
-    if (gameRoom == data){
-        if (nomeBrancas.textContent == "Anônimo (você)"){
-            nomeBrancas.textContent = "Anônimo";
-            nomePretas.textContent = "Anônimo (você)";
-        }
-        else{
-            nomeBrancas.textContent = "Anônimo (você)";
-            nomePretas.textContent = "Anônimo";
-        }
-    }
+    trocarLados(data);
 });
 
 socket.on("desconexao", (data) => {
@@ -534,6 +590,10 @@ socket.on("desconexao", (data) => {
 
 socket.on("updateRelogio", (data) => {
     relogio(data.tempo_w, data.tempo_b, data.roomNumber);
+});
+
+socket.on("pong", (data) => {
+    latencia(data);
 });
 
 /*

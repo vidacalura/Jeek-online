@@ -423,6 +423,24 @@ function disconnect(id){
 
 }
 
+function pong(data, id){
+
+    const { pingDate, gameRoom } = data;
+    let cor;
+
+    if (id == rooms[gameRoom].player.brancas.playerId){
+        cor = "Brancas";
+    }
+    else if (id == rooms[gameRoom].player.pretas.playerId){
+        cor = "Pretas";
+    }
+
+    const resTime = new Date().getTime() - new Date(pingDate).getTime();
+
+    io.sockets.emit("pong", { resTime, cor, gameRoom });
+
+}
+
 
 let io = socket(server);
 io.on("connection", (socket) => {
@@ -509,13 +527,24 @@ io.on("connection", (socket) => {
         disconnect(socket.id);
     });
 
+    socket.on("ping", (data) => {
+        pong(data, socket.id);
+    });
+
 });
 
 
 /* to do
 
-- Chat responsivo
 - Montar server em Node.js (app.get())
-- Ping
+- Pentesting
+- Login / Cadastro
+- Sistema de Rating
+- Puzzles
+- IA
+- Captcha de Jeek (ganhar posição para completar)
+- Convite (sala privada)
+- Torneios
+- Acessibilidade
 
 */
