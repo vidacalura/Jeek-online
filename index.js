@@ -317,7 +317,7 @@ function restart(roomNumber){
 
     rooms[roomNumber].dados.isGameOver = false;
 
-    io.sockets.emit("trocarLados", null);
+    io.sockets.emit("trocarLados", roomNumber);
 
 }
 

@@ -516,13 +516,15 @@ socket.on("restart", (data) => {
 });
 
 socket.on("trocarLados", (data) => {
-    if (nomeBrancas.textContent == "Anônimo (você)"){
-        nomeBrancas.textContent = "Anônimo";
-        nomePretas.textContent = "Anônimo (você)";
-    }
-    else{
-        nomeBrancas.textContent = "Anônimo (você)";
-        nomePretas.textContent = "Anônimo";
+    if (gameRoom == roomNumber){
+        if (nomeBrancas.textContent == "Anônimo (você)"){
+            nomeBrancas.textContent = "Anônimo";
+            nomePretas.textContent = "Anônimo (você)";
+        }
+        else{
+            nomeBrancas.textContent = "Anônimo (você)";
+            nomePretas.textContent = "Anônimo";
+        }
     }
 });
 
