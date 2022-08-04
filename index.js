@@ -478,22 +478,24 @@ io.on("connection", (socket) => {
 
     /* Jogo */
     socket.on("addPecaBackend", (data) => {
-        if (isConnected(data.x, data.y, rooms[data.room])){
+        const { x, y, room } = data;
+
+        if (isConnected(x, y, rooms[room])){
             let quant_lances = 0;
 
-            if (socket.id == rooms[data.room].player.brancas.playerId && rooms[data.room].dados.vezBrancas == true){
-                quant_lances = rooms[data.room].player.brancas.lances;
-                rooms[data.room].player.brancas.lances++;
+            if (socket.id == rooms[room].player.brancas.playerId && rooms[room].dados.vezBrancas == true){
+                quant_lances = rooms[room].player.brancas.lances;
+                rooms[room].player.brancas.lances++;
 
-                const lance = Object.values(rooms[data.room].pecas_brancas); 
+                const lance = Object.values(rooms[room].pecas_brancas); 
 
                 regLance(lance, quant_lances, data);
             }
-            else if (socket.id == rooms[data.room].player.pretas.playerId && rooms[data.room].dados.vezBrancas == false){
-                quant_lances = rooms[data.room].player.pretas.lances;
-                rooms[data.room].player.pretas.lances++;
+            else if (socket.id == rooms[room].player.pretas.playerId && rooms[room].dados.vezBrancas == false){
+                quant_lances = rooms[room].player.pretas.lances;
+                rooms[room].player.pretas.lances++;
 
-                const lance = Object.values(rooms[data.room].pecas_pretas); 
+                const lance = Object.values(rooms[room].pecas_pretas); 
 
                 regLance(lance, quant_lances, data);
             }
@@ -544,7 +546,8 @@ io.on("connection", (socket) => {
 - IA
 - Captcha de Jeek (ganhar posição para completar)
 - Convite (sala privada)
-- Torneios
 - Acessibilidade
+- Sinalizar que o tempo está caindo
+- Erro offline
 
 */

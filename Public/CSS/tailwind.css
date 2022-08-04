@@ -10,6 +10,40 @@
 
 }
 
+.torneio-chave{
+
+    @apply bg-jeek-gray-350 rounded;
+
+}
+.chave-1{
+
+    @apply mb-2;
+
+}
+.chave-2{
+
+    @apply mb-24 mt-12;
+
+}
+.torneio-participante{
+
+    @apply w-40 h-10 flex justify-between;
+
+}
+.pontuacao{
+
+    @apply bg-jeek-gray-200 text-white py-2 text-center rounded-r h-full w-8;
+
+}
+.torneio-participante-derrota{
+
+
+}
+.torneio-participante-vitoria{
+
+
+}
+
 .menu-title{
 
     text-shadow: 6px 6px 9px rgba(0, 0, 0, 0.15);

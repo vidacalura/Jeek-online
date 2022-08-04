@@ -12,7 +12,7 @@ let gameRoom = null;
 const chatBtn = document.getElementById("chat-hamburger");
 const containerLeft = document.querySelector(".left-div-container");
 const mensagensField = document.querySelector(".msgs");
-const textbox = document.querySelector(".chat-txtbox");
+const textbox = document.getElementById("chat-txtbox");
 const enviarBtn = document.querySelector(".chat-btn ");
 const conexaoBrancas = document.querySelector(".conexao-brancas");
 const conexaoPretas = document.querySelector(".conexao-pretas");
@@ -56,7 +56,7 @@ createGrid();
 gridEventListener();
 procurandoOponentesPecasAnimacao();
 procurandoOponentesTextoAnimacao();
-socket.emit("createPlayer", socket.id);
+//socket.emit("createPlayer", socket.id);
 
 
 function createGrid(){
@@ -445,16 +445,24 @@ function restart(roomNumber){
 
 }
 
-function trocarLados(data){
+function trocarLados(data, nomes){
+
+    let { nickBrancas, nickPretas } = nomes;
+    nickBrancas = (nickBrancas == null ? "Anônimo" : nickBrancas);
+    nickPretas = (nickBrancas == null ? "Anônimo" : nickBrancas);
 
     if (gameRoom == data){
         if (nomeBrancas.textContent == "Anônimo (você)"){
-            nomeBrancas.textContent = "Anônimo";
-            nomePretas.textContent = "Anônimo (você)";
+            nomeBrancas.textContent = nickPretas;
+            nomePretas.textContent = nickBrancas + " (você)";
         }
-        else{
-            nomeBrancas.textContent = "Anônimo (você)";
-            nomePretas.textContent = "Anônimo";
+        else if (nomePretas.textContent == "Anônimo (você)"){
+            nomeBrancas.textContent = nickPretas + " (você)";
+            nomePretas.textContent = nickBrancas;
+        }
+        else {
+            nomeBrancas.textContent = nickPretas;
+            nomePretas.textContent = nickBrancas;
         }
     }
 
@@ -579,7 +587,7 @@ socket.on("restart", (data) => {
 });
 
 socket.on("trocarLados", (data) => {
-    trocarLados(data);
+    trocarLados(data, { nickBrancas: null, nickPretas: null });
 });
 
 socket.on("desconexao", (data) => {
@@ -629,4 +637,20 @@ socket.on("updateCasasAtivas", (data) => {
 socket.on("updateConnections", (con) => {
     connections = con;
     jogadoresOnlineCounter(con);
+});
+
+/* Key bindings */
+document.addEventListener("keydown", (e) => {
+
+    let key = e.key;
+
+    if (document.activeElement !== textbox){
+        if(key == "ArrowLeft"){
+            moveBack();
+        }
+        else if(key == "ArrowRight"){
+            moveForward();
+        }
+    }
+
 });
