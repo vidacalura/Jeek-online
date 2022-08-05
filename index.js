@@ -415,10 +415,10 @@ function disconnect(id){
                 }   
             }
         }
-        else{
+        /* else{
             specs--;
             io.sockets.emit("updateSpecs", specs);
-        }
+        } */ 
 
     }
 
