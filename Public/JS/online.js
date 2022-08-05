@@ -54,6 +54,7 @@ let tabuleiro = [];
 
 createGrid();
 gridEventListener();
+procurarPartida();
 procurandoOponentesPecasAnimacao();
 procurandoOponentesTextoAnimacao();
 //socket.emit("createPlayer", socket.id);
@@ -118,6 +119,12 @@ async function renderGrid(roomNumber){
     if (roomNumber == gameRoom){
 
     }
+
+}
+
+function procurarPartida(){
+
+    socket.emit("procurarPartida", null);
 
 }
 
@@ -423,6 +430,8 @@ function restart(roomNumber){
         board.classList = "tabuleiro mt-12";
         tabuleiroDiv.appendChild(board);
 
+        movesBack = 0;
+
         createGrid();
         gridEventListener();
 
@@ -449,6 +458,10 @@ function restart(roomNumber){
         revancheBtn.classList = "botao-jogo botao-restart hidden";
 
         endgame_p.textContent = " ";
+
+        while (mensagensField.hasChildNodes()){
+            mensagensField.removeChild(mensagensField.firstChild);
+        }
 
         loadingImgContainer = null;
     }

@@ -215,6 +215,18 @@ function checkTurn(data){
 
 }
 
+function procurarPartida(id){
+
+    fila_espera.push(id);
+
+    if (fila_espera.length == 2){
+        createRoom(fila_espera[0], fila_espera[1]);
+
+        fila_espera = [];
+    }
+
+}
+
 async function relogio(){
 
     setInterval(() => {
@@ -418,7 +430,7 @@ function disconnect(id){
         }
         else{
             rooms[roomNumber].dados.specs--;
-            io.sockets.emit("updateSpecs", specs);
+            io.sockets.emit("updateSpecs", rooms[roomNumber].dados.specs);
         } 
 
     }
@@ -446,23 +458,9 @@ function pong(data, id){
 
 let io = socket(server);
 io.on("connection", (socket) => {
+
     connections_server++;
     io.sockets.emit("updateConnections", connections_server);
-
-    fila_espera.push(socket.id);
-
-/*    if ( > 2){
-        specs++;
-        if (specs > 0)
-            io.sockets.emit("updateSpecs", specs);
-    }
-*/
-
-    if (fila_espera.length == 2){
-        createRoom(fila_espera[0], fila_espera[1]);
-
-        fila_espera = [];
-    }
 
     /* Chat */
     socket.on("chat", (data) => {
@@ -506,6 +504,10 @@ io.on("connection", (socket) => {
 
     });
 
+    socket.on("procurarPartida", (data) => {
+        procurarPartida(socket.id);
+    });
+
     socket.on("desistir", (data) => {
         desistir(socket.id, data);
     });
@@ -542,6 +544,7 @@ io.on("connection", (socket) => {
 
 10/11/12 2022:
 - Montar server em Node.js (app.get())
+- Avisar quando movimento espelhado (com mensagemJogo())
 - Pentesting
 - Login / Cadastro
 - Sistema de Rating
@@ -561,4 +564,11 @@ Urgente:
 - Convite (sala privada)
 - RoomID
 
+*/
+
+/*    if (room.connectinos > 2){
+        specs++;
+        if (specs > 0)
+            io.sockets.emit("updateSpecs", specs);
+    }
 */

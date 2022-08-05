@@ -47,14 +47,45 @@
 
                 <div class="w-full flex justify-center gap-2 sm:gap-6 pt-8">
                     <a href="offline.html"> <button class="p-3 py-4 rounded-full border-2 border-white w-40 text-xl font-bold shadow-md transition-all hover:scale-110"> Jogar local </button> </a>
-                    <a href="online.html"> <button class="p-3 py-4 rounded-full bg-white text-jeek-gray-600 w-40 text-xl font-bold shadow-md transition-all hover:scale-110"> Jogar online <br> </button> </a>
+                    <button class="btn-jogar-online p-3 py-4 rounded-full bg-white text-jeek-gray-600 w-40 text-xl font-bold shadow-md transition-all hover:scale-110"> Jogar online <br> </button>
+                </div>
+
+                <!-- Menu Jogar online -->
+                <div id="menu-jogar-online" class="hidden z-20 w-screen h-screen top-0 left-0 bg-jeek-gray-600 bg-opacity-50">
+                    <div class="flex justify-center pt-60">
+                        <div class="bg-jeek-gray-500 w-72 md:w-96 py-2 px-6 rounded-lg shadow-md">
+                            <div class="flex justify-end">
+                                <div id="x-menu-jogar-online" class="cursor-pointer"> <i class="fa-solid fa-xmark"> </i> </div>
+                            </div>
+                            <h2 class="text-3xl font-bold pb-8"> Jogar Online </h2>
+                            <div class="flex justify-center gap-6 pb-4">
+                                <button title="Entrar em partida" id="btn-menu-entrar-partida" class="p-3 rounded-full bg-jeek-gray-600 text-white text-3xl shadow-md transition-all hover:scale-110"> <i class="fa-solid fa-door-open"> </i> </button>
+                                <button title="Criar sala privada" id="btn-criar-partida" class="py-3 px-4 rounded-full bg-jeek-gray-700 text-white text-3xl shadow-md transition-all hover:scale-110"> <i class="fa-solid fa-plus"></i> </button>
+                                <a href="online.html"> <button title="Procurar partida" class="py-3 px-4 rounded-full bg-white text-jeek-gray-500 text-3xl shadow-md transition-all hover:scale-110"> <i class="fa-solid fa-magnifying-glass"> </i> </button> </a>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+
+                <!-- Menu entrar em partida -->
+                <div id="menu-entrar-partida" class="hidden z-30 w-screen h-screen top-0 left-0 bg-jeek-gray-600 bg-opacity-50">
+                    <div class="flex justify-center pt-60">
+                        <div class="bg-jeek-gray-500 w-72 md:w-96 py-2 px-6 rounded-lg shadow-md">
+                            <div class="flex justify-end">
+                                <div id="x-menu-entrar-partida" class="cursor-pointer"> <i class="fa-solid fa-xmark"> </i> </div>
+                            </div>
+                            <h2 class="text-3xl font-bold pb-8"> ID da sala: </h2>
+                            <div class="px-6"> <input type="text" name="" id="" class="border-none outline-none w-full bg-jeek-gray-700 p-2 px-4 mb-6 rounded" placeholder="Ex: JOQWER"> </div>
+                            <button id="entrar-partida-btn" class="mb-4"> Entrar </button>
+                        </div>  
+                    </div>
                 </div>
 
             </div>
 
             <!-- Tabuleiro -->
             <div class="w-full md:w-[50%] flex justify-center">
-                <div class="tabuleiro-simulacao lg:pr-20">
+                <div class="tabuleiro-simulacao shadow-lg rounded-[20px] lg:mr-20">
 
                 </div>
             </div>

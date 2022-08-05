@@ -1,3 +1,15 @@
+let socket = io();
+
+const btnJogarOnline = document.querySelector(".btn-jogar-online");
+btnJogarOnline.addEventListener("click", mostrarMenuJogarOnline);
+const menuJogarOnline = document.getElementById("menu-jogar-online");
+const xMenuJogarOnline = document.getElementById("x-menu-jogar-online");
+xMenuJogarOnline.addEventListener("click", mostrarMenuJogarOnline);
+const btnMenuEntrarPartida = document.getElementById("btn-menu-entrar-partida");
+btnMenuEntrarPartida.addEventListener("click", mostrarMenuEntrarPartida);
+const menuEntrarPartida = document.getElementById("menu-entrar-partida");
+const xMenuEntrarPartida = document.getElementById("x-menu-entrar-partida");
+xMenuEntrarPartida.addEventListener("click", mostrarMenuEntrarPartida);
 const board = document.querySelector(".tabuleiro-simulacao");
 let casas = [];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -92,4 +104,32 @@ async function simulacao(){
     casas[14].appendChild(peca_branca[6]);
     await sleep(sleepTime);
     
+}
+
+function mostrarMenuJogarOnline(){
+
+    if (menuJogarOnline.className.includes("hidden")){
+        menuJogarOnline.classList.remove("hidden");
+        menuJogarOnline.classList.add("absolute");
+    }
+    else{
+        menuJogarOnline.classList.add("hidden");
+        menuJogarOnline.classList.remove("absolute");
+    }
+
+}
+
+function mostrarMenuEntrarPartida(){
+
+    if (menuEntrarPartida.className.includes("hidden")){
+        menuEntrarPartida.classList.remove("hidden");
+        menuEntrarPartida.classList.add("absolute");
+        menuJogarOnline.classList.remove("absolute");
+        menuJogarOnline.classList.add("hidden");
+    }
+    else{
+        menuEntrarPartida.classList.add("hidden");
+        menuEntrarPartida.classList.remove("absolute");
+    }
+
 }
