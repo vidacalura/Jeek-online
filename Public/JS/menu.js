@@ -91,4 +91,5 @@ async function simulacao(){
     await sleep(sleepTime);
     casas[14].appendChild(peca_branca[6]);
     await sleep(sleepTime);
+    
 }

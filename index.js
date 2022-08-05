@@ -379,6 +379,7 @@ function disconnect(id){
             rooms[roomNumber].player.pretas.pontos = 0;
             rooms[roomNumber].player.brancas.playerId = null;
             rooms[roomNumber].player.pretas.playerId = null;
+            rooms[roomNumber].dados.specs = 0;
 
             restart(roomNumber);
 
@@ -415,10 +416,10 @@ function disconnect(id){
                 }   
             }
         }
-        /* else{
-            specs--;
+        else{
+            rooms[roomNumber].dados.specs--;
             io.sockets.emit("updateSpecs", specs);
-        } */ 
+        } 
 
     }
 
@@ -555,6 +556,7 @@ io.on("connection", (socket) => {
 - Erro offline
 
 Urgente:
+- Botão de negar revanche vermelho
 - specs
 - Convite (sala privada)
 - RoomID

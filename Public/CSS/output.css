@@ -954,6 +954,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 0.75rem;
 }
 
+.pt-3{
+  padding-top: 0.75rem;
+}
+
 .pt-\[0\.2rem\]{
   padding-top: 0.2rem;
 }
@@ -976,10 +980,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pr-1{
   padding-right: 0.25rem;
-}
-
-.pt-3{
-  padding-top: 0.75rem;
 }
 
 .text-left{
