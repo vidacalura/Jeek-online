@@ -23,6 +23,7 @@ for (let i = 0; i < 100; i++){
             'jogadas': 3,
             'vezBrancas': true,
             'connections': 0,
+            'specs': 0,
             'casasAtivas': [],
             'isGameOver': false
         },
@@ -414,11 +415,11 @@ function disconnect(id){
                 }   
             }
         }
-/*    else{
-        specs--;
-        io.sockets.emit("updateSpecs", specs);
-    }
-*/
+        else{
+            specs--;
+            io.sockets.emit("updateSpecs", specs);
+        }
+
     }
 
 }
@@ -449,7 +450,7 @@ io.on("connection", (socket) => {
 
     fila_espera.push(socket.id);
 
-/*    if (connections_server > 2){
+/*    if ( > 2){
         specs++;
         if (specs > 0)
             io.sockets.emit("updateSpecs", specs);
@@ -538,16 +539,24 @@ io.on("connection", (socket) => {
 
 /* to do
 
+10/11/12 2022:
 - Montar server em Node.js (app.get())
 - Pentesting
 - Login / Cadastro
 - Sistema de Rating
 - Puzzles
-- IA
 - Captcha de Jeek (ganhar posição para completar)
-- Convite (sala privada)
 - Acessibilidade
 - Sinalizar que o tempo está caindo
+
+2023:
+- IA
+
 - Erro offline
+
+Urgente:
+- specs
+- Convite (sala privada)
+- RoomID
 
 */

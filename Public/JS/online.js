@@ -37,8 +37,8 @@ const revancheDiv = document.querySelector(".revanche-div");
 const endgame_p = document.querySelector(".endgame-p");
 const tempo_w_p = document.querySelector(".tempo-white");
 const tempo_b_p = document.querySelector(".tempo-black");
-//const specsDiv = document.querySelector(".specs-div");
-//const specsIcon = document.querySelector(".specs-icon");
+const specsDiv = document.querySelector(".specs-div");
+const specsIcon = document.querySelector(".specs-icon");
 const nomeBrancas = document.querySelector(".anon-brancas");
 const nomePretas = document.querySelector(".anon-pretas");
 const telaCarregamento = document.querySelector(".tela-carregamento");
@@ -109,6 +109,14 @@ function gridEventListener(){
                 }
             });
         }
+    }
+
+}
+
+async function renderGrid(roomNumber){
+
+    if (roomNumber == gameRoom){
+
     }
 
 }
@@ -345,16 +353,18 @@ function moveForward(){
 
 }
 
-/*
-function specs(quant_specs){
+function specs(data){
 
-    if (specsDiv.className.includes("hidden"))
-        specsDiv.classList.remove("hidden");
+    const { specs, roomNumber } = data;
 
-    specsIcon.textContent = " " + quant_specs;
+    if (gameRoom == roomNumber){
+        if (specsDiv.className.includes("hidden"))
+            specsDiv.classList.remove("hidden");
+
+        specsIcon.textContent = " " + specs;
+    }
 
 }
-*/
 
 function startGame(roomNumber){
 
@@ -602,11 +612,9 @@ socket.on("pong", (data) => {
     latencia(data);
 });
 
-/*
 socket.on("updateSpecs", (data) => {
     specs(data);
 });
-*/
 
 socket.on("regRoom", (data) => {
     if (gameRoom == null){
