@@ -60,7 +60,6 @@ createGrid();
 gridEventListener();
 criarSalaPrivada();
 procurarPartida();
-//socket.emit("createPlayer", socket.id);
 
 
 function createGrid(){
@@ -138,20 +137,28 @@ function procurarPartida(){
 
 function criarSalaPrivada(){
 
-    if (roomID != null){
+    if (roomID != null && roomID.length == 16){
         telaCarregamento.classList.add("hidden");
         telaConvite.classList.remove("hidden");
 
         const Id = roomID.slice(8);
 
+        socket.emit("privateGameCreated", Id);
+
         txtBoxConvite.value = Id;
+
+        socket.emit()
 
         btnCodigoSala.addEventListener("click", () => {
             txtBoxConvite.select();
             txtBoxConvite.setSelectionRange(0, 99999);
-            
+
             navigator.clipboard.writeText(txtBoxConvite.value);
         });
+    }
+    else if (roomID != null){
+        const cod = roomID.slice(8, 16);
+        socket.emit("startPrivateGame", cod);
     }
 
 }
@@ -336,7 +343,7 @@ function solicitarRevanche(roomNumber){
 
 function aceitarRevanche(){
 
-    socket.emit("restart", gameRoom);
+    socket.emit("aceitarRevanche", gameRoom);
 
 }
 
@@ -390,7 +397,12 @@ function moveForward(){
 
 function specs(data){
 
-    const { specs, roomNumber } = data;
+    const { specs, id, roomNumber } = data;
+
+    if (id == socket.id){
+        gameRoom = roomNumber;
+        renderGrid(roomNumber);
+    }
 
     if (gameRoom == roomNumber){
         if (specsDiv.className.includes("hidden"))
@@ -407,6 +419,9 @@ function startGame(roomNumber){
         if (!telaCarregamento.className.includes("hidden") || main.className.includes("hidden")){
             telaCarregamento.classList.add("hidden");
             main.classList.remove("hidden");
+        }
+        if (!telaConvite.className.includes("hidden")){
+            telaConvite.classList.add("hidden");
         }
 
         ping();
@@ -463,9 +478,17 @@ function restart(roomNumber){
         createGrid();
         gridEventListener();
 
-        if (telaCarregamento.className.includes("hidden")){
-            telaCarregamento.remove("hidden");
-            telaConvite.add("hidden");
+        if (connections > 0){
+            if (!telaCarregamento.className.includes("hidden")){
+                telaCarregamento.classList.add("hidden");
+                telaConvite.classList.add("hidden");
+            }
+        }
+        else {
+            if (telaCarregamento.className.includes("hidden")){
+                telaCarregamento.classList.remove("hidden");
+                telaConvite.classList.add("hidden");
+            }
         }
 
         if (conexaoBrancas.className.includes("bg-red")){

@@ -94,8 +94,6 @@ for (let i = 0; i < 100; i++){
     };
 }
 
-relogio();
-
 function isConnected(x, y, dados){ 
 
     if (dados.dados.isGameOver)
@@ -267,7 +265,6 @@ function criarPartida(id){
 
         const roomNumber = rooms_count[rooms_count.length - 1];
         
-        rooms[roomNumber].player.brancas.playerId = id;
         rooms[roomNumber].dados.roomID = randStr;
 
         const roomIndex = rooms_count.length - 1;
@@ -275,19 +272,18 @@ function criarPartida(id){
 
         rooms[roomNumber].dados.connections = 1;
 
-        // redirecionar jogador a online.html passando a roomID via POST 
-        io.sockets.emit("roomIdReg", randStr);
+        io.sockets.emit("roomIdReg", { codigo: randStr, id });
     }
 
 }
 
-async function relogio(){
+function relogio(){
 
     setInterval(() => {
-        for (let i = 0; i < rooms_count.length; i++){
+        for (let i = 0; i < rooms.length; i++){
             if (rooms[i].dados.connections >= 2 && rooms[i].dados.isGameOver == false){
                 (rooms[i].dados.vezBrancas == true ? rooms[i].player.brancas.tempo-- : rooms[i].player.pretas.tempo--);
-
+                
                 const tempo_w = rooms[i].player.brancas.tempo;
                 const tempo_b = rooms[i].player.pretas.tempo;
                 const roomNumber = i;
@@ -401,12 +397,33 @@ function createRoom(id1, id2){
         io.sockets.emit("regRoom", { roomNumber: rooms_count[0], idBrancas: rooms[rooms_count[0]].player.brancas.playerId, 
         idPretas: rooms[rooms_count[0]].player.pretas.playerId } );
 
+        relogio();
+
         rooms[rooms_count[0]].dados.connections = 2;
 
         rooms_count.shift();
     }
     else {
         io.sockets.emit("serverFull", null);
+    }
+
+}
+
+function redirecionarPartida(cod, id){
+
+    let roomNumber = null;
+
+    for (let i = 0; i < rooms.length; i++){
+        if (rooms[i].dados.roomID == cod){
+            roomNumber = i;
+        }
+    }
+
+    if (roomNumber != null){
+        io.sockets.emit("redirectPartida", { codigo: cod, id });        
+    }
+    else {
+        // Dar erro
     }
 
 }
@@ -424,7 +441,7 @@ function disconnect(id){
         fila_espera.splice(index, 1);
     }
     else {
-        for (let i = 0; i < rooms_count.length; i++){
+        for (let i = 0; i < rooms.length; i++){
 
             if (rooms[i].player.brancas.playerId == id){
                 roomNumber = i;
@@ -486,7 +503,7 @@ function disconnect(id){
         }
         else{
             rooms[roomNumber].dados.specs--;
-            io.sockets.emit("updateSpecs", rooms[roomNumber].dados.specs);
+            io.sockets.emit("updateSpecs", { specs: rooms[roomNumber].dados.specs, id, roomNumber });
         } 
 
     }
@@ -535,14 +552,16 @@ io.on("connection", (socket) => {
     socket.on("chat", (data) => {
         let chatPlayer = null;
 
-        if (socket.id == rooms[data.gameRoom].player.brancas.playerId){
-            chatPlayer = "brancas";
-        }
-        else if (socket.id == rooms[data.gameRoom].player.pretas.playerId){
-            chatPlayer = "pretas";
-        }
+        if (data.gameRoom != null){
+            if (socket.id == rooms[data.gameRoom].player.brancas.playerId){
+                chatPlayer = "brancas";
+            }
+            else if (socket.id == rooms[data.gameRoom].player.pretas.playerId){
+                chatPlayer = "pretas";
+            }
 
-        io.sockets.emit("chat", { data, chatPlayer });
+            io.sockets.emit("chat", { data, chatPlayer });
+        }
     });
 
     /* Jogo */
@@ -581,6 +600,52 @@ io.on("connection", (socket) => {
         criarPartida(socket.id);
     });
 
+    socket.on("redirecionarPartida", (data) => {
+        redirecionarPartida(data, socket.id);
+    });
+
+    socket.on("startPrivateGame", (data) => {
+
+        const id = socket.id;
+
+        for (let i = 0; i < rooms.length; i++){
+            if (rooms[i].dados.roomID == data){
+                // Jogador 2
+                if (rooms[i].player.pretas.playerId == null){
+                    const roomNumber = i;
+                    rooms[roomNumber].player.pretas.playerId = id;
+                    io.sockets.emit("regRoom", { roomNumber, idBrancas: rooms[roomNumber].player.brancas.playerId, 
+                    idPretas: id });
+
+                    rooms[roomNumber].dados.connections = 2;
+
+                    relogio();
+                }
+                // Spec
+                else {
+                    const roomNumber = i;
+                    rooms[roomNumber].dados.connections++;
+                    rooms[roomNumber].dados.specs++;
+
+                    io.sockets.emit("updateSpecs", { specs: rooms[i].dados.specs++, id: socket.id, roomNumber });
+                }
+            }
+        }
+
+    });
+
+    socket.on("privateGameCreated", (data) => {
+        const roomId = data;
+
+        for (let i = 0; i < rooms.length; i++){
+            if (rooms[i].dados.roomID == roomId){
+                const roomNumber = i;
+                rooms[roomNumber].dados.connections = 1;
+                rooms[roomNumber].player.brancas.playerId = socket.id;
+            }
+        }        
+    });
+
     socket.on("desistir", (data) => {
         desistir(socket.id, data);
     });
@@ -590,11 +655,20 @@ io.on("connection", (socket) => {
     });
 
     socket.on("pedirRevanche", (data) => {
-        io.sockets.emit("confirmarRevanche", data);
+        if (rooms[data].player.brancas.playerId == socket.id || rooms[data].player.pretas.playerId == socket.id)
+            io.sockets.emit("confirmarRevanche", data);
+    });
+
+    socket.on("aceitarRevanche", (data) => {
+        if (rooms[data].player.brancas.playerId == socket.id || rooms[data].player.pretas.playerId == socket.id){
+            restart(data);
+            io.sockets.emit("restart", data);
+        }
     });
 
     socket.on("recusarRevanche", (data) => {
-        io.sockets.emit("revancheRecusada", data);
+        if (rooms[data].player.brancas.playerId == socket.id || rooms[data].player.pretas.playerId == socket.id)
+            io.sockets.emit("revancheRecusada", data);
     });
 
     socket.on("restart", (data) => {
@@ -633,14 +707,9 @@ io.on("connection", (socket) => {
 - Erro offline (b:b3, p:d1, p:d2, p:d3)
 
 Urgente:
-- specs
-- Entrar sala privada
+- Refatoração código salas
+- Aparecer pedido de revanche apenas para jogadores
+- Arrumar telas de carregamento
+- Render Screen
 
-*/
-
-/*    if (room.connectinos > 2){
-        specs++;
-        if (specs > 0)
-            io.sockets.emit("updateSpecs", specs);
-    }
 */

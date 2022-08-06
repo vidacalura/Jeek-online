@@ -14,6 +14,9 @@ const btnCriarPartida = document.getElementById("btn-criar-partida");
 btnCriarPartida.addEventListener("click", () => {
     socket.emit("criarPartida", null);
 });
+const btnEntrarPartida = document.getElementById("entrar-partida-btn");
+btnEntrarPartida.addEventListener("click", entrarSala);
+const txtboxEntrarPartida = document.getElementById("codigo-sala-entrar");
 const board = document.querySelector(".tabuleiro-simulacao");
 let casas = [];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -110,6 +113,19 @@ async function simulacao(){
     
 }
 
+function entrarSala(){
+
+    if (txtboxEntrarPartida.value.length == 8){
+        const codigo = txtboxEntrarPartida.value.toUpperCase();
+
+        socket.emit("redirecionarPartida", codigo);
+    }
+    else{
+        alert("Código de sala inválido")
+    }
+
+}
+
 function mostrarMenuJogarOnline(){
 
     if (menuJogarOnline.className.includes("hidden")){
@@ -139,6 +155,20 @@ function mostrarMenuEntrarPartida(){
 }
 
 socket.on("roomIdReg", (data) => {
-    const url = `/online?roomId=${data}`;
-    window.location = url;
+    const { codigo, id } = data;
+
+    if (socket.id == id){
+        const url = `/online?roomId=${codigo}`;
+        window.location = url;
+    }
+});
+
+socket.on("redirectPartida", (data) => {
+    const { codigo, id } = data;
+
+    if (socket.id == id){
+        const url = `/online?roomId=${codigo}?entrar`;
+        window.location = url;
+    }
+
 });
