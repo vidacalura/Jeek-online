@@ -57,7 +57,6 @@ const tabuleiroDiv = document.querySelector(".tabuleiro-div");
 let tabuleiro = [];
 
 createGrid();
-gridEventListener();
 criarSalaPrivada();
 procurarPartida();
 
@@ -423,6 +422,8 @@ function startGame(roomNumber){
         if (!telaConvite.className.includes("hidden")){
             telaConvite.classList.add("hidden");
         }
+
+        gridEventListener();
 
         ping();
 

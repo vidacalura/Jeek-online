@@ -283,7 +283,7 @@ function relogio(){
         for (let i = 0; i < rooms.length; i++){
             if (rooms[i].dados.connections >= 2 && rooms[i].dados.isGameOver == false){
                 (rooms[i].dados.vezBrancas == true ? rooms[i].player.brancas.tempo-- : rooms[i].player.pretas.tempo--);
-                
+    
                 const tempo_w = rooms[i].player.brancas.tempo;
                 const tempo_b = rooms[i].player.pretas.tempo;
                 const roomNumber = i;
