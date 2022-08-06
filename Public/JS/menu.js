@@ -10,6 +10,10 @@ btnMenuEntrarPartida.addEventListener("click", mostrarMenuEntrarPartida);
 const menuEntrarPartida = document.getElementById("menu-entrar-partida");
 const xMenuEntrarPartida = document.getElementById("x-menu-entrar-partida");
 xMenuEntrarPartida.addEventListener("click", mostrarMenuEntrarPartida);
+const btnCriarPartida = document.getElementById("btn-criar-partida");
+btnCriarPartida.addEventListener("click", () => {
+    socket.emit("criarPartida", null);
+});
 const board = document.querySelector(".tabuleiro-simulacao");
 let casas = [];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -133,3 +137,8 @@ function mostrarMenuEntrarPartida(){
     }
 
 }
+
+socket.on("roomIdReg", (data) => {
+    const url = `/online?roomId=${data}`;
+    window.location = url;
+});

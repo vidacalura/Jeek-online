@@ -6,8 +6,39 @@ let app = express();
 const port = process.env.PORT || 5000;
 let server = app.listen(port);
 
-app.use(express.static("Public"));
+app.use(express.static("Public/"));
 
+/* Express.js */
+app.get("/", (req, res) => {
+    res.status(200).sendFile("./Public/index.html", { root: __dirname });
+});
+
+app.get("/online", (req, res) => {
+    res.status(200).sendFile("./Public/online.html", { root: __dirname });
+});
+
+app.get("/offline", (req, res) => {
+    res.status(200).sendFile("./Public/offline.html", { root: __dirname });
+});
+
+app.get("/offline-cel", (req, res) => {
+    res.status(200).sendFile("./Public/offlinecel.html", { root: __dirname });
+});
+
+app.get("/torneios", (req, res) => {
+    res.status(200).sendFile("./Public/torneios.html", { root: __dirname });
+});
+
+app.get("/primeiro-torneio", (req, res) => {
+    res.status(200).sendFile("./Public/torneio1.html", { root: __dirname });
+});
+
+app.use((req, res) => {
+    res.status(404).sendFile("./Public/404.html", { root: __dirname });
+});
+
+
+/* Jogo */
 let rooms_count = [];
 let fila_espera = [];
 let connections_server = 0;
@@ -20,6 +51,7 @@ for (let i = 0; i < 100; i++){
 
     rooms[i] = {
         dados: {
+            'roomID': null,
             'jogadas': 3,
             'vezBrancas': true,
             'connections': 0,
@@ -227,6 +259,28 @@ function procurarPartida(id){
 
 }
 
+function criarPartida(id){
+
+    if (rooms_count.length > 0){
+        // Criação dos dados da sala
+        const randStr = "JO" + randomStringGen();
+
+        const roomNumber = rooms_count[rooms_count.length - 1];
+        
+        rooms[roomNumber].player.brancas.playerId = id;
+        rooms[roomNumber].dados.roomID = randStr;
+
+        const roomIndex = rooms_count.length - 1;
+        rooms_count.splice(roomIndex, 1);
+
+        rooms[roomNumber].dados.connections = 1;
+
+        // redirecionar jogador a online.html passando a roomID via POST 
+        io.sockets.emit("roomIdReg", randStr);
+    }
+
+}
+
 async function relogio(){
 
     setInterval(() => {
@@ -344,7 +398,8 @@ function createRoom(id1, id2){
             rooms[rooms_count[0]].player.pretas.playerId = id2;
         }
 
-        io.sockets.emit("regRoom", { roomNumber: rooms_count[0], idBrancas: rooms[rooms_count[0]].player.brancas.playerId } );
+        io.sockets.emit("regRoom", { roomNumber: rooms_count[0], idBrancas: rooms[rooms_count[0]].player.brancas.playerId, 
+        idPretas: rooms[rooms_count[0]].player.pretas.playerId } );
 
         rooms[rooms_count[0]].dados.connections = 2;
 
@@ -391,6 +446,7 @@ function disconnect(id){
             rooms[roomNumber].player.pretas.pontos = 0;
             rooms[roomNumber].player.brancas.playerId = null;
             rooms[roomNumber].player.pretas.playerId = null;
+            rooms[roomNumber].dados.roomID = null;
             rooms[roomNumber].dados.specs = 0;
 
             restart(roomNumber);
@@ -455,6 +511,19 @@ function pong(data, id){
 
 }
 
+function randomStringGen(){
+
+    let str = "";
+
+    for (let i = 0; i < 6; i++){
+        const randN = 65 + Math.floor(Math.random() * 25);
+        str += String.fromCharCode(randN);
+    }
+
+    return str;
+
+}
+
 
 let io = socket(server);
 io.on("connection", (socket) => {
@@ -508,6 +577,10 @@ io.on("connection", (socket) => {
         procurarPartida(socket.id);
     });
 
+    socket.on("criarPartida", (data) => {
+        criarPartida(socket.id);
+    });
+
     socket.on("desistir", (data) => {
         desistir(socket.id, data);
     });
@@ -543,7 +616,6 @@ io.on("connection", (socket) => {
 /* to do
 
 10/11/12 2022:
-- Montar server em Node.js (app.get())
 - Avisar quando movimento espelhado (com mensagemJogo())
 - Pentesting
 - Login / Cadastro
@@ -552,17 +624,17 @@ io.on("connection", (socket) => {
 - Captcha de Jeek (ganhar posição para completar)
 - Acessibilidade
 - Sinalizar que o tempo está caindo
+- Parar animação do botão de revanche caso revanche seja recusada
 
 2023:
+- Search bar na aba de torneios
 - IA
 
-- Erro offline
+- Erro offline (b:b3, p:d1, p:d2, p:d3)
 
 Urgente:
-- Botão de negar revanche vermelho
 - specs
-- Convite (sala privada)
-- RoomID
+- Entrar sala privada
 
 */
 

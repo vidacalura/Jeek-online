@@ -9,6 +9,7 @@ let connections = 0;
 let movesBack = 0;
 let casasAtivas = [];
 let gameRoom = null;
+const roomID = (window.location.search != '' ? window.location.search : null);
 const chatBtn = document.getElementById("chat-hamburger");
 const containerLeft = document.querySelector(".left-div-container");
 const mensagensField = document.querySelector(".msgs");
@@ -41,6 +42,9 @@ const specsDiv = document.querySelector(".specs-div");
 const specsIcon = document.querySelector(".specs-icon");
 const nomeBrancas = document.querySelector(".anon-brancas");
 const nomePretas = document.querySelector(".anon-pretas");
+const telaConvite = document.querySelector(".tela-convite");
+const btnCodigoSala = document.getElementById("copiar-codigo-sala");
+const txtBoxConvite = document.getElementById("convite-codigo-txtbox");
 const telaCarregamento = document.querySelector(".tela-carregamento");
 const procurandoOponentes = document.querySelector(".procurando-oponentes");
 const pingBrancasIcon = document.querySelector(".ping-brancas");
@@ -54,9 +58,8 @@ let tabuleiro = [];
 
 createGrid();
 gridEventListener();
+criarSalaPrivada();
 procurarPartida();
-procurandoOponentesPecasAnimacao();
-procurandoOponentesTextoAnimacao();
 //socket.emit("createPlayer", socket.id);
 
 
@@ -117,14 +120,39 @@ function gridEventListener(){
 async function renderGrid(roomNumber){
 
     if (roomNumber == gameRoom){
-
+        
     }
 
 }
 
 function procurarPartida(){
 
-    socket.emit("procurarPartida", null);
+    if (roomID == null){
+        socket.emit("procurarPartida", null);
+
+        procurandoOponentesPecasAnimacao();
+        procurandoOponentesTextoAnimacao();
+    }
+
+}
+
+function criarSalaPrivada(){
+
+    if (roomID != null){
+        telaCarregamento.classList.add("hidden");
+        telaConvite.classList.remove("hidden");
+
+        const Id = roomID.slice(8);
+
+        txtBoxConvite.value = Id;
+
+        btnCodigoSala.addEventListener("click", () => {
+            txtBoxConvite.select();
+            txtBoxConvite.setSelectionRange(0, 99999);
+            
+            navigator.clipboard.writeText(txtBoxConvite.value);
+        });
+    }
 
 }
 
@@ -263,7 +291,7 @@ function latencia(data){
 
 function jogadoresOnlineCounter(con){
 
-    jogadoresOnline.textContent = `${con - 1} jogadores online`;
+    jogadoresOnline.textContent = `${con - 1} jogador(es) online`;
 
 }
 
@@ -434,6 +462,11 @@ function restart(roomNumber){
 
         createGrid();
         gridEventListener();
+
+        if (telaCarregamento.className.includes("hidden")){
+            telaCarregamento.remove("hidden");
+            telaConvite.add("hidden");
+        }
 
         if (conexaoBrancas.className.includes("bg-red")){
             conexaoBrancas.classList.add("bg-green-100");
@@ -631,14 +664,17 @@ socket.on("updateSpecs", (data) => {
 
 socket.on("regRoom", (data) => {
     if (gameRoom == null){
-        gameRoom = data.roomNumber;
-        startGame(gameRoom);
+        const { roomNumber, idBrancas, idPretas } = data;
 
-        if(socket.id == data.idBrancas){
+        if (socket.id == idBrancas){
             nomeBrancas.textContent = "Anônimo (você)";
+            gameRoom = roomNumber;
+            startGame(gameRoom);
         }
-        else{
+        else if (socket.id == idPretas){
             nomePretas.textContent = "Anônimo (você)";
+            gameRoom = roomNumber;
+            startGame(gameRoom);
         }
     }
 });

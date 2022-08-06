@@ -182,7 +182,7 @@
 }
 .botao-revanche{
 
-    @apply w-14 p-3 bg-jeek-gray-400 rounded-full text-xl font-bold;
+    @apply w-14 p-3 rounded-full text-xl font-bold;
 
 }
 .botao-aceitar-revanche{
