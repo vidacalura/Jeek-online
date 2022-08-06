@@ -94,6 +94,8 @@ for (let i = 0; i < 100; i++){
     };
 }
 
+relogio();
+
 function isConnected(x, y, dados){ 
 
     if (dados.dados.isGameOver)
@@ -277,7 +279,7 @@ function criarPartida(id){
 
 }
 
-function relogio(){
+async function relogio(){
 
     setInterval(() => {
         for (let i = 0; i < rooms.length; i++){
@@ -396,8 +398,6 @@ function createRoom(id1, id2){
 
         io.sockets.emit("regRoom", { roomNumber: rooms_count[0], idBrancas: rooms[rooms_count[0]].player.brancas.playerId, 
         idPretas: rooms[rooms_count[0]].player.pretas.playerId } );
-
-        relogio();
 
         rooms[rooms_count[0]].dados.connections = 2;
 
@@ -618,8 +618,6 @@ io.on("connection", (socket) => {
                     idPretas: id });
 
                     rooms[roomNumber].dados.connections = 2;
-
-                    relogio();
                 }
                 // Spec
                 else {
