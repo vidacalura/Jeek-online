@@ -620,6 +620,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 24rem;
 }
 
+.h-full{
+  height: 100%;
+}
+
 .h-32{
   height: 8rem;
 }
@@ -646,10 +650,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-28{
   height: 7rem;
-}
-
-.h-full{
-  height: 100%;
 }
 
 .max-h-0{
@@ -823,6 +823,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(48 48 48 / var(--tw-bg-opacity));
 }
 
+.bg-jeek-gray-350{
+  --tw-bg-opacity: 1;
+  background-color: rgb(127 127 127 / var(--tw-bg-opacity));
+}
+
 .bg-red{
   --tw-bg-opacity: 1;
   background-color: rgb(255 73 73 / var(--tw-bg-opacity));
@@ -841,16 +846,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-jeek-gray-400{
   --tw-bg-opacity: 1;
   background-color: rgb(95 95 95 / var(--tw-bg-opacity));
-}
-
-.bg-jeek-gray-350{
-  --tw-bg-opacity: 1;
-  background-color: rgb(127 127 127 / var(--tw-bg-opacity));
-}
-
-.bg-blue{
-  --tw-bg-opacity: 1;
-  background-color: rgb(146 180 236 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-50{
@@ -917,6 +912,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 4rem;
 }
 
+.px-2{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.px-8{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .px-24{
   padding-left: 6rem;
   padding-right: 6rem;
@@ -927,19 +932,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 1.5rem;
 }
 
-.px-8{
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
 .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-
-.px-2{
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 }
 
 .pt-4{
@@ -1010,6 +1005,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.5rem;
 }
 
+.pt-40{
+  padding-top: 10rem;
+}
+
 .pl-12{
   padding-left: 3rem;
 }
@@ -1040,22 +1039,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pr-1{
   padding-right: 0.25rem;
-}
-
-.pt-48{
-  padding-top: 12rem;
-}
-
-.pt-36{
-  padding-top: 9rem;
-}
-
-.pt-40{
-  padding-top: 10rem;
-}
-
-.pb-3{
-  padding-bottom: 0.75rem;
 }
 
 .text-left{
@@ -1152,6 +1135,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-green-100{
   --tw-text-opacity: 1;
   color: rgb(180 255 159 / var(--tw-text-opacity));
+}
+
+.overline{
+  -webkit-text-decoration-line: overline;
+          text-decoration-line: overline;
+}
+
+.line-through{
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
 }
 
 .opacity-0{

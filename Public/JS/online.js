@@ -115,10 +115,35 @@ function gridEventListener(){
 
 }
 
-async function renderGrid(roomNumber){
+function renderGridRequest(roomNumber){
 
     if (roomNumber == gameRoom){
-        
+        socket.emit("updateGridRequest", { roomNumber, id: socket.id } );
+    }
+
+}
+
+function renderGrid(data){
+
+    const { roomNumber, id } = data;
+
+    if (socket.id == id){
+
+        casasAtivas = data.casasAtivas;
+
+        const { casasAtivasBrancas, casasAtivasPretas } = data;
+
+        for (const casa of Object.values(casasAtivasBrancas)){
+            if (casa.y != null){
+                addPeca(casa.y, casa.x, true, roomNumber);
+            }
+        }
+        for (const casa of Object.values(casasAtivasPretas)){
+            if (casa.y != null){
+                addPeca(casa.y, casa.x, false, roomNumber);
+            }
+        }
+
     }
 
 }
@@ -127,6 +152,10 @@ function procurarPartida(){
 
     if (roomID == null){
         socket.emit("procurarPartida", null);
+
+        if (telaCarregamento.className.includes("hidden")){
+            telaCarregamento.classList.remove("hidden");
+        }
 
         procurandoOponentesPecasAnimacao();
         procurandoOponentesTextoAnimacao();
@@ -137,7 +166,11 @@ function procurarPartida(){
 function criarSalaPrivada(){
 
     if (roomID != null && roomID.length == 16){
-        telaCarregamento.classList.add("hidden");
+
+        if (!telaCarregamento.className.includes("hidden")){
+            telaCarregamento.classList.add("hidden");
+        }
+
         telaConvite.classList.remove("hidden");
 
         const Id = roomID.slice(8);
@@ -164,6 +197,7 @@ function criarSalaPrivada(){
 
 function addPeca(y, x, vezBrancas, room){
     if (gameRoom == room){
+
         // Registro do lance - Visual
         const peca = document.createElement("div");
                         
@@ -400,7 +434,7 @@ function specs(data){
 
     if (id == socket.id){
         gameRoom = roomNumber;
-        renderGrid(roomNumber);
+        renderGridRequest(roomNumber);
     }
 
     if (gameRoom == roomNumber){
@@ -479,18 +513,14 @@ function restart(roomNumber){
         createGrid();
         gridEventListener();
 
-        if (connections > 0){
-            if (!telaCarregamento.className.includes("hidden")){
-                telaCarregamento.classList.add("hidden");
-                telaConvite.classList.add("hidden");
-            }
+        if (!telaCarregamento.className.includes("hidden")){
+            telaConvite.classList.add("hidden");
         }
-        else {
-            if (telaCarregamento.className.includes("hidden")){
-                telaCarregamento.classList.remove("hidden");
-                telaConvite.classList.add("hidden");
-            }
+    
+        if (!telaCarregamento.className.includes("hidden")){
+            telaCarregamento.classList.add("hidden");
         }
+
 
         if (conexaoBrancas.className.includes("bg-red")){
             conexaoBrancas.classList.add("bg-green-100");
@@ -714,6 +744,10 @@ socket.on("updateCasasAtivas", (data) => {
     }
 });
 
+socket.on("updateGrid", (data) => {
+    renderGrid(data);
+});
+
 /* Tela de espera */
 socket.on("updateConnections", (con) => {
     connections = con;
@@ -734,4 +768,10 @@ document.addEventListener("keydown", (e) => {
         }
     }
 
+});
+
+socket.on("erro404", (data) => {
+    if (socket.id == data){
+        window.location = "/404";
+    }
 });

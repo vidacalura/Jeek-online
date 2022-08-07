@@ -56,6 +56,7 @@ for (let i = 0; i < 100; i++){
             'vezBrancas': true,
             'connections': 0,
             'specs': 0,
+            'specsIds': [],
             'casasAtivas': [],
             'isGameOver': false
         },
@@ -121,7 +122,7 @@ function isConnected(x, y, dados){
         return true;
     }
 
-    // if movesBack != 0 -> false
+    // se já houver peças nesta casa -> falso
 
     if (dados.dados.vezBrancas){
         lance = Object.values(dados.pecas_brancas); 
@@ -451,6 +452,10 @@ function disconnect(id){
                 roomNumber = i;
                 break;
             }
+            else if (rooms[i].dados.specsIds.includes(id)){
+                roomNumber = i;
+                break;
+            }
 
         }
     }
@@ -470,8 +475,7 @@ function disconnect(id){
 
             rooms_count.push(roomNumber);
         }
-
-        if (rooms[roomNumber].dados.connections == 2){
+        else if (rooms[roomNumber].dados.connections == 2){
             if (rooms[roomNumber].dados.isGameOver == false){
                 if (id == rooms[roomNumber].player.brancas.playerId){
                     const cor = "Brancas";
@@ -503,8 +507,20 @@ function disconnect(id){
         }
         else{
             rooms[roomNumber].dados.specs--;
+            rooms[roomNumber].dados.connections--;
+
+            let i = 0;
+
+            for (const specId of rooms[roomNumber].dados.specsIds){
+                if (specId == id){
+                    const index = i;
+                    rooms[roomNumber].dados.specsIds.slice(index, 1);
+                }
+                i++;
+            }
+
             io.sockets.emit("updateSpecs", { specs: rooms[roomNumber].dados.specs, id, roomNumber });
-        } 
+        }
 
     }
 
@@ -607,9 +623,11 @@ io.on("connection", (socket) => {
     socket.on("startPrivateGame", (data) => {
 
         const id = socket.id;
+        let roomFound = false;
 
         for (let i = 0; i < rooms.length; i++){
             if (rooms[i].dados.roomID == data){
+                roomFound = true;
                 // Jogador 2
                 if (rooms[i].player.pretas.playerId == null){
                     const roomNumber = i;
@@ -622,12 +640,18 @@ io.on("connection", (socket) => {
                 // Spec
                 else {
                     const roomNumber = i;
+                    connections_server++;
                     rooms[roomNumber].dados.connections++;
                     rooms[roomNumber].dados.specs++;
+                    rooms[roomNumber].dados.specsIds.push(socket.id);
 
-                    io.sockets.emit("updateSpecs", { specs: rooms[i].dados.specs++, id: socket.id, roomNumber });
+                    io.sockets.emit("updateSpecs", { specs: rooms[i].dados.specs, id: socket.id, roomNumber });
                 }
             }
+        }
+
+        if (roomFound == false){
+            io.sockets.emit("erro404", id);
         }
 
     });
@@ -678,6 +702,12 @@ io.on("connection", (socket) => {
         disconnect(socket.id);
     });
 
+    socket.on("updateGridRequest", (data) => {
+        const { roomNumber, id } = data;
+        io.sockets.emit("updateGrid", { roomNumber, id, casasAtivasBrancas: rooms[roomNumber].pecas_brancas,
+        casasAtivasPretas: rooms[roomNumber].pecas_pretas, casasAtivas: rooms[roomNumber].dados.casasAtivas });
+    });
+
     socket.on("ping", (data) => {
         pong(data, socket.id);
     });
@@ -688,6 +718,7 @@ io.on("connection", (socket) => {
 /* to do
 
 10/11/12 2022:
+- Refatoração código salas
 - Avisar quando movimento espelhado (com mensagemJogo())
 - Pentesting
 - Login / Cadastro
@@ -705,9 +736,6 @@ io.on("connection", (socket) => {
 - Erro offline (b:b3, p:d1, p:d2, p:d3)
 
 Urgente:
-- Refatoração código salas
 - Aparecer pedido de revanche apenas para jogadores
-- Arrumar telas de carregamento
-- Render Screen
 
 */
