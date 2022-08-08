@@ -737,5 +737,6 @@ io.on("connection", (socket) => {
 
 Urgente:
 - Aparecer pedido de revanche apenas para jogadores
+- Linha 427
 
 */

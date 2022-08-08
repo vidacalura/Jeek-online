@@ -154,6 +154,14 @@ function mostrarMenuEntrarPartida(){
 
 }
 
+txtboxEntrarPartida.addEventListener("keyup", (event) => {
+    event.preventDefault();
+
+    if (event.key == "Enter"){
+        entrarSala();
+    }
+});
+
 socket.on("roomIdReg", (data) => {
     const { codigo, id } = data;
 
