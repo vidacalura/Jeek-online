@@ -10,6 +10,11 @@
 
 }
 
+.nome-participante{
+
+    @apply bg-jeek-gray-400 text-sm md:text-lg text-white px-2 py-1 rounded shadow-sm;
+
+}
 .torneio-chave{
 
     @apply bg-jeek-gray-350 rounded;
@@ -23,6 +28,16 @@
 .chave-2{
 
     @apply mb-24 mt-12;
+
+}
+.chave-3{
+
+    @apply mb-72 mt-36;
+
+}
+.chave-4{
+
+    @apply mt-[19.5rem];
 
 }
 .torneio-participante{

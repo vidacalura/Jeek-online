@@ -180,3 +180,9 @@ socket.on("redirectPartida", (data) => {
     }
 
 });
+
+socket.on("erro404", (data) => {
+    if (socket.id == data){
+        window.location = "/404";
+    }
+});

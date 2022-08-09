@@ -424,7 +424,7 @@ function redirecionarPartida(cod, id){
         io.sockets.emit("redirectPartida", { codigo: cod, id });        
     }
     else {
-        // Dar erro
+        io.sockets.emit("erro404", id);
     }
 
 }
@@ -660,7 +660,7 @@ io.on("connection", (socket) => {
         const roomId = data;
 
         for (let i = 0; i < rooms.length; i++){
-            if (rooms[i].dados.roomID == roomId){
+            if (rooms[i].dados.roomID == roomId && rooms[i].player.brancas.playerId == null){
                 const roomNumber = i;
                 rooms[roomNumber].dados.connections = 1;
                 rooms[roomNumber].player.brancas.playerId = socket.id;
@@ -720,6 +720,7 @@ io.on("connection", (socket) => {
 10/11/12 2022:
 - Refatoração código salas
 - Avisar quando movimento espelhado (com mensagemJogo())
+- Aparecer pedido de revanche apenas para jogadores
 - Pentesting
 - Login / Cadastro
 - Sistema de Rating
@@ -733,10 +734,7 @@ io.on("connection", (socket) => {
 - Search bar na aba de torneios
 - IA
 
-- Erro offline (b:b3, p:d1, p:d2, p:d3)
-
 Urgente:
-- Aparecer pedido de revanche apenas para jogadores
 - Linha 427
 
 */
