@@ -47,8 +47,6 @@ dropboxTempoItens[4].addEventListener("click", () => {
     tempo = null;
     dropboxTempoItensSelected = true;
     dropboxTempo.classList.remove("active");
-    relogio_w.classList.add("hidden");
-    relogio_b.classList.add("hidden");
 });
 
 for (const item of dropboxTempoItens){
@@ -59,6 +57,12 @@ for (const item of dropboxTempoItens){
 
 menuBtn.addEventListener("click", () => {
     if (dropboxTempoItensSelected == true){
+        if (tempo == null){
+            dropboxTempo.classList.remove("active");
+            relogio_w.classList.add("hidden");
+            relogio_b.classList.add("hidden");
+        }
+
         startSound.play();
 
         menu.classList.add("hidden");

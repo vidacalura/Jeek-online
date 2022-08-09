@@ -734,6 +734,8 @@ io.on("connection", (socket) => {
 - Search bar na aba de torneios
 - IA
 
+- Erro troca de tempo (sem tempo -> com tempo) offline
+
 Urgente:
 - Linha 427
 
