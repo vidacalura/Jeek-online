@@ -135,13 +135,22 @@ function isConnected(x, y, dados){
 
     // Verifica se o lance é legal
     if (dados.dados.jogadas == 2){
-        if ((y != Number(lance[lances_player - 1].y) + 1) && (y != Number(lance[lances_player - 1].y) - 1) &&
-        (x != Number(lance[lances_player - 1].x) + 1) && (x != Number(lance[lances_player - 1].x) - 1)){
+        const ultimoLanceY = Number(lance[lances_player - 1].y);
+        const ultimoLanceX = Number(lance[lances_player - 1].x);
+
+        if ((y != ultimoLanceY + 1) && (y != ultimoLanceY - 1) &&
+        (x != ultimoLanceX + 1) && (x != ultimoLanceX - 1)){
                 return false;  
         } 
 
-        if ((y == Number(lance[lances_player - 1].y) + 1) || (y == Number(lance[lances_player - 1].y) - 1)){
-            if ((x == Number(lance[lances_player - 1].x) + 1) || (x == Number(lance[lances_player - 1].x) - 1)){
+        if ((y == ultimoLanceY + 1) || (y == ultimoLanceY - 1)){
+            if ((x != ultimoLanceX)){
+                return false;  
+            }
+        }
+
+        if ((x == ultimoLanceX + 1) || (x == ultimoLanceX - 1)){
+            if ((y != ultimoLanceY)){
                 return false;  
             }
         }
