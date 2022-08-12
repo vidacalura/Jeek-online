@@ -726,26 +726,23 @@ io.on("connection", (socket) => {
 
 /* to do
 
-10/11/12 2022:
+- Pentesting
 - Refatoração código salas
 - Avisar quando movimento espelhado (com mensagemJogo())
+- Sinalizar que o tempo está caindo
 - Aparecer pedido de revanche apenas para jogadores
-- Pentesting
+- EntrarSala() -> verificar se código começa com JO
+
+10/11/12 2022:
 - Login / Cadastro
 - Sistema de Rating
 - Puzzles
 - Captcha de Jeek (ganhar posição para completar)
 - Acessibilidade
-- Sinalizar que o tempo está caindo
 - Parar animação do botão de revanche caso revanche seja recusada
 
 2023:
 - Search bar na aba de torneios
 - IA
-
-- Erro troca de tempo (sem tempo -> com tempo) offline
-
-Urgente:
-- Linha 427
 
 */
