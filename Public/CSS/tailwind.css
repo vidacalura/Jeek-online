@@ -35,11 +35,6 @@
     @apply mb-72 mt-36;
 
 }
-.chave-4{
-
-    @apply mt-[19.5rem];
-
-}
 .torneio-participante{
 
     @apply w-40 h-10 flex justify-between;

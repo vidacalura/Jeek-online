@@ -726,6 +726,7 @@ io.on("connection", (socket) => {
 
 /* to do
 
+- passarAVez
 - Placar
 - Pentesting
 - Refatoração código salas
