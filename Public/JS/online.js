@@ -315,6 +315,14 @@ function latencia(data){
         else {
             icon = "./imgs/ping_ruim.png";
         }
+        /*
+        else if (resTime > 200 && resTime < 7500) {
+            icon = "./imgs/ping_ruim.png";
+        }
+        else {
+            // Desconectar usuário
+        }
+        */
 
         switch (cor){
             case "Brancas":

@@ -729,6 +729,7 @@ io.on("connection", (socket) => {
 - Placar
 - Pentesting
 - Refatoração código salas
+- completar latencia() -> online.js
 - Avisar quando movimento espelhado (com mensagemJogo())
 - EntrarSala() -> verificar se código começa com JO
 - Sinalizar que o tempo está caindo
