@@ -576,6 +576,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 6rem;
 }
 
+.ml-12{
+  margin-left: 3rem;
+}
+
 .mt-\[21rem\]{
   margin-top: 21rem;
 }
@@ -1021,8 +1025,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 0.75rem;
 }
 
-.pl-20{
-  padding-left: 5rem;
+.pt-\[0\.15rem\]{
+  padding-top: 0.15rem;
 }
 
 .pt-\[0\.2rem\]{
@@ -1278,9 +1282,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .torneio-participante-derrota{
-}
-
-.torneio-participante-vitoria{
+  --tw-bg-opacity: 1;
+  background-color: rgb(44 44 44 / var(--tw-bg-opacity));
+  opacity: 0.2;
 }
 
 .menu-title{
@@ -1622,6 +1626,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     left: 3rem;
   }
 
+  .md\:m-0{
+    margin: 0px;
+  }
+
   .md\:ml-0{
     margin-left: 0px;
   }
@@ -1684,6 +1692,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:w-80{
     width: 20rem;
+  }
+
+  .md\:justify-around{
+    justify-content: space-around;
   }
 
   .md\:overflow-x-hidden{

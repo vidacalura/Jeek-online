@@ -726,12 +726,13 @@ io.on("connection", (socket) => {
 
 /* to do
 
+- Placar
 - Pentesting
 - Refatoração código salas
 - Avisar quando movimento espelhado (com mensagemJogo())
+- EntrarSala() -> verificar se código começa com JO
 - Sinalizar que o tempo está caindo
 - Aparecer pedido de revanche apenas para jogadores
-- EntrarSala() -> verificar se código começa com JO
 
 10/11/12 2022:
 - Login / Cadastro

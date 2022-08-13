@@ -52,10 +52,7 @@
 }
 .torneio-participante-derrota{
 
-
-}
-.torneio-participante-vitoria{
-
+    @apply bg-jeek-gray-600 opacity-20;
 
 }
 
