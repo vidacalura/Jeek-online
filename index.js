@@ -246,13 +246,12 @@ function regLance(lance, quant_lances, data){
 
 function checkTurn(data){
 
-    if (rooms[data.room].dados.jogadas == 0){
-        rooms[data.room].dados.vezBrancas = (rooms[data.room].dados.vezBrancas == true ? false : true);
-        rooms[data.room].dados.jogadas = 3;
-    }
-
     if (rooms[data.room].player.brancas.lances + rooms[data.room].player.pretas.lances == 15){
         endGame(rooms[data.room].dados.vezBrancas, data.room);
+    }
+    else if (rooms[data.room].dados.jogadas == 0){
+        rooms[data.room].dados.vezBrancas = (rooms[data.room].dados.vezBrancas == true ? false : true);
+        rooms[data.room].dados.jogadas = 3;
     }
 
 }
@@ -484,7 +483,7 @@ function disconnect(id){
 
             rooms_count.push(roomNumber);
         }
-        else if (rooms[roomNumber].dados.connections == 2){
+        else if (rooms[roomNumber].dados.connections - rooms[roomNumber].dados.specs > 0){
             if (rooms[roomNumber].dados.isGameOver == false){
                 if (id == rooms[roomNumber].player.brancas.playerId){
                     const cor = "Brancas";
@@ -500,6 +499,22 @@ function disconnect(id){
                     io.sockets.emit("desconexao", { cor, roomNumber });
                     rooms[roomNumber].dados.connections--;
                 }
+                else{
+                    rooms[roomNumber].dados.specs--;
+                    rooms[roomNumber].dados.connections--;
+        
+                    let i = 0;
+        
+                    for (const specId of rooms[roomNumber].dados.specsIds){
+                        if (specId == id){
+                            const index = i;
+                            rooms[roomNumber].dados.specsIds.slice(index, 1);
+                        }
+                        i++;
+                    }
+        
+                    io.sockets.emit("updateSpecs", { specs: rooms[roomNumber].dados.specs, id, roomNumber });
+                }
             }
             else{
                 if (id == rooms[roomNumber].player.brancas.playerId){
@@ -511,24 +526,24 @@ function disconnect(id){
                     const cor = "Pretas";
 
                     io.sockets.emit("desconexao", { cor, roomNumber });
-                }   
-            }
-        }
-        else{
-            rooms[roomNumber].dados.specs--;
-            rooms[roomNumber].dados.connections--;
-
-            let i = 0;
-
-            for (const specId of rooms[roomNumber].dados.specsIds){
-                if (specId == id){
-                    const index = i;
-                    rooms[roomNumber].dados.specsIds.slice(index, 1);
                 }
-                i++;
+                else{
+                    rooms[roomNumber].dados.specs--;
+                    rooms[roomNumber].dados.connections--;
+        
+                    let i = 0;
+        
+                    for (const specId of rooms[roomNumber].dados.specsIds){
+                        if (specId == id){
+                            const index = i;
+                            rooms[roomNumber].dados.specsIds.slice(index, 1);
+                        }
+                        i++;
+                    }
+        
+                    io.sockets.emit("updateSpecs", { specs: rooms[roomNumber].dados.specs, id, roomNumber });
+                }
             }
-
-            io.sockets.emit("updateSpecs", { specs: rooms[roomNumber].dados.specs, id, roomNumber });
         }
 
     }
@@ -726,17 +741,14 @@ io.on("connection", (socket) => {
 
 /* to do
 
-- passarAVez
-- Placar
-- Pentesting
 - Refatoração código salas
-- completar latencia() -> online.js
+- Pentesting
 - Avisar quando movimento espelhado (com mensagemJogo())
-- EntrarSala() -> verificar se código começa com JO
 - Sinalizar que o tempo está caindo
-- Aparecer pedido de revanche apenas para jogadores
 
 10/11/12 2022:
+- Melhorar placar
+- Aparecer pedido de revanche apenas para jogadores
 - Login / Cadastro
 - Sistema de Rating
 - Puzzles

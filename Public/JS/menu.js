@@ -115,13 +115,13 @@ async function simulacao(){
 
 function entrarSala(){
 
-    if (txtboxEntrarPartida.value.length == 8){
+    if (txtboxEntrarPartida.value.length == 8 && txtboxEntrarPartida.value.slice(0, 2) == "JO"){
         const codigo = txtboxEntrarPartida.value.toUpperCase();
 
         socket.emit("redirecionarPartida", codigo);
     }
     else{
-        alert("Código de sala inválido")
+        alert("Código de sala inválido");
     }
 
 }

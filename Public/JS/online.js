@@ -312,17 +312,13 @@ function latencia(data){
         else if (resTime <= 200){
             icon = "./imgs/ping_medio.png";
         }
-        else {
-            icon = "./imgs/ping_ruim.png";
-        }
-        /*
         else if (resTime > 200 && resTime < 7500) {
             icon = "./imgs/ping_ruim.png";
         }
         else {
             // Desconectar usuário
+            socket.disconnect();
         }
-        */
 
         switch (cor){
             case "Brancas":
@@ -484,10 +480,10 @@ function endGame(data){
         revancheBtn.classList.remove("hidden");
 
         // Mostrar placar
-        endgame_p.innerHTML = `<p class="endgame-p text-lg"> ${brancasPontos} - ${pretasPontos} <br>`;
+        endgame_p.innerHTML = `<p class="endgame-p text-2xl"> ${brancasPontos} - ${pretasPontos} </p>`;
 
         // Mostrar quem foi vitorioso
-        endgame_p.innerHTML += `Vitória das ${(brancasGanham == true ? 'brancas' : 'pretas')}! </p>`;
+        endgame_p.innerHTML += `<p> Vitória das ${(brancasGanham == true ? 'brancas' : 'pretas')}! </p>`;
 
         endSound.play();
     }
