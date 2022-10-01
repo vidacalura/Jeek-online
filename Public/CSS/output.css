@@ -527,11 +527,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 1rem;
 }
 
-.mx-8{
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
-
 .mb-6{
   margin-bottom: 1.5rem;
 }
@@ -584,32 +579,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 19.5rem;
 }
 
-.mt-\[21rem\]{
-  margin-top: 21rem;
-}
-
-.mt-24{
-  margin-top: 6rem;
-}
-
-.mr-1{
-  margin-right: 0.25rem;
-}
-
-.ml-1{
-  margin-left: 0.25rem;
-}
-
-.mr-2{
-  margin-right: 0.5rem;
-}
-
-.mt-20{
-  margin-top: 5rem;
-}
-
 .mt-16{
   margin-top: 4rem;
+}
+
+.mt-\[21rem\]{
+  margin-top: 21rem;
 }
 
 .block{
@@ -805,11 +780,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 1.5rem;
 }
 
-.rounded-t-xl{
-  border-top-left-radius: 0.75rem;
-  border-top-right-radius: 0.75rem;
-}
-
 .border-2{
   border-width: 2px;
 }
@@ -947,11 +917,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 2rem;
 }
 
-.py-6{
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
 .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -1049,20 +1014,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 0.5rem;
 }
 
-.pt-16{
-  padding-top: 4rem;
+.pr-4{
+  padding-right: 1rem;
 }
 
-.pb-10{
-  padding-bottom: 2.5rem;
-}
-
-.pt-6{
-  padding-top: 1.5rem;
-}
-
-.pr-1{
-  padding-right: 0.25rem;
+.pr-3{
+  padding-right: 0.75rem;
 }
 
 .text-left{
@@ -1154,11 +1111,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-jeek-gray-700{
   --tw-text-opacity: 1;
   color: rgb(33 33 33 / var(--tw-text-opacity));
-}
-
-.text-green-100{
-  --tw-text-opacity: 1;
-  color: rgb(180 255 159 / var(--tw-text-opacity));
 }
 
 .line-through{
@@ -1602,6 +1554,26 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.hover\:text-\[\#FF0000\]:hover{
+  --tw-text-opacity: 1;
+  color: rgb(255 0 0 / var(--tw-text-opacity));
+}
+
+.hover\:text-\[\#AA0000\]:hover{
+  --tw-text-opacity: 1;
+  color: rgb(170 0 0 / var(--tw-text-opacity));
+}
+
+.hover\:text-\[\#FF2222\]:hover{
+  --tw-text-opacity: 1;
+  color: rgb(255 34 34 / var(--tw-text-opacity));
+}
+
+.hover\:text-\[\#FF4444\]:hover{
+  --tw-text-opacity: 1;
+  color: rgb(255 68 68 / var(--tw-text-opacity));
+}
+
 @media (min-width: 640px){
   .sm\:gap-6{
     gap: 1.5rem;
@@ -1733,10 +1705,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:pl-0{
     padding-left: 0px;
-  }
-
-  .md\:pl-4{
-    padding-left: 1rem;
   }
 
   .md\:opacity-100{
