@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Site para se jogar Jeek online"/>    
+        <meta name="keywords" content="Board game, Jeek, Jeek Online"/>
+        <link rel="stylesheet" type="text/css" href="CSS/output.css">
+        <script src="JS/cad.js" defer> </script>
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js">  </script>
+        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"></script> 
+        <link rel="shortcut icon" href="imgs/aberturadomestre.ico" type="image/x-icon">
+        <title> Jeek Online - Cadastro </title>
+
+    </head>
+
+
+    <body class="bg-jeek-gray-600 text-white overflow-x-hidden md:overflow-y-hidden">
+        
+        <main>
+
+            <form id="form-cad">
+
+                <div>
+                    <input type="text" id="textbox-username" placeholder="Nome de usuário:">
+                    <input type="password" id="textbox-senha" placeholder="Senha:">
+                    <input type="password" id="textbox-conf-senha" placeholder="Confirme sua senha:">
+                </div>
+
+                <div id="div-erro" class="text-red font-bold flex justify-center">
+                    <p id="texto-erro">  </p>
+                </div>
+
+                <div>
+                    <a href="/login"> <p> Já tem uma conta? Entre aqui! </p> </a>
+                </div>
+
+                <div id="captcha"> </div>
+
+                <button id="cad-btn"> Cadastrar </button>
+
+            </form>
+
+        </main>
+
+    </body>
+
+</html>

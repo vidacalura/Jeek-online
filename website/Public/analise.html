@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="CSS/output.css">
+        <script src="JS/analise.js" defer>  </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js">  </script>
+        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="imgs/aberturadomestre.ico" type="image/x-icon">
+        <title> Jeek Online </title>
+
+    </head>
+
+
+    <body class="bg-jeek-gray-600 text-white overflow-x-hidden">
+
+        <script>
+            if (window.innerWidth < 768) {
+                window.location = "/analise-cel";
+            }
+        </script>
+
+        <nav class="pt-4 px-6 flex">
+            <a href="/" class="z-20">
+                <img src="imgs/aberturadomestre.ico" class="rounded-md w-8 h-auto shadow-md" alt="Logo Jeek Online">
+            </a>
+            <a href="/" class="z-20">
+                <h1 class="text-jeek-gray-100 font-bold pt-1 pl-4 flex"> Jeek Online <p class="text-jeek-gray-200 pl-2"> Beta </p> </h1>
+            </a>
+        </nav>
+
+        <main class="flex">
+
+            <section class="aside-div w-40 text-center ml-12 flex md:inline-block pt-40">
+
+                <!-- Botões -->
+                <div class="botoes">
+                    <button class="botao-jogo botao-passar" title="Passar a vez. Dica: Você também pode apertar a tecla 'p' para passar a vez "> <i class="fa fa-arrow-right"> </i> </button> <br>
+                </div>
+
+            </section>
+
+            <div class="px-16 flex justify-center">
+                <div class="tabuleiro-div">
+
+                    <!-- Tabuleiro -->
+                    <section id="tabuleiro" class="tabuleiro w-auto mt-12">
+
+
+
+                    </section>
+
+                    <div class="absolute top-[34.3rem] w-[28rem] flex justify-between text-2xl">
+                        <button class="move-back"> <i class="fa-solid fa-angle-left">  </i> </button>
+                        <button class="move-forward"> <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PJN Reader -->
+            <div class="flex justify-center">
+                <div class="pt-12 w-[28rem]">
+                    <label for="pjn-reader"> PJN (Portable Jeek Notation): </label>
+
+                    <div class="flex justify-center">
+                        <textarea name="pjn-reader" id="pjn-reader" class="text-black h-[24rem] w-full" readonly> </textarea>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </body>
+
+</html>

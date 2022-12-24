@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/CSS/output.css">
+        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
+        <link rel="shortcut icon" href="/imgs/aberturadomestre.ico" type="image/x-icon">
+        <title> Jeek Online -  </title>
+
+    </head>
+
+    <body class="bg-jeek-gray-600 text-white overflow-x-hidden">
+
+        <nav class="w-[20vw] fixed hidden md:block h-screen bg-jeek-gray-700 shadow-md">
+            <a href="#configuracao-conta">
+                <div class="menu-option" id="conta-btn">
+                    <h3> Configurações de conta </h3>
+                </div>
+            </a>
+            <a href="#privacidade-e-seguranca">
+                <div class="menu-option" id="privacidade-e-seguranca-btn">
+                    <h3> Privacidade e segurança </h3>
+                </div>
+            </a>
+            <a href="#keybinds">
+                <div class="menu-option" id="keybinds-btn">
+                    <h3> Keybinds </h3>
+                </div>
+            </a>
+        </nav>
+
+        <main class="">
+        
+            <!-- Botão de voltar -->
+            <a href="/">
+                <button id="btn-voltar-index" class="absolute top-4 right-4 md:right-6 text-xl bg-jeek-gray-700 px-3 py-2 rounded-full shadow-md" title="Voltar">
+                    <i class="fa-solid fa-arrow-left"> </i>
+                </button>
+            </a>
+
+            <!-- Configurações da conta -->
+            <section id="configuracao-conta" class="md:w-[80vw] w-screen md:float-right">
+
+                <h2 class="font-bold text-jeek-gray-100 underline text-xl md:text-2xl pt-24 md:pt-8 pl-[14%] md:pl-[22%]"> Configurações de conta: </h2>
+
+                <!-- crUd - Update -->
+                <form class="flex justify-center py-8 text-center">
+                    <div class="bg-jeek-gray-700 w-[80%] md:w-[60%] rounded-md py-12 px-8 md:px-12 shadow-md">
+                        <div class="text-jeek-gray-100">
+                            <label for="update-nome" class="font-bold"> Nome: </label>
+                            <input type="text" id="update-nome" value="teste" class="text-white my-2 mx-2 py-2 px-3 bg-jeek-gray-500 shadow-md outline-none rounded w-48"> <br>
+                            <!-- Bio -->
+                            <!-- País -->
+                            <label for="update-senha" class="font-bold"> Senha: </label>
+                            <input type="password" id="update-senha" value="xxxxx" class="text-white my-2 mx-2 py-2 px-3 bg-jeek-gray-500 shadow-md outline-none rounded w-48">
+                        </div>
+
+                        <button id="update-usuario-btn" class="mt-8 px-4 py-3 text-jeek-gray-100 font-bold bg-jeek-gray-500 rounded-full shadow-md"> Atualizar dados </button>
+                    </div>
+                </form>
+
+                <!-- cruD - Delete -->
+                <div class="text-center">
+                    <button id="delete-usuario-btn" class="text-red border-2 border-red font-bold rounded-lg py-2 px-3 transition-all ease-in-out hover:bg-jeek-gray-500">
+                        Deletar conta
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- Privacidade e segurança -->
+            <section id="privacidade-e-seguranca" class="md:w-[80vw] w-screen md:float-right pt-20">
+
+                <h2 class="font-bold text-jeek-gray-100 text-2xl pt-8 pl-[14%] md:pl-[22%]"> Privacidade: </h2>
+
+                <!-- Informações de privacidade -->
+                <div class="flex justify-center py-8">
+                    <div class="bg-jeek-gray-700 w-[80%] md:w-[60%] rounded-md py-12 px-8 md:px-12 shadow-md">
+                        <h3 class="font-bold text-jeek-gray-100 text-xl"> Dados que coletamos e armazenamos: </h3>
+
+                        <ul class="list-disc pl-4 text-jeek-gray-100">
+                            <li> Nome de usuário </li>
+                            <li> Senha (propriamente criptografada) </li>
+                            <li> Elo </li>
+                            <li> Data de cadastro (Dia/Mês/Ano) </li>
+                            <li> Jogos jogados com outros jogadores cadastrados </li>
+                        </ul>
+
+                        <p class="pt-8">
+                            Além dos resultados e movimentos das partidas entre jogadores, 
+                            mais absolutamente nada é salvo nos servidores do Jeek Online, com 
+                            relação a como você interage com outros jogadores ou com o site. <br> <br>
+                            Não acredita? Você pode conferir nosso
+                            <a href="https://github.com/vidacalura/Jeek-online" class="underline"> código-fonte </a>
+                            que é 100% open-source no github para confirmar ;)
+                        </p>
+                    </div>
+                </div>
+
+                <h2 class="font-bold text-jeek-gray-100 text-2xl pt-8 pl-[14%] md:pl-[22%]"> Segurança: </h2>
+
+                <div class="text-center text-lg p-8">
+                    <!-- Fala o nível de segurança da senha -->
+                    <p class="inline"> Sua senha tem força: </p> <p id="forca-senha" class="text-red font-bold inline"> fraca </p><br>
+                    <p id="recomendacao"> Recomendamos que você mude sua senha </p>
+                </div>
+
+            </section>
+
+            <!-- Keybinds -->
+            <section id="keybinds" class="md:w-[80vw] w-screen md:float-right">
+                <h2 class="font-bold text-jeek-gray-100 underline text-2xl pt-24 md:pt-8 pl-[14%] md:pl-[22%]"> Keybinds: </h2>
+
+                <div class="flex justify-center py-8">
+                    <div class="bg-jeek-gray-700 w-[80%] md:w-[60%] rounded-md py-8 px-8 md:px-12 shadow-md">
+                        <div class="flex"> <h4 class="text-jeek-gray-100 font-bold"> p </h4> <p class="text-jeek-gray-100 pl-4"> Passa a vez </p> </div>
+                        <div class="flex"> <h4 class="text-jeek-gray-100 font-bold"> d </h4> <p class="text-jeek-gray-100 pl-4"> Desiste da partida </p> </div>
+                        <div class="flex"> <i class="fa-solid fa-arrow-right text-jeek-gray-100 pt-1"> </i> <p class="text-jeek-gray-100 pl-3"> Avança um movimento </p> </div>
+                        <div class="flex"> <i class="fa-solid fa-arrow-left text-jeek-gray-100 pt-1"> </i> <p class="text-jeek-gray-100 pl-3"> Volta um movimento </p> </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </body>
+
+</html>
