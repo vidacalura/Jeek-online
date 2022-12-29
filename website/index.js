@@ -4,7 +4,6 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const socket = require("socket.io");
 const crypto = require("crypto");
-const { response } = require('express');
 
 let app = express();
 
@@ -102,10 +101,11 @@ app.post("/login", async (req, res) => {
         const hash = crypto.createHmac('sha512', process.env.key);
         hash.update(senha);
 
-        await fetch(process.env.API + "/usuarios/login", {
+        await fetch(process.env.API + "usuarios/login", {
             method: "POST",
             headers: {
-                "Content-type": "Application/JSON"
+                "Content-type": "Application/JSON",
+                "token": process.env.token
             },
             body: JSON.stringify({
                 username,
@@ -143,7 +143,7 @@ app.get("/configuracoes", async (req, res) => {
 app.get("/usuarios/:username", async (req, res) => {
     const username = req.params.username;
 
-    await fetch(process.env.API + "/usuarios/" + username)
+    await fetch(process.env.API + "usuarios/" + username)
     .then((rawRes) => { return rawRes.json(); })
     .then((response) => {
         if (response.error){
@@ -159,12 +159,97 @@ app.get("/usuarios/:username", async (req, res) => {
 
 });
 
+app.put("/usuarios", async (req, res) => {
+
+    const { usernameNovo, senhaAtual, senhaNova } = req.body;
+
+    if (usernameNovo){
+        await fetch(process.env.API + "usuarios", {
+            method: "PUT",
+            headers: {
+                "Content-type": "Application/JSON",
+                "token": process.env.token
+            },
+            body: JSON.stringify({
+                username: req.session.username,
+                usernameNovo: usernameNovo.trim()
+            })
+        })
+        .then((rawRes) => { return rawRes.json(); })
+        .then((response) => {
+            if (!response.error){
+                req.session.username = usernameNovo
+            }
+            
+            res.json(response);
+        });
+    }
+    else if (senhaAtual && senhaNova){
+        if (senhaNova.length < 8){
+            res.json({ "error": "A senha deve conter pelo menos 8 caracteres" });
+        }
+        else{
+            const hash = crypto.createHmac('sha512', process.env.key);
+            hash.update(senhaAtual);
+
+            const hash2 = crypto.createHmac('sha512', process.env.key);
+            hash2.update(senhaNova);
+
+            await fetch(process.env.API + "usuarios", {
+                method: "PUT",
+                headers: {
+                    "Content-type": "Application/JSON",
+                    "token": process.env.token
+                },
+                body: JSON.stringify({
+                    username: req.session.username,
+                    senhaAtual: hash.digest("hex"),
+                    senhaNova: hash2.digest("hex")
+                })
+            })
+            .then((rawRes) => { return rawRes.json(); })
+            .then((response) => {
+                res.json(response);
+            });
+        }
+    }
+    else {
+        alert("Preencha todos os campos antes de fazer alterações.");
+    }
+
+});
+
+app.delete("/usuarios", async (req, res) => {
+
+    const { senha } = req.body;
+
+    const hash = crypto.createHmac('sha512', process.env.key);
+    hash.update(senha);
+
+    await fetch(process.env.API + "usuarios", {
+        method: "DELETE",
+        headers: {
+            "Content-type": "Application/JSON",
+            "token": process.env.token
+        },
+        body: JSON.stringify({
+            username: req.session.username,
+            senha: hash.digest("hex")
+        })
+    })
+    .then((rawRes) => { return rawRes.json(); })
+    .then((response) => {
+        res.json(response);
+    });
+
+});
+
 app.get("/sair", (req, res) => {
 
     delete req.session.username;
     res.redirect("/");
 
-})
+});
 
 app.use((req, res) => {
     res.status(404).sendFile("./Public/404.html", { root: __dirname });
@@ -473,7 +558,8 @@ async function endGame(brancasGanham, roomNumber){
             await fetch(process.env.API + "jogos", {
                 method: "POST",
                 headers: {
-                    "Content-type": "Application/JSON"
+                    "Content-type": "Application/JSON",
+                    "token": process.env.token
                 },
                 body: JSON.stringify({
                     usernameBrancas: rooms[roomNumber].player.brancas.username,
@@ -484,8 +570,10 @@ async function endGame(brancasGanham, roomNumber){
             })
             .then((res) => { return res.json(); })
             .then((res) => {
+                res.json({ "message": "Jogo salvo com sucesso" });
             })
             .catch((error) => {
+                return 1;
             });
         }
     }
@@ -957,10 +1045,11 @@ io.on("connection", (socket) => {
             const hash = crypto.createHmac('sha512', process.env.key);
             hash.update(senha);
 
-            await fetch(process.env.API + "/usuarios/cadastro", {
+            await fetch(process.env.API + "usuarios/cadastro", {
                 method: "POST",
                 headers: {
-                    "Content-type": "Application/JSON"
+                    "Content-type": "Application/JSON",
+                    "token": process.env.token
                 },
                 body: JSON.stringify({
                     username,

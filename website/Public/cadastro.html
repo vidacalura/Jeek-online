@@ -21,29 +21,44 @@
 
     <body class="bg-jeek-gray-600 text-white overflow-x-hidden md:overflow-y-hidden">
         
+        <nav class="pt-4 px-6 flex justify-between">
+            <div class="flex">
+                <a href="/">
+                    <img src="imgs/aberturadomestre.ico" class="rounded-md w-8 h-auto shadow-md" alt="Logo Jeek Online">
+                </a>
+                <a href="/">
+                    <h1 class="text-jeek-gray-100 font-bold pt-1 pl-4 flex"> Jeek Online <p class="text-jeek-gray-200 pl-2"> Beta </p> </h1>
+                </a>
+            </div>
+        </nav>
+
         <main>
 
-            <form id="form-cad">
+            <div class="flex justify-center pt-[10vh]">
+                <form id="form-cad" class="w-[90vw] md:w-[42vw] bg-jeek-gray-700 pt-12 px-12 shadow-lg text-center rounded-lg">
 
-                <div>
-                    <input type="text" id="textbox-username" placeholder="Nome de usuário:">
-                    <input type="password" id="textbox-senha" placeholder="Senha:">
-                    <input type="password" id="textbox-conf-senha" placeholder="Confirme sua senha:">
-                </div>
+                    <h1 class="font-bold text-3xl pb-8"> Bem-vindo ao Jeek Online! </h1>
 
-                <div id="div-erro" class="text-red font-bold flex justify-center">
-                    <p id="texto-erro">  </p>
-                </div>
+                    <div>
+                        <input type="text" id="textbox-username" placeholder="Nome de usuário:" class="border-none outline-none bg-jeek-gray-500 text-jeek-gray-100 p-2 px-4 mb-2 rounded shadow-sm w-full md:w-[60%]"> <br>
+                        <input type="password" id="textbox-senha" placeholder="Senha:" class="border-none outline-none bg-jeek-gray-500 text-jeek-gray-100 p-2 px-4 mb-2 rounded shadow-sm w-full md:w-[60%]"> <br>
+                        <input type="password" id="textbox-conf-senha" placeholder="Confirme sua senha:" class="border-none outline-none bg-jeek-gray-500 text-jeek-gray-100 p-2 px-4 mb-2 rounded shadow-sm w-full md:w-[60%]">
+                    </div>
 
-                <div>
-                    <a href="/login"> <p> Já tem uma conta? Entre aqui! </p> </a>
-                </div>
+                    <div id="div-erro" class="text-red font-bold flex justify-center">
+                        <p id="texto-erro">  </p>
+                    </div>
 
-                <div id="captcha"> </div>
+                    <div>
+                        <a href="/login"> <p class="text-blue font-bold pt-2 pb-8"> Já tem uma conta? Entre aqui! </p> </a>
+                    </div>
 
-                <button id="cad-btn"> Cadastrar </button>
+                    <div id="captcha"> </div>
 
-            </form>
+                    <button id="cad-btn" class="mb-10 bg-jeek-gray-500 transition-all ease-in-out hover:bg-jeek-gray-400 font-bold px-4 py-2 rounded-full shadow-md"> Cadastrar </button>
+
+                </form>
+            </div>
 
         </main>
 

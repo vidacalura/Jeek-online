@@ -190,7 +190,7 @@ async function checarSessao(){
 
     const perfilSessao = document.getElementById("perfil-sessao");
     
-    await fetch("http://localhost:5000/getSessao")
+    await fetch("/getSessao")
     .then((res) => { return res.json(); })
     .then((res) => {
         if (res.username){

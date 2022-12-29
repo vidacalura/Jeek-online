@@ -7,10 +7,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/CSS/output.css">
-        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
+        <script src="JS/config.js" defer> </script>
+        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"> </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"> </script>
         <link rel="shortcut icon" href="/imgs/aberturadomestre.ico" type="image/x-icon">
-        <title> Jeek Online -  </title>
+        <title> Jeek Online - Configurações </title>
 
     </head>
 
@@ -52,15 +53,24 @@
                 <form class="flex justify-center py-8 text-center">
                     <div class="bg-jeek-gray-700 w-[80%] md:w-[60%] rounded-md py-12 px-8 md:px-12 shadow-md">
                         <div class="text-jeek-gray-100">
-                            <label for="update-nome" class="font-bold"> Nome: </label>
-                            <input type="text" id="update-nome" value="teste" class="text-white my-2 mx-2 py-2 px-3 bg-jeek-gray-500 shadow-md outline-none rounded w-48"> <br>
+                            <div id="update-username-div">
+                                <input type="text" id="update-nome" class="text-white my-2 mx-2 py-2 px-3 bg-jeek-gray-500 shadow-md outline-none rounded w-48" placeholder="Novo username:">
+                            </div>
                             <!-- Bio -->
                             <!-- País -->
-                            <label for="update-senha" class="font-bold"> Senha: </label>
-                            <input type="password" id="update-senha" value="xxxxx" class="text-white my-2 mx-2 py-2 px-3 bg-jeek-gray-500 shadow-md outline-none rounded w-48">
+                            <div id="update-senha-div" class="hidden">
+                                <input type="password" id="senha-antiga" class="text-white my-2 mx-2 py-2 px-3 bg-jeek-gray-500 shadow-md outline-none rounded w-48" placeholder="Senha atual:"> <br>
+
+                                <input type="password" id="update-senha" class="text-white my-2 mx-2 py-2 px-3 bg-jeek-gray-500 shadow-md outline-none rounded w-48" placeholder="Nova senha:">
+                            </div>
                         </div>
 
-                        <button id="update-usuario-btn" class="mt-8 px-4 py-3 text-jeek-gray-100 font-bold bg-jeek-gray-500 rounded-full shadow-md"> Atualizar dados </button>
+                        <div class="flex justify-center gap-4">
+                            <button id="mudar-update" class="mt-8 px-4 py-3 text-jeek-gray-700 font-bold bg-jeek-gray-100 rounded-full shadow-md"> Mudar senha </button>
+
+                            <button id="update-usuario-btn" class="mt-8 px-4 py-3 text-jeek-gray-100 font-bold bg-jeek-gray-500 rounded-full shadow-md"> Atualizar dados </button>
+                        </div>
+                    
                     </div>
                 </form>
 
@@ -69,6 +79,23 @@
                     <button id="delete-usuario-btn" class="text-red border-2 border-red font-bold rounded-lg py-2 px-3 transition-all ease-in-out hover:bg-jeek-gray-500">
                         Deletar conta
                     </button>
+                </div>
+
+                <!-- Confirmação da remoção de usuário -->
+                <div id="deletar-usuario-container" class="fixed top-0 left-0 w-screen h-screen text-white bg-[rgba(22,22,22,0.7)] flex justify-center pt-20 hidden">
+                    <div id="deletar-usuario-div" class="w-[90vw] md:w-[50vw] h-[60vh] text-center bg-jeek-gray-700 rounded-lg shadow-md p-12">
+                        <h1 class="md:text-2xl font-bold pb-4"> Você já vai? Ainda há muito Jeek para ser jogado :( </h1>
+                        <p class="md:text-base text-sm">
+                            Ao seguir com esta ação, você deleta PERMANENTEMENTE seu usuário. Se você entende isso e deseja continuar,
+                            insira sua senha abaixo:
+                        </p>
+
+                        <form>
+                            <input type="password" id="senha-deletar-usuario" class="text-white my-12 mx-2 py-2 px-3 bg-jeek-gray-500 shadow-md outline-none rounded w-48" placeholder="Senha:"> <br>
+
+                            <button id="deletar-conta-btn" class="rounded-full bg-red font-bold py-2 px-3 shadow-md transition-all ease-in-out"> Deletar conta </button>
+                        </form>
+                    </div>
                 </div>
 
             </section>
@@ -81,11 +108,11 @@
                 <!-- Informações de privacidade -->
                 <div class="flex justify-center py-8">
                     <div class="bg-jeek-gray-700 w-[80%] md:w-[60%] rounded-md py-12 px-8 md:px-12 shadow-md">
-                        <h3 class="font-bold text-jeek-gray-100 text-xl"> Dados que coletamos e armazenamos: </h3>
+                        <h3 class="font-bold text-jeek-gray-100 text-xl"> Dados que coletamos: </h3>
 
                         <ul class="list-disc pl-4 text-jeek-gray-100">
                             <li> Nome de usuário </li>
-                            <li> Senha (propriamente criptografada) </li>
+                            <li> Senha (devidamente criptografada) </li>
                             <li> Elo </li>
                             <li> Data de cadastro (Dia/Mês/Ano) </li>
                             <li> Jogos jogados com outros jogadores cadastrados </li>
@@ -96,18 +123,27 @@
                             mais absolutamente nada é salvo nos servidores do Jeek Online, com 
                             relação a como você interage com outros jogadores ou com o site. <br> <br>
                             Não acredita? Você pode conferir nosso
-                            <a href="https://github.com/vidacalura/Jeek-online" class="underline"> código-fonte </a>
-                            que é 100% open-source no github para confirmar ;)
+                            <a href="https://github.com/vidacalura/Jeek-online" class="underline"> código-fonte,</a>
+                            que é 100% open-source, no github para confirmar ;)
                         </p>
                     </div>
                 </div>
 
                 <h2 class="font-bold text-jeek-gray-100 text-2xl pt-8 pl-[14%] md:pl-[22%]"> Segurança: </h2>
 
-                <div class="text-center text-lg p-8">
-                    <!-- Fala o nível de segurança da senha -->
-                    <p class="inline"> Sua senha tem força: </p> <p id="forca-senha" class="text-red font-bold inline"> fraca </p><br>
-                    <p id="recomendacao"> Recomendamos que você mude sua senha </p>
+                <!-- Informações de segurança -->
+                <div class="flex justify-center py-8">
+                    <div class="bg-jeek-gray-700 w-[80%] md:w-[60%] rounded-md py-12 px-8 md:px-12 shadow-md">
+                        <p>
+                            Por mais que seus dados sejam todos criptografados, é possível que um hacker
+                            possa descriptografá-los por meio de um
+                            <a href="https://www.kaspersky.com.br/resource-center/definitions/brute-force-attack" class="underline"> ataque de força bruta, </a>
+                            caso sua senha seja muito fraca. <br> <br>
+                            Por isso, recomendamos que você tenha uma boa prática de
+                            senhas seguras. Para mais infomações sobre o assunto, recomendamos que você veja o vídeo:
+                            <a href="https://www.youtube.com/watch?v=3NjQ9b3pgIg" class="underline"> Como escolher uma senha - Computerphile </a>
+                        </p>
+                    </div>
                 </div>
 
             </section>

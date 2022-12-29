@@ -12,6 +12,8 @@ describe("/api/ping", () => {
 
 describe("/api/usuarios/cadastro", () => {
 
+
+
 });
 
 describe("/api/usuarios/login", () => {
@@ -20,13 +22,43 @@ describe("/api/usuarios/login", () => {
 
 });
 
-describe("/api/usuarios/:nome", () => {
+describe("/api/usuarios - PUT", () => {
+
+
+
+});
+
+describe("/api/usuarios - DELETE", () => {
+
+
+
+});
+
+describe("/api/usuarios/:username", () => {
+
+
+
+});
+
+describe("/api/usuarios/elo/:username", () => {
+
+
+
+});
+
+describe("/api/ranking", () => {
 
 
 
 });
 
 describe("/api/jogos", () => {
+
+
+    
+});
+
+describe("/api/jogos/:codJogo", () => {
 
 
     

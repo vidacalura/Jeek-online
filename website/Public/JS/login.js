@@ -6,7 +6,7 @@ const pErro = document.getElementById("texto-erro");
 logBtn.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    await fetch("http://localhost:5000/login", {
+    await fetch("/login", {
         method: "POST",
         headers: {
             "Content-type": "Application/JSON"
@@ -22,7 +22,7 @@ logBtn.addEventListener("click", async (e) => {
             window.location.pathname = "/";
         }
         else {
-            pErro.textContent = data.error;
+            pErro.textContent = response.error;
         }
     });
 
