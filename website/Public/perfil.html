@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/CSS/output.css">
+        <script src="/JS/perfil.js" defer> </script>
+        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
+        <link rel="shortcut icon" href="/imgs/aberturadomestre.ico" type="image/x-icon">
+        <title> Jeek Online -  </title>
+
+    </head>
+
+    <body class="bg-jeek-gray-600 text-white overflow-x-hidden">
+
+        <nav class="pt-4 px-6 flex justify-between">
+            <div class="flex">
+                <a href="/">
+                    <img src="/imgs/aberturadomestre.ico" class="rounded-md w-8 h-auto shadow-md" alt="Logo Jeek Online">
+                </a>
+                <a href="/">
+                    <h1 class="text-jeek-gray-100 font-bold pt-1 pl-4 flex"> Jeek Online <p class="text-jeek-gray-200 pl-2"> Beta </p> </h1>
+                </a>
+            </div>
+        </nav>
+        
+        <main class="">
+            <!-- Parte principal -->
+            <div class="w-screen h-60 md:h-40 flex justify-center md:px-12 px-6 my-8">
+                <div class="w-full h-full md:flex justify-between pt-12 px-12 bg-jeek-gray-700 rounded-lg shadow-md">
+                    <div class="w-[50%]">
+                        <h2 id="username-view" class="font-bold text-3xl"> Username </h2>
+                        <h3 id="elo-view" class="text-jeek-gray-100 font-bold"> Elo </h3>
+                    </div>
+                    <div class="w-full md:w-[50%] flex justify-center md:justify-end text-center gap-12 pt-6 md:pr-4 md:pt-2">
+                        <div>
+                            <i class="fa-solid fa-clock md:text-2xl" title="Membro desde:"> </i>
+                            <p id="data-cad-view" class="text-jeek-gray-100"> XX/XX/XXXX </p>
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-chess-board md:text-2xl" title="Partidas jogadas:"> </i>
+                            <p id="jogos-jogados-view" class="text-jeek-gray-100"> N </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dados gerais -->
+            <div class="w-screen md:h-96 flex justify-center md:px-12 px-6 text-jeek-gray-100">
+                <div class="bg-jeek-gray-700 pt-6 px-12 md:flex rounded-lg shadow-md w-full">
+                    <canvas id="grafico-elo" class="hidden md:block max-w-[50vw] max-h-[50vh]"> </canvas>
+
+                    <div class="w-[50%] p-12 text-lg">
+                        <div class="flex pb-4"> <p class="text-green-100 font-bold pr-2"> Vitórias: </p> <p id="vitorias-view"> N </p> </div>
+                        <div class="flex"> <p class="text-red font-bold pr-2"> Derrotas: </p> <p id="derrotas-view"> N </p> </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Últimos jogos -->
+            <div class="w-screen h-auto flex justify-center my-8 md:px-12 px-6 text-jeek-gray-100">
+                <div id="jogos-div" class="bg-jeek-gray-700 pt-8 rounded-lg shadow-md w-full">
+                    <h2 class="font-bold text-2xl text-jeek-gray-100 px-12 pb-8"> Jogos recentes: </h2>
+
+                    
+                </div>
+            </div>
+
+        </main>
+
+    </body>
+
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-bt">
+<html lang="pt-br">
 
     <head>
 
@@ -7,13 +7,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="CSS/output.css">
+        <script src="JS/ranking.js" defer> </script>
         <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"></script>
         <link rel="shortcut icon" href="imgs/aberturadomestre.ico" type="image/x-icon">
-        <title> Jeek Online </title>
+        <title> Jeek Online - Candidatos </title>
 
     </head>
 
-    <body class="bg-jeek-gray-600 text-white overflow-x-hidden">
+
+    <body class="bg-jeek-gray-600 text-white md:overflow-x-hidden">
 
         <nav class="pt-4 px-6 flex justify-between">
             <div class="flex">
@@ -26,27 +28,22 @@
             </div>
         </nav>
 
-        <main>
+        <main class="text-sm sm:text-base">
 
-            <!-- Torneios -->
-            <section class="px-8 pt-12">
-                <a href="/primeiro-torneio">
-                    <div class="bg-jeek-gray-300 h-40 md:h-28 pr-2 flex rounded-lg transition ease-in-out cursor-pointer shadow-md hover:bg-jeek-gray-100">
+            <div id="ranking" class="w-screen pt-8 md:px-[25vw] md:text-lg px-8 mb-6">
 
-                        <div class="text-5xl pt-8 pl-6">
-                            <i class="fa-solid fa-trophy"> </i>
-                        </div>
+                <div class="user-container bg-jeek-gray-400 text-jeek-gray-100">
+                    <p> Posição </p>
 
-                        <div class="px-4 py-8">
-                            <h2 class="text-xl font-bold"> 1º Torneio oficial do Jeek Online </h2>
-                            <div class="flex"> <p> Agosto 2022 </p> </div>
-                        </div>
-                    </div>
-                </a>
-            </section>
+                    <p> Nome </p>
+                    
+                    <p class="pl-[3.5vw] pr-[0.5vw]"> Elo </p>
+                </div>
+
+            </div>
 
         </main>
-
+        
     </body>
 
 </html>

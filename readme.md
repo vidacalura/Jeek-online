@@ -6,7 +6,7 @@ peças em sequência horizontal ou vertical até que haja apenas um espaço falt
 no tabuleiro. O jogador que tiver de colocar uma peça na última casa do tabuleiro perde.
 
 
-Regras e táticas básicas do jogo: https://www.youtube.com/watch?v=f6vMVXrniAc
+Aprenda mais sobre o jogo: <a href="https://www.youtube.com/channel/UCgKpJ2iuC_ew9ZLVVkQEEnw"> Jeek Online - YouTube </a>
 
 # Jeek Online
 
@@ -14,7 +14,7 @@ O Jeek online é um site feito em HTML, CSS (com Tailwind CSS) e JavaScript padr
 junto das tecnologias Express.js e Node.js para o backend.
 
 
-Você pode acessar o site pela URL: https://jeek-online.herokuapp.com/
+Você pode acessar o site pela URL: <a href="https://jeek-online.up.railway.app/"> Jeek Online </a>
 
 #
 

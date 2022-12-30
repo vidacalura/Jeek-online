@@ -59,7 +59,12 @@ let tabuleiro = [];
 createGrid();
 criarSalaPrivada();
 procurarPartida();
-
+socket.on("connect", async () => {
+    await fetch("/procurarPartida" + socket.id)
+    .then((res) => { return res.json(); })
+    .then((res) => {  })
+    .catch(error => console.log(error));
+});
 
 function createGrid(){
 
@@ -148,17 +153,17 @@ function renderGrid(data){
 
 }
 
-function procurarPartida(){
+async function procurarPartida(){
 
     if (roomID == null){
-        socket.emit("procurarPartida", null);
-
+        // Tela de carregamento
         if (telaCarregamento.className.includes("hidden")){
             telaCarregamento.classList.remove("hidden");
         }
 
         procurandoOponentesPecasAnimacao();
         procurandoOponentesTextoAnimacao();
+
     }
 
 }
@@ -312,11 +317,10 @@ function latencia(data){
         else if (resTime <= 200){
             icon = "./imgs/ping_medio.png";
         }
-        else if (resTime > 200 && resTime < 7500) {
+        else if (resTime < 10000) {
             icon = "./imgs/ping_ruim.png";
         }
         else {
-            // Desconectar usuário
             socket.disconnect();
         }
 
@@ -559,24 +563,40 @@ function restart(roomNumber){
 
 }
 
-function trocarLados(data, nomes){
+async function trocarLados(data){
 
-    let { nickBrancas, nickPretas } = nomes;
-    nickBrancas = (nickBrancas == null ? "Anônimo" : nickBrancas);
-    nickPretas = (nickBrancas == null ? "Anônimo" : nickBrancas);
+    let { roomNumber, nickBrancas, nickPretas } = data;
 
-    if (gameRoom == data){
+    nickBrancas = (!nickBrancas ? "Anônimo" :
+    nickBrancas
+    + " (" 
+    + await fetch("http://localhost:4000/api/usuarios/elo/" + nickBrancas)
+    .then((res) => { return res.json() })
+    .then((res) => { return res.elo })
+    + ")"
+    );
+
+    nickPretas = (!nickPretas ? "Anônimo" :
+    nickPretas
+    + " (" 
+    + await fetch("http://localhost:4000/api/usuarios/elo/" + nickPretas)
+    .then((res) => { return res.json() })
+    .then((res) => { return res.elo })
+    + ")"
+    );
+
+    if (gameRoom == roomNumber){
         if (nomeBrancas.textContent == "Anônimo (você)"){
-            nomeBrancas.textContent = nickPretas;
-            nomePretas.textContent = nickBrancas + " (você)";
+            nomeBrancas.textContent = nickBrancas;
+            nomePretas.textContent = nickPretas + " (você)";
         }
         else if (nomePretas.textContent == "Anônimo (você)"){
-            nomeBrancas.textContent = nickPretas + " (você)";
-            nomePretas.textContent = nickBrancas;
+            nomeBrancas.textContent = nickBrancas + " (você)";
+            nomePretas.textContent = nickPretas;
         }
         else {
-            nomeBrancas.textContent = nickPretas;
-            nomePretas.textContent = nickBrancas;
+            nomeBrancas.textContent = nickBrancas;
+            nomePretas.textContent = nickPretas;
         }
     }
 
@@ -614,7 +634,7 @@ chatBtn.addEventListener("click", () => {
         containerLeft.className = "left-div-container hidden w-screen h-screen bg-jeek-gray-600 \
         opacity-[0.98] md:w-auto md:h-auto md:bg-none md:opacity-100 md:block md:absolute top-20 md:left-12";
 
-        chatBtn.className = "fa-solid fa-bars";
+        chatBtn.className = "fa-solid fa-comments";
     }
 });
 
@@ -701,7 +721,7 @@ socket.on("restart", (data) => {
 });
 
 socket.on("trocarLados", (data) => {
-    trocarLados(data, { nickBrancas: null, nickPretas: null });
+    trocarLados(data);
 });
 
 socket.on("desconexao", (data) => {
@@ -720,20 +740,56 @@ socket.on("updateSpecs", (data) => {
     specs(data);
 });
 
-socket.on("regRoom", (data) => {
+socket.on("regRoom", async (data) => {
     if (gameRoom == null){
-        const { roomNumber, idBrancas, idPretas } = data;
+        const { roomNumber, idBrancas, idPretas, usernameBrancas, usernamePretas } = data;
+        const usernamePadrao = "Anônimo (você)";
 
-        if (socket.id == idBrancas){
-            nomeBrancas.textContent = "Anônimo (você)";
+        if (socket.id == idBrancas || socket.id == idPretas){
+            if (socket.id == idBrancas){
+                nomeBrancas.textContent = (usernameBrancas == "Anônimo" || !usernameBrancas ? usernamePadrao : 
+                usernameBrancas
+                + " (" + 
+                await fetch("http://localhost:4000/api/usuarios/elo/" + usernameBrancas)
+                .then((res) => { return res.json() })
+                .then((res) => { return res.elo })
+                + ")"
+                );
+
+
+                nomePretas.textContent = (!usernamePretas || usernamePretas == "Anônimo" ? "Anônimo" :
+                usernamePretas
+                + " (" 
+                + await fetch("http://localhost:4000/api/usuarios/elo/" + usernamePretas)
+                .then((res) => { return res.json() })
+                .then((res) => { return res.elo })
+                + ")"
+                );
+            }
+            else {
+                nomePretas.textContent = (usernamePretas == "Anônimo" || !usernamePretas ? usernamePadrao :
+                usernamePretas
+                + " (" 
+                + await fetch("http://localhost:4000/api/usuarios/elo/" + usernamePretas)
+                .then((res) => { return res.json() })
+                .then((res) => { return res.elo })
+                + ")"
+                );
+
+                nomeBrancas.textContent = (!usernameBrancas || usernameBrancas == "Anônimo" ? "Anônimo" :
+                usernameBrancas
+                + " (" 
+                + await fetch("http://localhost:4000/api/usuarios/elo/" + usernameBrancas)
+                .then((res) => { return res.json() })
+                .then((res) => { return res.elo })
+                + ")"
+                );
+            }
+
             gameRoom = roomNumber;
-            startGame(gameRoom);
+            startGame(roomNumber);
         }
-        else if (socket.id == idPretas){
-            nomePretas.textContent = "Anônimo (você)";
-            gameRoom = roomNumber;
-            startGame(gameRoom);
-        }
+
     }
 });
 
@@ -764,7 +820,13 @@ document.addEventListener("keydown", (e) => {
     let key = e.key;
 
     if (document.activeElement !== textbox){
-        if(key == "ArrowLeft"){
+        if (key == 'p' || key == 'P'){
+            passarVez();
+        }
+        else if(key == 'd' || key == 'D'){
+            desistir();
+        }
+        else if(key == "ArrowLeft"){
             moveBack();
         }
         else if(key == "ArrowRight"){
@@ -779,3 +841,4 @@ socket.on("erro404", (data) => {
         window.location = "/404";
     }
 });
+

@@ -51,9 +51,29 @@
 
 }
 
+#menu-options{
+
+    @apply md:w-[20vw] w-screen h-screen top-0 float-right bg-jeek-gray-700 shadow-lg;
+
+}
+.menu-option{
+
+    @apply w-full flex align-middle gap-5 text-lg cursor-pointer transition ease-in-out md:py-4 md:px-6 p-3 text-[#EEE] hover:text-white hover:bg-jeek-gray-500 hover:shadow-sm;
+
+}
+.menu-option i{
+
+    @apply pt-[0.3rem];
+
+}
 .menu-title{
 
     text-shadow: 6px 6px 9px rgba(0, 0, 0, 0.15);
+
+}
+#menu-hamburger{
+
+    @apply cursor-pointer;
 
 }
 .chat{
@@ -242,5 +262,27 @@
 .margin0auto{
 
     margin: 0 auto;
+
+}
+
+.user-container{
+
+    @apply mb-2 shadow-sm flex justify-between py-4 px-8 rounded-md;
+
+}
+
+#candidatos-main a{
+
+    @apply text-white underline;
+
+}
+#candidatos-main h2{
+
+    @apply text-xl text-white font-bold py-2;
+
+}
+#candidatos-main div{
+
+    @apply py-4;
 
 }

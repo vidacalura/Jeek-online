@@ -291,6 +291,7 @@ function isConnected(casa_num){
 
     if (jogadas == 3){
         if ((casas_ativas.length == 1) &&
+        (turn == "black") && (jogadas == 1) &&
         (Number(casas_ativas[0]) == 
         (15 - casa_num))){
             alert("O primeiro lance não pode ser espelhado!");
@@ -344,7 +345,7 @@ function isConnected(casa_num){
 
     // Verfica se os lances são simétricos
     if ((casas_ativas.length == 5) && 
-    (turn == "black") && 
+    (turn == "black") && (jogadas == 3) &&
     (Number(casas_ativas[0]) + Number(casas_ativas[1]) + Number(casas_ativas[2])) == 
     ((15 - Number(casas_ativas[3])) + (15 - Number(casas_ativas[4])) + (15 - casa_num))){
         alert("O primeiro lance não pode ser espelhado!");

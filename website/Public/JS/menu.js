@@ -1,5 +1,16 @@
 let socket = io();
 
+const menuCloseBtn = document.getElementById("menu-x");
+const menuNav = document.getElementById("menu-nav");
+const menuNavBtn = document.getElementById("menu-hamburger");
+menuNavBtn.addEventListener("click", () => {
+    menuNav.classList.remove("hidden");
+});
+const btnJogarLocal = document.getElementById("btn-jogar-local");
+btnJogarLocal.addEventListener("click", mostrarMenuJogarLocal);
+const menuJogarLocal = document.getElementById("menu-jogar-local");
+const xMenuJogarLocal = document.getElementById("x-menu-jogar-local");
+xMenuJogarLocal.addEventListener("click", mostrarMenuJogarLocal);
 const btnJogarOnline = document.querySelector(".btn-jogar-online");
 btnJogarOnline.addEventListener("click", mostrarMenuJogarOnline);
 const menuJogarOnline = document.getElementById("menu-jogar-online");
@@ -22,9 +33,17 @@ let casas = [];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const sleepTime = 500;
 
+checarSessao();
 createGrid();
 simulacao();
 
+menuNav.addEventListener("click", (e) => {
+    if (e.target.id == menuNav.id)
+        menuNav.classList.add("hidden");
+});
+menuCloseBtn.addEventListener("click", () => {
+    menuNav.classList.add("hidden");
+});
 
 function createGrid(){
 
@@ -126,6 +145,19 @@ function entrarSala(){
 
 }
 
+function mostrarMenuJogarLocal(){
+
+    if (menuJogarLocal.className.includes("hidden")){
+        menuJogarLocal.classList.remove("hidden");
+        menuJogarLocal.classList.add("absolute");
+    }
+    else{
+        menuJogarLocal.classList.add("hidden");
+        menuJogarLocal.classList.remove("absolute");
+    }
+
+}
+
 function mostrarMenuJogarOnline(){
 
     if (menuJogarOnline.className.includes("hidden")){
@@ -151,6 +183,77 @@ function mostrarMenuEntrarPartida(){
         menuEntrarPartida.classList.add("hidden");
         menuEntrarPartida.classList.remove("absolute");
     }
+
+}
+
+async function checarSessao(){
+
+    const perfilSessao = document.getElementById("perfil-sessao");
+    
+    await fetch("/getSessao")
+    .then((res) => { return res.json(); })
+    .then((res) => {
+        if (res.username){
+            // Botão de perfil
+            while (perfilSessao.childNodes.length != 0){
+                perfilSessao.firstChild.remove();
+            }
+
+            const perfilLink = document.createElement("a");
+            perfilLink.href = "/usuarios/" + res.username;
+
+            const menuOption = document.createElement("div");
+            menuOption.classList.add("menu-option");
+
+            const pfp = document.createElement("i");
+            pfp.className = "fa-solid fa-user";
+
+            const username = document.createElement("p");
+            username.textContent = res.username;
+            username.className = "text-white cursor-pointer";
+
+            menuOption.appendChild(pfp);
+            menuOption.appendChild(username);
+            perfilLink.appendChild(menuOption);
+            perfilSessao.appendChild(perfilLink);
+
+            // Botão de configurações da conta
+            const configLink = document.createElement("a");
+            configLink.href = "/configuracoes";
+
+            const menuOption3 = document.createElement("div");
+            menuOption3.classList.add("menu-option");
+
+            const configEmoji = document.createElement("i");
+            configEmoji.className = "fa-solid fa-gear";
+
+            const configP = document.createElement("p");
+            configP.textContent = "Configurações";
+
+            menuOption3.appendChild(configEmoji);
+            menuOption3.appendChild(configP);
+            configLink.appendChild(menuOption3);
+
+            // Botão de logout
+            const sairLink = document.createElement("a");
+            sairLink.href = "/sair";
+
+            const menuOption2 = document.createElement("div");
+            menuOption2.classList.add("menu-option");
+
+            const sairEmoji = document.createElement("i");
+            sairEmoji.className = "fa-solid fa-arrow-right-to-bracket";
+
+            const sairP = document.createElement("p");
+            sairP.textContent = "Sair";
+
+            menuOption2.appendChild(sairEmoji);
+            menuOption2.appendChild(sairP);
+            sairLink.appendChild(menuOption2);
+            menuNav.children[0].insertBefore(configLink, menuNav.children[0].children[menuNav.children[0].children.length - 1]);
+            menuNav.children[0].insertBefore(sairLink, menuNav.children[0].children[menuNav.children[0].children.length - 1]);
+        }
+    });
 
 }
 

@@ -1,12 +1,24 @@
-let express = require("express");
+require('dotenv').config();
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const sessions = require('express-session');
 const socket = require("socket.io");
+const crypto = require("crypto");
 
 let app = express();
 
 const port = process.env.PORT || 5000;
 let server = app.listen(port);
 
-app.use(express.static("Public/"));
+app.use(express.static(__dirname + "/Public/"));
+app.use(express.json());
+app.use(cookieParser());
+app.use(sessions({
+    secret: process.env.key,
+    saveUninitialized:true,
+    cookie: { maxAge: 253402300000000 },
+    resave: false
+}));
 
 /* Express.js */
 app.get("/", (req, res) => {
@@ -15,6 +27,10 @@ app.get("/", (req, res) => {
 
 app.get("/online", (req, res) => {
     res.status(200).sendFile("./Public/online.html", { root: __dirname });
+});
+
+app.get("/analise", (req, res) => {
+    res.status(200).sendFile("./Public/analise.html", { root: __dirname });
 });
 
 app.get("/offline", (req, res) => {
@@ -31,6 +47,208 @@ app.get("/torneios", (req, res) => {
 
 app.get("/primeiro-torneio", (req, res) => {
     res.status(200).sendFile("./Public/torneio1.html", { root: __dirname });
+});
+
+app.get("/candidatos-mar2023", (req, res) => {
+    res.status(200).sendFile("./Public/candidatos.html", { root: __dirname });
+});
+
+app.get("/ranking", (req, res) => {
+    res.status(200).sendFile("./Public/ranking.html", { root: __dirname });
+});
+
+app.get("/cadastro", (req, res) => {
+    if (!req.session.username)
+        res.status(200).sendFile("./Public/cadastro.html", { root: __dirname });
+    else
+        res.redirect("/");
+});
+
+app.get("/login", (req, res) => {
+    if (!req.session.username)
+        res.status(200).sendFile("./Public/login.html", { root: __dirname });
+    else
+        res.redirect("/");
+});
+
+// Manejo de sessão
+app.get("/getSessao", (req, res) => {
+    if (req.session.username){
+        res.json({ username: req.session.username });
+    }
+    else {
+        res.json({ message: "Usuário não logado" });
+    }
+});
+
+app.get("/procurarPartida/:id", (req, res) => {
+    const id = req.params.id;
+    let username = null; 
+
+    if (req.session.username){
+        username = req.session.username;
+    }
+
+    procurarPartida(id, username);
+
+    res.json({ message: "Sucesso!" });
+});
+
+app.post("/login", async (req, res) => {
+    const { username, senha } = req.body;
+
+    if (username && senha){
+        const hash = crypto.createHmac('sha512', process.env.key);
+        hash.update(senha);
+
+        await fetch(process.env.API + "usuarios/login", {
+            method: "POST",
+            headers: {
+                "Content-type": "Application/JSON",
+                "token": process.env.token
+            },
+            body: JSON.stringify({
+                username,
+                senha: hash.digest("hex")
+            })
+        })
+        .then((rawRes) => { return rawRes.json(); })
+        .then((response) => {
+            if (!response.error){
+                req.session.username = username;
+                res.status(200).json({ message: response.message });
+            }
+            else {
+                res.status(400).json({ error: response.error });
+            }
+        })
+        .catch((error) => {
+            res.status(500).json({ error: "Problema ao encontrar usuário. Tente novamente mais tarde" });
+        });
+    }
+    else {
+        res.status(422).json({ error: "Preencha todos os campos para realizar o login" });
+    }
+});
+
+app.get("/configuracoes", async (req, res) => {
+    if (req.session.username){
+        res.status(200).sendFile("./Public/perfilconfig.html", { root: __dirname });
+    }
+    else{
+        res.redirect("/");
+    }
+});
+
+app.get("/usuarios/:username", async (req, res) => {
+    const username = req.params.username;
+
+    await fetch(process.env.API + "usuarios/" + username)
+    .then((rawRes) => { return rawRes.json(); })
+    .then((response) => {
+        if (response.error){
+            res.status(404).redirect("/404");
+        }
+        else {
+            res.status(200).sendFile("./Public/perfil.html", { root: __dirname });
+        }
+    })
+    .catch((error) => {
+        res.redirect("/404");
+    });
+
+});
+
+app.put("/usuarios", async (req, res) => {
+
+    const { usernameNovo, senhaAtual, senhaNova } = req.body;
+
+    if (usernameNovo){
+        await fetch(process.env.API + "usuarios", {
+            method: "PUT",
+            headers: {
+                "Content-type": "Application/JSON",
+                "token": process.env.token
+            },
+            body: JSON.stringify({
+                username: req.session.username,
+                usernameNovo: usernameNovo.trim()
+            })
+        })
+        .then((rawRes) => { return rawRes.json(); })
+        .then((response) => {
+            if (!response.error){
+                req.session.username = usernameNovo
+            }
+            
+            res.json(response);
+        });
+    }
+    else if (senhaAtual && senhaNova){
+        if (senhaNova.length < 8){
+            res.json({ "error": "A senha deve conter pelo menos 8 caracteres" });
+        }
+        else{
+            const hash = crypto.createHmac('sha512', process.env.key);
+            hash.update(senhaAtual);
+
+            const hash2 = crypto.createHmac('sha512', process.env.key);
+            hash2.update(senhaNova);
+
+            await fetch(process.env.API + "usuarios", {
+                method: "PUT",
+                headers: {
+                    "Content-type": "Application/JSON",
+                    "token": process.env.token
+                },
+                body: JSON.stringify({
+                    username: req.session.username,
+                    senhaAtual: hash.digest("hex"),
+                    senhaNova: hash2.digest("hex")
+                })
+            })
+            .then((rawRes) => { return rawRes.json(); })
+            .then((response) => {
+                res.json(response);
+            });
+        }
+    }
+    else {
+        alert("Preencha todos os campos antes de fazer alterações.");
+    }
+
+});
+
+app.delete("/usuarios", async (req, res) => {
+
+    const { senha } = req.body;
+
+    const hash = crypto.createHmac('sha512', process.env.key);
+    hash.update(senha);
+
+    await fetch(process.env.API + "usuarios", {
+        method: "DELETE",
+        headers: {
+            "Content-type": "Application/JSON",
+            "token": process.env.token
+        },
+        body: JSON.stringify({
+            username: req.session.username,
+            senha: hash.digest("hex")
+        })
+    })
+    .then((rawRes) => { return rawRes.json(); })
+    .then((response) => {
+        res.json(response);
+    });
+
+});
+
+app.get("/sair", (req, res) => {
+
+    delete req.session.username;
+    res.redirect("/");
+
 });
 
 app.use((req, res) => {
@@ -61,8 +279,8 @@ for (let i = 0; i < 100; i++){
             'isGameOver': false
         },
         player: {
-            'brancas': { playerId: null, pontos: 0, lances: 0, tempo: tempo },
-            'pretas': { playerId: null, pontos: 0, lances: 0, tempo: tempo }
+            'brancas': { playerId: null, username: null, pontos: 0, lances: 0, tempo: tempo },
+            'pretas': { playerId: null, username: null, pontos: 0, lances: 0, tempo: tempo }
         },
         pecas_brancas: {
             'peca_branca1': { x: null, y: null },
@@ -236,7 +454,7 @@ function regLance(lance, quant_lances, data){
     
     io.sockets.emit("addPecaBackend", data);
 
-    rooms[roomNumber].dados.casasAtivas.push([data.y, data.x]);
+    rooms[roomNumber].dados.casasAtivas.push([data.y, data.x, rooms[roomNumber].dados.vezBrancas]);
 
     const casasAtivas = rooms[roomNumber].dados.casasAtivas;
 
@@ -256,9 +474,9 @@ function checkTurn(data){
 
 }
 
-function procurarPartida(id){
+function procurarPartida(id, username){
 
-    fila_espera.push(id);
+    fila_espera.push([ id, username ]);
 
     if (fila_espera.length == 2){
         createRoom(fila_espera[0], fila_espera[1]);
@@ -313,7 +531,7 @@ async function relogio(){
 
 }
 
-function endGame(brancasGanham, roomNumber){
+async function endGame(brancasGanham, roomNumber){
 
     if (brancasGanham){
         rooms[roomNumber].player.brancas.pontos++;
@@ -329,6 +547,36 @@ function endGame(brancasGanham, roomNumber){
 
     rooms[roomNumber].dados.isGameOver = true;
 
+    // Se ambos estiverem logados
+    if (rooms[roomNumber].player.brancas.username && rooms[roomNumber].player.pretas.username){
+        if (rooms[roomNumber].player.brancas.username != "Anônimo"
+        && rooms[roomNumber].player.pretas.username != "Anônimo"
+        && rooms[roomNumber].player.brancas.username != rooms[roomNumber].player.pretas.username){
+            const PJNEncoder = require("./Public/JS/PJN");
+            const PJN = PJNEncoder({ casasAtivas: rooms[roomNumber].dados.casasAtivas, brancasGanham });
+
+            await fetch(process.env.API + "jogos", {
+                method: "POST",
+                headers: {
+                    "Content-type": "Application/JSON",
+                    "token": process.env.token
+                },
+                body: JSON.stringify({
+                    usernameBrancas: rooms[roomNumber].player.brancas.username,
+                    usernamePretas: rooms[roomNumber].player.pretas.username,
+                    brancasGanham,
+                    PJN
+                })
+            })
+            .then((res) => { return res.json(); })
+            .then((res) => {
+                res.json({ "message": "Jogo salvo com sucesso" });
+            })
+            .catch((error) => {
+                return 1;
+            });
+        }
+    }
 }
 
 function passarVez(id, roomNumber){
@@ -385,28 +633,47 @@ function restart(roomNumber){
     rooms[roomNumber].player.brancas.playerId = rooms[roomNumber].player.pretas.playerId;
     rooms[roomNumber].player.pretas.playerId = tempId;
 
+    const tempUsername = rooms[roomNumber].player.brancas.username;
+    rooms[roomNumber].player.brancas.username = rooms[roomNumber].player.pretas.username;
+    rooms[roomNumber].player.pretas.username = tempUsername;
+
     const tempPont = rooms[roomNumber].player.brancas.pontos;
     rooms[roomNumber].player.brancas.pontos = rooms[roomNumber].player.pretas.pontos;
     rooms[roomNumber].player.pretas.pontos = tempPont;
 
     rooms[roomNumber].dados.isGameOver = false;
 
-    io.sockets.emit("trocarLados", roomNumber);
+    io.sockets.emit("trocarLados", {
+        roomNumber,
+        nickBrancas: rooms[roomNumber].player.brancas.username,
+        nickPretas: rooms[roomNumber].player.pretas.username
+    });
 
 }
 
-function createRoom(id1, id2){
+async function createRoom(p1, p2){
+    const id1 = p1[0]
+    const id2 = p2[0]
+    const uname1 = p1[1];
+    const uname2 = p2[1];
 
     if (rooms_count.length > 0){
         if (rooms[rooms_count[0]].player.brancas.playerId == null){
             rooms[rooms_count[0]].player.brancas.playerId = id1;
+            rooms[rooms_count[0]].player.brancas.username = (uname1 != null ? uname1 : "Anônimo");
         }
         if (rooms[rooms_count[0]].player.pretas.playerId == null){
             rooms[rooms_count[0]].player.pretas.playerId = id2;
+            rooms[rooms_count[0]].player.pretas.username = (uname2 != null ? uname2 : "Anônimo");
         }
 
-        io.sockets.emit("regRoom", { roomNumber: rooms_count[0], idBrancas: rooms[rooms_count[0]].player.brancas.playerId, 
-        idPretas: rooms[rooms_count[0]].player.pretas.playerId } );
+        io.sockets.emit("regRoom", {
+            roomNumber: rooms_count[0],
+            idBrancas: rooms[rooms_count[0]].player.brancas.playerId, 
+            idPretas: rooms[rooms_count[0]].player.pretas.playerId,
+            usernameBrancas: rooms[rooms_count[0]].player.brancas.username,
+            usernamePretas: rooms[rooms_count[0]].player.pretas.username,
+        });
 
         rooms[rooms_count[0]].dados.connections = 2;
 
@@ -475,7 +742,9 @@ function disconnect(id){
             rooms[roomNumber].player.brancas.pontos = 0;
             rooms[roomNumber].player.pretas.pontos = 0;
             rooms[roomNumber].player.brancas.playerId = null;
+            rooms[roomNumber].player.brancas.username = null;
             rooms[roomNumber].player.pretas.playerId = null;
+            rooms[roomNumber].player.pretas.username = null;
             rooms[roomNumber].dados.roomID = null;
             rooms[roomNumber].dados.specs = 0;
 
@@ -633,7 +902,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("procurarPartida", (data) => {
-        procurarPartida(socket.id);
+        procurarPartida(socket.id, data);
     });
 
     socket.on("criarPartida", (data) => {
@@ -712,6 +981,28 @@ io.on("connection", (socket) => {
         }
     });
 
+    socket.on("setNome", (data) => {
+        const { roomNumber, id, username } = data;
+
+        if (rooms[roomNumber].player.brancas.playerId == id){
+            if (username == "Anônimo (você)"){
+                rooms[roomNumber].player.brancas.username = "Anônimo";
+            }
+            else {
+                rooms[roomNumber].player.brancas.username = username;
+            }
+        }
+        else {
+            if (username == "Anônimo (você)"){
+                rooms[roomNumber].player.pretas.username = "Anônimo";
+            }
+            else {
+                rooms[roomNumber].player.pretas.username = username;
+            }
+        }
+
+    });
+
     socket.on("recusarRevanche", (data) => {
         if (rooms[data].player.brancas.playerId == socket.id || rooms[data].player.pretas.playerId == socket.id)
             io.sockets.emit("revancheRecusada", data);
@@ -736,28 +1027,47 @@ io.on("connection", (socket) => {
         pong(data, socket.id);
     });
 
+    // Criação de usuário
+    socket.on("cadastro", async (data) => {
+        const { senha, confirmacaoSenha } = data;
+        const username = data.username.replace(/ /g, "");
+
+        if (username.length < 3 || username.length > 16){
+            io.sockets.emit("falhaCadastro", { error: "Nome de usuário deve conter entre 3 e 16 caracteres", id: socket.id });
+        }
+        else if (senha.length < 8){
+            io.sockets.emit("falhaCadastro", { error: "Senha muito pequena", id: socket.id });
+        }
+        else if (senha != confirmacaoSenha){
+            io.sockets.emit("falhaCadastro", { error: "Senha e confirmação não batem", id: socket.id });
+        }
+        else {
+            const hash = crypto.createHmac('sha512', process.env.key);
+            hash.update(senha);
+
+            await fetch(process.env.API + "usuarios/cadastro", {
+                method: "POST",
+                headers: {
+                    "Content-type": "Application/JSON",
+                    "token": process.env.token
+                },
+                body: JSON.stringify({
+                    username,
+                    senha: hash.digest("hex")
+                })
+            })
+            .then((res) => { return res.json(); })
+            .then((res) => {
+                if (!res.error)
+                    io.sockets.emit("sucessoCadastro", { id: socket.id });
+                else
+                    io.sockets.emit("falhaCadastro", { error: res.error, id: socket.id });
+            })
+            .catch((error) => {
+                io.sockets.emit("falhaCadastro", { error: "Problema ao cadastrar usuário. Tente novamente mais tarde", id: socket.id });
+            });
+        } 
+
+    });
+
 });
-
-
-/* to do
-
-- Refatoração código salas
-- Pentesting
-- Avisar quando movimento espelhado (com mensagemJogo())
-- Sinalizar que o tempo está caindo
-
-10/11/12 2022:
-- Melhorar placar
-- Aparecer pedido de revanche apenas para jogadores
-- Login / Cadastro
-- Sistema de Rating
-- Puzzles
-- Captcha de Jeek (ganhar posição para completar)
-- Acessibilidade
-- Parar animação do botão de revanche caso revanche seja recusada
-
-2023:
-- Search bar na aba de torneios
-- IA
-
-*/
