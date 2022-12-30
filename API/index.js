@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-app.use(cors({ origin: [ "http://localhost:5000", "https://jeek-online.up.railway.app/" ] }));
+app.use(cors({ origin: "*" }));
 app.use("/api", routes);
 
 app.listen(process.env.PORT);
