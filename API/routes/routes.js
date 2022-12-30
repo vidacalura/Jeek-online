@@ -316,19 +316,30 @@ router.get("/usuarios/:username", (req, res) => {
             ])
             .then(([rows2]) => {
                 db.promise()
-                .execute(`SELECT COUNT(*) AS contagem FROM jogos WHERE cod_vencedor = ${rows[0].cod_usuario} \
-                UNION \
-                SELECT COUNT(*) AS contagem FROM jogos WHERE cod_jogador1 = ${rows[0].cod_usuario} OR cod_jogador2 = ${rows[0].cod_usuario};`)
+                .execute(`SELECT COUNT(*) AS contagem FROM jogos WHERE cod_vencedor = ${rows[0].cod_usuario};`)
                 .then(([rows3]) => {
-                    res.status(200).json({
-                        username,
-                        elo: rows[0].elo,
-                        dataCad: rows[0].data_cad,
-                        partidas: (rows3.length == 1 ? 0 : rows3[1].contagem),
-                        vitorias: (rows3.length == 1 ? 0 : rows3[0].contagem),
-                        derrotas: (rows3.length == 1 ? 0 : rows3[1].contagem - rows3[0].contagem),
-                        jogos: rows2
-                    });
+                    db.promise()
+                    .execute(`SELECT COUNT(*) AS contagem FROM jogos WHERE cod_jogador1 = ${rows[0].cod_usuario} OR cod_jogador2 = ${rows[0].cod_usuario};`)
+                    .then(([rows4]) => {
+                        let partidas = 0, vitorias = 0, derrotas = 0;
+                        
+                        if (rows3[0].contagem)
+                            partidas = rows3[0].contagem;
+                        if (rows4[0].contagem)
+                            vitorias = rows4[0].contagem;
+
+                        derrotas = partidas - vitorias;
+
+                        res.status(200).json({
+                            username,
+                            elo: rows[0].elo,
+                            dataCad: rows[0].data_cad,
+                            partidas,
+                            vitorias,
+                            derrotas,
+                            jogos: rows2
+                        });
+                    })
                 })
                 .catch((error) => {
                     console.log(error);
