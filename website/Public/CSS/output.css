@@ -566,14 +566,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.5rem;
 }
 
-.my-4{
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 .my-12{
   margin-top: 3rem;
   margin-bottom: 3rem;
+}
+
+.my-4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .ml-12{
@@ -712,20 +712,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 15rem;
 }
 
+.h-\[60vh\]{
+  height: 60vh;
+}
+
 .h-\[0\.1rem\]{
   height: 0.1rem;
 }
 
 .h-40{
   height: 10rem;
-}
-
-.h-\[50vh\]{
-  height: 50vh;
-}
-
-.h-\[60vh\]{
-  height: 60vh;
 }
 
 .max-h-0{
@@ -810,10 +806,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-48{
   width: 12rem;
-}
-
-.w-\[50vw\]{
-  width: 50vw;
 }
 
 .max-w-\[50vw\]{
@@ -970,22 +962,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(199 199 199 / var(--tw-bg-opacity));
 }
 
-.bg-\[rgba\(0\2c 0\2c 0\2c 0\.4\)\]{
-  background-color: rgba(0,0,0,0.4);
-}
-
-.bg-\[rgba\(0\2c 0\2c 0\2c 0\.8\)\]{
-  background-color: rgba(0,0,0,0.8);
-}
-
-.bg-\[rgba\(40\2c 40\2c 40\2c 0\.8\)\]{
-  background-color: rgba(40,40,40,0.8);
-}
-
-.bg-\[rgba\(22\2c 22\2c 22\2c 0\.8\)\]{
-  background-color: rgba(22,22,22,0.8);
-}
-
 .bg-\[rgba\(22\2c 22\2c 22\2c 0\.7\)\]{
   background-color: rgba(22,22,22,0.7);
 }
@@ -1016,10 +992,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-12{
   padding: 3rem;
-}
-
-.p-10{
-  padding: 2.5rem;
 }
 
 .px-6{
@@ -1202,6 +1174,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.2rem;
 }
 
+.pr-1{
+  padding-right: 0.25rem;
+}
+
 .text-left{
   text-align: left;
 }
@@ -1334,22 +1310,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .opacity-\[0\.98\]{
   opacity: 0.98;
-}
-
-.opacity-50{
-  opacity: 0.5;
-}
-
-.opacity-70{
-  opacity: 0.7;
-}
-
-.opacity-90{
-  opacity: 0.9;
-}
-
-.opacity-80{
-  opacity: 0.8;
 }
 
 .shadow-md{
@@ -2129,14 +2089,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     line-height: 2rem;
   }
 
-  .md\:text-lg{
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-
   .md\:text-base{
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .md\:text-lg{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 
   .md\:opacity-100{
