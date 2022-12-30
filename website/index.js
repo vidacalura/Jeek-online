@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const socket = require("socket.io");
 const crypto = require("crypto");
+const fetch = require("node-fetch");
 
 let app = express();
 
