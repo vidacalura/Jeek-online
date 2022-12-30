@@ -63,7 +63,7 @@ router.post("/usuarios/login", (req, res) => {
             ])
             .then(([rows]) => {
                 if (rows[0] != null){
-                    res.status(200).json({ "message": "Usuário encotrado com sucesso!" });
+                    res.status(200).json({ "message": "Usuário encontrado com sucesso!" });
                 }
                 else {
                     res.status(404).json({ "error": "Nome de usuário ou senha incorretos" });
@@ -99,8 +99,18 @@ router.put("/usuarios", async (req, res) => {
             })
             .catch((error) => {
                 // Checar se nome já está em uso
-
-                res.status(404).json({ "error": "Erro ao atualizar nome do usuário" });
+                db.promise()
+                .execute("SELECT cod_usuario FROM usuarios WHERE username = ?;", [
+                    usernameNovo
+                ])
+                .then(([rows]) => {
+                    if (rows[0]){
+                        res.status(404).json({ "error": "Nome de usuário já está em uso" });
+                    }
+                    else {
+                        res.status(500).json({ "error": "Erro ao atualizar nome do usuário" });
+                    }
+                })
             });
         }
         else if (senhaAtual && senhaNova){
