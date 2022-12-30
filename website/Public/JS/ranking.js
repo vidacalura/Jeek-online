@@ -1,6 +1,6 @@
 const rankingContainer = document.getElementById("ranking");
 
-fetch("http://localhost:4000/api/ranking")
+fetch("https://jeek-online.vercel.app/api/ranking")
 .then((res) => { return res.json(); })
 .then((res) => {
 

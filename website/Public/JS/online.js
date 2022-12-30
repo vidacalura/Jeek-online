@@ -570,7 +570,7 @@ async function trocarLados(data){
     nickBrancas = (!nickBrancas ? "Anônimo" :
     nickBrancas
     + " (" 
-    + await fetch("http://localhost:4000/api/usuarios/elo/" + nickBrancas)
+    + await fetch("https://jeek-online.vercel.app/api/usuarios/elo/" + nickBrancas)
     .then((res) => { return res.json() })
     .then((res) => { return res.elo })
     + ")"
@@ -579,7 +579,7 @@ async function trocarLados(data){
     nickPretas = (!nickPretas ? "Anônimo" :
     nickPretas
     + " (" 
-    + await fetch("http://localhost:4000/api/usuarios/elo/" + nickPretas)
+    + await fetch("https://jeek-online.vercel.app/api/usuarios/elo/" + nickPretas)
     .then((res) => { return res.json() })
     .then((res) => { return res.elo })
     + ")"
@@ -750,7 +750,7 @@ socket.on("regRoom", async (data) => {
                 nomeBrancas.textContent = (usernameBrancas == "Anônimo" || !usernameBrancas ? usernamePadrao : 
                 usernameBrancas
                 + " (" + 
-                await fetch("http://localhost:4000/api/usuarios/elo/" + usernameBrancas)
+                await fetch("https://jeek-online.vercel.app/api/usuarios/elo/" + usernameBrancas)
                 .then((res) => { return res.json() })
                 .then((res) => { return res.elo })
                 + ")"
@@ -760,7 +760,7 @@ socket.on("regRoom", async (data) => {
                 nomePretas.textContent = (!usernamePretas || usernamePretas == "Anônimo" ? "Anônimo" :
                 usernamePretas
                 + " (" 
-                + await fetch("http://localhost:4000/api/usuarios/elo/" + usernamePretas)
+                + await fetch("https://jeek-online.vercel.app/api/usuarios/elo/" + usernamePretas)
                 .then((res) => { return res.json() })
                 .then((res) => { return res.elo })
                 + ")"
@@ -770,7 +770,7 @@ socket.on("regRoom", async (data) => {
                 nomePretas.textContent = (usernamePretas == "Anônimo" || !usernamePretas ? usernamePadrao :
                 usernamePretas
                 + " (" 
-                + await fetch("http://localhost:4000/api/usuarios/elo/" + usernamePretas)
+                + await fetch("https://jeek-online.vercel.app/api/usuarios/elo/" + usernamePretas)
                 .then((res) => { return res.json() })
                 .then((res) => { return res.elo })
                 + ")"
@@ -779,7 +779,7 @@ socket.on("regRoom", async (data) => {
                 nomeBrancas.textContent = (!usernameBrancas || usernameBrancas == "Anônimo" ? "Anônimo" :
                 usernameBrancas
                 + " (" 
-                + await fetch("http://localhost:4000/api/usuarios/elo/" + usernameBrancas)
+                + await fetch("https://jeek-online.vercel.app/api/usuarios/elo/" + usernameBrancas)
                 .then((res) => { return res.json() })
                 .then((res) => { return res.elo })
                 + ")"

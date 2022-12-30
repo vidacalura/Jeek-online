@@ -3,7 +3,7 @@ let username = window.location.pathname.split("/")[window.location.pathname.spli
 const jogosDivMain = document.getElementById("jogos-div");
 title.textContent += username;
 
-fetch("http://localhost:4000/api/usuarios/" + username)
+fetch("https://jeek-online.vercel.app/api/usuarios/" + username)
 .then((res) => { return res.json(); })
 .then((res) => {
     username = res.username;
