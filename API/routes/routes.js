@@ -11,9 +11,9 @@ router.get("/ping", (req, res) => {
 
 router.post("/usuarios/cadastro", async (req, res) => {
 
-    const { username, senha } = req.body;
+    const { username, senha, token } = req.body;
 
-    if (req.header("token") == process.env.token){
+    if (token == process.env.token){
         if (username && senha.length == 128){
             db.promise()
             .execute("INSERT INTO usuarios VALUES(?, ?, ?, CURDATE(), ?);", [
@@ -52,9 +52,9 @@ router.post("/usuarios/cadastro", async (req, res) => {
 
 router.post("/usuarios/login", (req, res) => {
 
-    const { username, senha } = req.body;
+    const { username, senha, token } = req.body;
 
-    if (req.headers.token == process.env.token){
+    if (token == process.env.token){
         if (username && senha.length == 128){
             db.promise()
             .execute("SELECT cod_usuario FROM usuarios WHERE username = ? AND senha = ?;", [
@@ -86,9 +86,9 @@ router.post("/usuarios/login", (req, res) => {
 
 router.put("/usuarios", async (req, res) => {
 
-    const { username, usernameNovo, senhaAtual, senhaNova } = req.body;
+    const { username, usernameNovo, senhaAtual, senhaNova, token } = req.body;
 
-    if (req.header("token") == process.env.token){
+    if (token == process.env.token){
         if (username && usernameNovo){
             db.promise()
             .execute("UPDATE usuarios SET username = ? WHERE username = ?;", [
@@ -153,9 +153,9 @@ router.put("/usuarios", async (req, res) => {
 
 router.delete("/usuarios", (req, res) => {
 
-    const { username, senha } = req.body;
+    const { username, senha, token } = req.body;
     
-    if (req.header("token") == process.env.token){
+    if (token == process.env.token){
         if (username && senha){
             db.promise()
             .execute("DELETE FROM usuarios WHERE username = ? AND senha = ?;", [
@@ -204,10 +204,10 @@ router.get("/jogos/:codJogo", (req, res) => {
 // Registro de partida + update de rating
 router.post("/jogos", (req, res) => {
 
-    const { brancasGanham, PJN, usernameBrancas, usernamePretas } = req.body;
+    const { brancasGanham, PJN, usernameBrancas, usernamePretas, token } = req.body;
     let codJogador1, codJogador2, eloJogador1, eloJogador2;
 
-    if (req.header("token") == process.env.token){
+    if (token == process.env.token){
         if (brancasGanham && PJN && usernameBrancas && usernamePretas){
             // Achar código dos usuários
             db.promise()

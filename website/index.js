@@ -105,12 +105,12 @@ app.post("/login", async (req, res) => {
         await fetch(process.env.API + "usuarios/login", {
             method: "POST",
             headers: {
-                "Content-type": "Application/JSON",
-                "token": process.env.token
+                "Content-type": "Application/JSON"
             },
             body: JSON.stringify({
                 username,
-                senha: hash.digest("hex")
+                senha: hash.digest("hex"),
+                token: process.env.token
             })
         })
         .then((rawRes) => { return rawRes.json(); })
@@ -169,12 +169,12 @@ app.put("/usuarios", async (req, res) => {
         await fetch(process.env.API + "usuarios", {
             method: "PUT",
             headers: {
-                "Content-type": "Application/JSON",
-                "token": process.env.token
+                "Content-type": "Application/JSON"
             },
             body: JSON.stringify({
                 username: req.session.username,
-                usernameNovo: usernameNovo.trim()
+                usernameNovo: usernameNovo.trim(),
+                token: process.env.token
             })
         })
         .then((rawRes) => { return rawRes.json(); })
@@ -200,13 +200,13 @@ app.put("/usuarios", async (req, res) => {
             await fetch(process.env.API + "usuarios", {
                 method: "PUT",
                 headers: {
-                    "Content-type": "Application/JSON",
-                    "token": process.env.token
+                    "Content-type": "Application/JSON"
                 },
                 body: JSON.stringify({
                     username: req.session.username,
                     senhaAtual: hash.digest("hex"),
-                    senhaNova: hash2.digest("hex")
+                    senhaNova: hash2.digest("hex"),
+                    token: process.env.token
                 })
             })
             .then((rawRes) => { return rawRes.json(); })
@@ -231,12 +231,12 @@ app.delete("/usuarios", async (req, res) => {
     await fetch(process.env.API + "usuarios", {
         method: "DELETE",
         headers: {
-            "Content-type": "Application/JSON",
-            "token": process.env.token
+            "Content-type": "Application/JSON"
         },
         body: JSON.stringify({
             username: req.session.username,
-            senha: hash.digest("hex")
+            senha: hash.digest("hex"),
+            token: process.env.token
         })
     })
     .then((rawRes) => { return rawRes.json(); })
@@ -560,14 +560,14 @@ async function endGame(brancasGanham, roomNumber){
             await fetch(process.env.API + "jogos", {
                 method: "POST",
                 headers: {
-                    "Content-type": "Application/JSON",
-                    "token": process.env.token
+                    "Content-type": "Application/JSON"
                 },
                 body: JSON.stringify({
                     usernameBrancas: rooms[roomNumber].player.brancas.username,
                     usernamePretas: rooms[roomNumber].player.pretas.username,
                     brancasGanham,
-                    PJN
+                    PJN,
+                    token: process.env.token
                 })
             })
             .then((res) => { return res.json(); })
@@ -1050,12 +1050,12 @@ io.on("connection", (socket) => {
             await fetch(process.env.API + "usuarios/cadastro", {
                 method: "POST",
                 headers: {
-                    "Content-type": "Application/JSON",
-                    "token": process.env.token
+                    "Content-type": "Application/JSON"
                 },
                 body: JSON.stringify({
                     username,
-                    senha: hash.digest("hex")
+                    senha: hash.digest("hex"),
+                    token: process.env.token
                 })
             })
             .then((res) => { return res.json(); })
