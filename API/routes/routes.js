@@ -54,38 +54,33 @@ router.post("/usuarios/login", (req, res) => {
 
     const { username, senha } = req.body;
 
-    try{
-        if (req.header("token") == process.env.token){
-            if (username && senha.length == 128){
-                db.promise()
-                .execute("SELECT cod_usuario FROM usuarios WHERE username = ? AND senha = ?;", [
-                    username,
-                    senha
-                ])
-                .then(([rows]) => {
-                    if (rows[0] != null){
-                        res.status(200).json({ "message": "Usuário encontrado com sucesso!" });
-                    }
-                    else {
-                        res.status(404).json({ "error": "Nome de usuário ou senha incorretos" });
-                    }
-                })
-                .catch ((error) => {
-                    res.status(500).json({ "error": "Não foi possível acessar o banco de dados. Tente novamente mais tarde" });
-                });
-            }
-            else {
-                res.status(422).json({ "error": "Nome de usuário ou senha inválidos" });
-            }
+    if (req.headers.token == process.env.token){
+        if (username && senha.length == 128){
+            db.promise()
+            .execute("SELECT cod_usuario FROM usuarios WHERE username = ? AND senha = ?;", [
+                username,
+                senha
+            ])
+            .then(([rows]) => {
+                if (rows[0] != null){
+                    res.status(200).json({ "message": "Usuário encontrado com sucesso!" });
+                }
+                else {
+                    res.status(404).json({ "error": "Nome de usuário ou senha incorretos" });
+                }
+            })
+            .catch ((error) => {
+                res.status(500).json({ "error": "Não foi possível acessar o banco de dados. Tente novamente mais tarde" });
+            });
         }
         else {
-            res.json({ "error": "Você não tem as permissões necessárias para efetuar esta ação" });
+            res.status(422).json({ "error": "Nome de usuário ou senha inválidos" });
         }
     }
-    catch(err){
-        console.log(err)
-        res.json({ "error": err });
+    else {
+        res.json({ "error": "Você não tem as permissões necessárias para efetuar esta ação" });
     }
+
 
 });
 
