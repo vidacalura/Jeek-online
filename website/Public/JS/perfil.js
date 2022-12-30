@@ -73,7 +73,7 @@ function mostrarJogos(jogos){
         // fazer q href de a = "/jogos/" + cod_jogo
 
         const jogoDiv = document.createElement("div");
-        jogoDiv.className = "w-full px-12 py-6 transition-all ease-in-out cursor-pointer hover:bg-jeek-gray-400 hover:shadow-sm";
+        jogoDiv.className = "w-full px-12 py-8 transition-all ease-in-out cursor-pointer hover:bg-jeek-gray-400 hover:shadow-sm";
 
         const jogoContainer = document.createElement("div");
         jogoContainer.className = "w-full flex justify-center text-center";

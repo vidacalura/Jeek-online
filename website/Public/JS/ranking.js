@@ -9,6 +9,9 @@ fetch("https://jeek-online.vercel.app/api/ranking")
     }
     else{ 
         for (let i = 0; i < res.length; i++){
+            const a = document.createElement("a");
+            a.href = "/usuarios/" + res[i].username;
+
             const userContainer = document.createElement("div");
             userContainer.classList.add("user-container");
             userContainer.classList.add("bg-jeek-gray-500");
@@ -25,8 +28,9 @@ fetch("https://jeek-online.vercel.app/api/ranking")
             userContainer.appendChild(num);
             userContainer.appendChild(username);
             userContainer.appendChild(elo);
+            a.appendChild(userContainer);
 
-            rankingContainer.appendChild(userContainer);
+            rankingContainer.appendChild(a);
         }
     }
 

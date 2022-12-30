@@ -322,11 +322,11 @@ router.get("/usuarios/:username", (req, res) => {
                     .execute(`SELECT COUNT(*) AS contagem FROM jogos WHERE cod_jogador1 = ${rows[0].cod_usuario} OR cod_jogador2 = ${rows[0].cod_usuario};`)
                     .then(([rows4]) => {
                         let partidas = 0, vitorias = 0, derrotas = 0;
-                        
-                        if (rows3[0].contagem)
-                            partidas = rows3[0].contagem;
+
                         if (rows4[0].contagem)
-                            vitorias = rows4[0].contagem;
+                            partidas = rows4[0].contagem;
+                        if (rows3[0].contagem)
+                            vitorias = rows3[0].contagem;
 
                         derrotas = partidas - vitorias;
 
