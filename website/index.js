@@ -124,7 +124,6 @@ app.post("/login", async (req, res) => {
             }
         })
         .catch((error) => {
-            console.log(error);
             res.status(500).json({ error: "Problema ao encontrar usuário. Tente novamente mais tarde" });
         });
     }

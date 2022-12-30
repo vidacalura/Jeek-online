@@ -60,7 +60,7 @@ createGrid();
 criarSalaPrivada();
 procurarPartida();
 socket.on("connect", async () => {
-    await fetch("/procurarPartida" + socket.id)
+    await fetch("/procurarPartida/" + socket.id)
     .then((res) => { return res.json(); })
     .then((res) => {  })
     .catch(error => console.log(error));
