@@ -161,3 +161,28 @@ describe("/api/jogos/:codJogo", () => {
 
     
 });
+
+describe("/api/titulos/doadores", () => {
+
+    it("Recebe todos os doadores", async () => {
+        await fetch("http://localhost:4000/api/titulos/doadores")
+        .then((res) => { return res.json(); })
+        .then((res) => {
+            console.log(res);
+            expect(res.doadores[0] != null).toBe(true);
+        });
+    });
+
+});
+
+describe("/api/usuarios/titulos/:username", () => {
+
+    it("Retorna os títulos de um usuário", async () => {
+        await fetch("http://localhost:4000/api/usuarios/titulos/vidacalura")
+        .then((res) => { return res.json(); })
+        .then((res) => {
+            expect(res.error == null).toBe(true);
+        });
+    });
+
+});

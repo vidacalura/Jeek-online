@@ -396,6 +396,55 @@ router.get("/ranking", (req, res) => {
 
 });
 
+router.get("/titulos/doadores", (req, res) => {
+
+    db.promise()
+    .execute("SELECT username, valor_doacao FROM titulos WHERE titulo = 'doador' ORDER BY valor_doacao DESC;")
+    .then(([rows]) => {
+        let doadores = [];
+
+        rows.forEach((r) => {
+            doadores.push({
+                "doador": r.username, 
+                "doações": r.valor_doacao
+            });
+        });
+
+        res.status(200).json({ "doadores": doadores });
+    })
+    .catch((error) => {
+        res.status(500).json({ "error": "Erro ao conectar com o banco de dados" });
+    });
+
+});
+
+router.get("/usuarios/titulos/:username", (req, res) => {
+    const username = req.params.username;
+
+    if (username){
+        db.promise()
+        .execute("SELECT titulo FROM titulos WHERE username = ?;", [
+            username
+        ])
+        .then(([rows]) => {
+            let titulos = []
+
+            rows.forEach((r) => {
+                titulos.push(r.titulo);
+            });
+
+            res.status(200).json({ titulos });
+        })
+        .catch((error) => {
+            res.status(500).json({ "error": "Erro ao conectar com o banco de dados" });
+        });
+    }
+    else{
+        res.status(422).json({ "error": "Dados insuficientes" });
+    }
+
+});
+
 module.exports = router;
 
 function randCod(){
