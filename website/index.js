@@ -551,7 +551,6 @@ async function endGame(brancasGanham, roomNumber){
 
     // Se ambos estiverem logados
     if (rooms[roomNumber].player.brancas.username && rooms[roomNumber].player.pretas.username){
-        console.log(true)
         if (rooms[roomNumber].player.brancas.username != "Anônimo"
         && rooms[roomNumber].player.pretas.username != "Anônimo"
         // && pelo menos uma jogada dos 2 lados
@@ -715,12 +714,19 @@ function disconnect(id){
     connections_server--;
     io.sockets.emit("updateConnections", connections_server);
 
-    if (fila_espera.includes(id)){
-        let index = fila_espera.indexOf(id);
+    let usuarioNafila = false;
+    let i = 0;
+    fila_espera.forEach((u) => {
+        if (u.includes(id)){
+            let index = u.indexOf(id);
 
-        fila_espera.splice(index, 1);
-    }
-    else {
+            fila_espera.splice(i, 1);
+            usuarioNafila = true;
+        }
+
+        i++;
+    })
+    if (!usuarioNafila) {
         for (let i = 0; i < rooms.length; i++){
 
             if (rooms[i].player.brancas.playerId == id){
