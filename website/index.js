@@ -551,9 +551,12 @@ async function endGame(brancasGanham, roomNumber){
 
     // Se ambos estiverem logados
     if (rooms[roomNumber].player.brancas.username && rooms[roomNumber].player.pretas.username){
+        console.log(true)
         if (rooms[roomNumber].player.brancas.username != "Anônimo"
         && rooms[roomNumber].player.pretas.username != "Anônimo"
+        // && pelo menos uma jogada dos 2 lados
         && rooms[roomNumber].player.brancas.username != rooms[roomNumber].player.pretas.username){
+            console.log(true)
             const PJNEncoder = require("./Public/JS/PJN");
             const PJN = PJNEncoder({ casasAtivas: rooms[roomNumber].dados.casasAtivas, brancasGanham });
 
@@ -572,7 +575,6 @@ async function endGame(brancasGanham, roomNumber){
             })
             .then((res) => { return res.json(); })
             .then((res) => {
-                res.json({ "message": "Jogo salvo com sucesso" });
             })
             .catch((error) => {
                 return 1;

@@ -208,7 +208,7 @@ router.post("/jogos", (req, res) => {
     let codJogador1, codJogador2, eloJogador1, eloJogador2;
 
     if (token == process.env.token){
-        if (brancasGanham && PJN && usernameBrancas && usernamePretas){
+        if (brancasGanham != null && PJN && usernameBrancas && usernamePretas){
             // Achar código dos usuários
             db.promise()
             .execute("SELECT cod_usuario, elo, username FROM usuarios WHERE username = ? OR username = ?;", [
