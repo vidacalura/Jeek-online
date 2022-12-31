@@ -20,14 +20,21 @@
 
     <body class="bg-jeek-gray-600 text-white overflow-x-hidden md:overflow-y-hidden">
         
-        <nav class="pt-4 px-6 justify-between flex">
+        <nav class="pt-4 md:px-6 px-3 justify-between flex">
             <div class="flex"> 
                 <img src="imgs/aberturadomestre.ico" class="rounded-md w-8 h-8 shadow-md" alt="Logo Jeek Online">
                 <h2 class="text-jeek-gray-100 font-bold pt-1 pl-4 flex"> Jeek Online <p class="text-jeek-gray-200 pl-2"> Beta </p> </h2>
             </div>
 
-            <div id="menu-hamburger" class="bg-jeek-gray-700 py-2 px-3 rounded-lg cursor-pointer transition ease-in-out hover:font-bold hover:bg-jeek-gray-500" title="Menu">
-                <i class="fa-solid fa-bars"> </i> 
+            <div class="flex md:gap-3 gap-1">
+                <a id="doar-btn" target="_blank"
+                class="py-1 px-2 md:px-3 text-xl transition-all ease-in-out rounded-lg md:hover:bg-blue cursor-pointer">
+                    <i class="fa-solid fa-hand-holding-heart font-bold" title="Doar"> </i>
+                </a>
+
+                <div id="menu-hamburger" class="bg-jeek-gray-700 py-2 px-3 rounded-lg cursor-pointer transition ease-in-out hover:font-bold hover:bg-jeek-gray-500" title="Menu">
+                    <i class="fa-solid fa-bars"> </i> 
+                </div>
             </div>
 
             <div id="menu-nav" class="w-screen h-screen absolute top-0 left-0 bg-jeek-gray-600 bg-opacity-70 z-20 hidden">

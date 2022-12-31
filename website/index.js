@@ -58,6 +58,11 @@ app.get("/ranking", (req, res) => {
     res.status(200).sendFile("./Public/ranking.html", { root: __dirname });
 });
 
+app.get("/doadores", (req, res) => {
+    res.status(200).sendFile("./Public/doadores.html", { root: __dirname });
+});
+
+// Manejo de sessão
 app.get("/cadastro", (req, res) => {
     if (!req.session.username)
         res.status(200).sendFile("./Public/cadastro.html", { root: __dirname });
@@ -72,7 +77,6 @@ app.get("/login", (req, res) => {
         res.redirect("/");
 });
 
-// Manejo de sessão
 app.get("/getSessao", (req, res) => {
     if (req.session.username){
         res.json({ username: req.session.username });

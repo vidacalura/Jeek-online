@@ -526,6 +526,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 1rem;
 }
 
+.bottom-0{
+  bottom: 0px;
+}
+
 .z-20{
   z-index: 20;
 }
@@ -658,6 +662,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex{
   display: flex;
+}
+
+.grid{
+  display: grid;
 }
 
 .hidden{
@@ -813,6 +821,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   list-style-type: disc;
 }
 
+.grid-cols-6{
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-rows-6{
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+}
+
 .justify-end{
   justify-content: flex-end;
 }
@@ -823,6 +843,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .justify-between{
   justify-content: space-between;
+}
+
+.gap-1{
+  gap: 0.25rem;
 }
 
 .gap-2{
@@ -847,6 +871,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .overflow-x-hidden{
   overflow-x: hidden;
+}
+
+.overflow-y-hidden{
+  overflow-y: hidden;
 }
 
 .overflow-y-scroll{
@@ -1017,6 +1045,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 0.75rem;
 }
 
+.py-1{
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.px-2{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .py-4{
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -1025,11 +1063,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.px-2{
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 }
 
 .py-8{
@@ -1276,6 +1309,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-green-100{
   --tw-text-opacity: 1;
   color: rgb(180 255 159 / var(--tw-text-opacity));
+}
+
+.text-gold{
+  --tw-text-opacity: 1;
+  color: rgb(212 172 43 / var(--tw-text-opacity));
 }
 
 .underline{
@@ -1873,6 +1911,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-top: 4rem;
   }
 
+  .sm\:text-3xl{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
   .sm\:text-base{
     font-size: 1rem;
     line-height: 1.5rem;
@@ -1992,12 +2035,20 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 50vw;
   }
 
+  .md\:grid-cols-6{
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
   .md\:justify-end{
     justify-content: flex-end;
   }
 
   .md\:justify-around{
     justify-content: space-around;
+  }
+
+  .md\:gap-3{
+    gap: 0.75rem;
   }
 
   .md\:overflow-x-hidden{
@@ -2019,6 +2070,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   .md\:px-0{
     padding-left: 0px;
     padding-right: 0px;
+  }
+
+  .md\:px-6{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .md\:px-3{
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
 
   .md\:py-20{
@@ -2089,6 +2150,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:opacity-100{
     opacity: 1;
+  }
+
+  .md\:hover\:bg-blue:hover{
+    --tw-bg-opacity: 1;
+    background-color: rgb(146 180 236 / var(--tw-bg-opacity));
   }
 }
 

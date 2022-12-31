@@ -9,6 +9,30 @@ fetch("https://jeek-online.vercel.app/api/usuarios/" + username)
     username = res.username;
     gerarGrafico(res.jogos, res.elo);
     mostrarPerfil(res);
+
+    fetch("http://localhost:4000/api/usuarios/titulos/" + username)
+    .then((res) => { return res.json(); })
+    .then((res) => {
+        if (res.titulos[0]){
+            const usernameDiv = document.getElementById("username-div");
+            res.titulos.forEach((t) => {
+                const iframe = document.createElement("i");
+                switch(t){
+                    case "campeão":
+                        iframe.className = "fa-solid fa-crown text-gold py-1 px-4";
+                        iframe.title = "Atual campeão do Jeek Online";
+                        break;
+                    case "doador":
+                        iframe.className = "fa-solid fa-gem text-blue py-1 px-3";
+                        iframe.title = "Doador";
+                        break;
+                }
+                iframe.classList.add("text-2xl");
+
+                usernameDiv.appendChild(iframe);
+            });
+        }
+    });
 })
 .catch((error) => {
     console.log(error);

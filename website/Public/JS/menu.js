@@ -1,5 +1,6 @@
 let socket = io();
 
+const doarBtn = document.getElementById("doar-btn");
 const menuCloseBtn = document.getElementById("menu-x");
 const menuNav = document.getElementById("menu-nav");
 const menuNavBtn = document.getElementById("menu-hamburger");
@@ -43,6 +44,11 @@ menuNav.addEventListener("click", (e) => {
 });
 menuCloseBtn.addEventListener("click", () => {
     menuNav.classList.add("hidden");
+});
+
+doarBtn.addEventListener("click", () => {
+    window.open('https://www.vakinha.com.br/vaquinha/ajudar-no-desenvolvimento-do-jeek-online');
+    window.location.href = "/doadores";
 });
 
 function createGrid(){
