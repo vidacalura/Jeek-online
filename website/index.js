@@ -553,7 +553,7 @@ async function endGame(brancasGanham, roomNumber){
     if (rooms[roomNumber].player.brancas.username && rooms[roomNumber].player.pretas.username){
         if (rooms[roomNumber].player.brancas.username != "Anônimo"
         && rooms[roomNumber].player.pretas.username != "Anônimo"
-        // && pelo menos uma jogada dos 2 lados
+        && rooms[roomNumber].player.brancas.lances > 0
         && rooms[roomNumber].player.brancas.username != rooms[roomNumber].player.pretas.username){
             console.log(true)
             const PJNEncoder = require("./Public/JS/PJN");

@@ -76,7 +76,7 @@ function mostrarJogos(jogos){
         jogoDiv.className = "w-full px-12 py-8 transition-all ease-in-out cursor-pointer hover:bg-jeek-gray-400 hover:shadow-sm";
 
         const jogoContainer = document.createElement("div");
-        jogoContainer.className = "w-full flex justify-center text-center";
+        jogoContainer.className = "w-full md:flex justify-center text-center";
 
         const brancasDiv = document.createElement("div");
         const brancasNome = document.createElement("h3");
@@ -90,7 +90,7 @@ function mostrarJogos(jogos){
         brancasDiv.appendChild(brancasElo);
 
         const vs = document.createElement("p");
-        vs.className = "px-6 pt-2 text-xl";
+        vs.className = "px-6 py-2 text-xl";
         vs.textContent = "vs.";
 
         const pretasDiv = document.createElement("div");

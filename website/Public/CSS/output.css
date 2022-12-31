@@ -592,6 +592,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2.5rem;
 }
 
+.mb-4{
+  margin-bottom: 1rem;
+}
+
 .mt-2{
   margin-top: 0.5rem;
 }
@@ -602,10 +606,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ml-2{
   margin-left: 0.5rem;
-}
-
-.mb-4{
-  margin-bottom: 1rem;
 }
 
 .mt-6{
@@ -650,10 +650,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .block{
   display: block;
-}
-
-.inline-block{
-  display: inline-block;
 }
 
 .inline{
@@ -726,10 +722,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-h-0{
   max-height: 0px;
-}
-
-.max-h-\[50vh\]{
-  max-height: 50vh;
 }
 
 .w-8{
@@ -806,10 +798,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-48{
   width: 12rem;
-}
-
-.max-w-\[50vw\]{
-  max-width: 50vw;
 }
 
 .rotate-180{
@@ -1098,6 +1086,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.5rem;
 }
 
+.pr-2{
+  padding-right: 0.5rem;
+}
+
 .pt-10{
   padding-top: 2.5rem;
 }
@@ -1108,10 +1100,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-3{
   padding-top: 0.75rem;
-}
-
-.pr-2{
-  padding-right: 0.5rem;
 }
 
 .pb-12{
@@ -1174,10 +1162,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.2rem;
 }
 
-.pr-1{
-  padding-right: 0.25rem;
-}
-
 .text-left{
   text-align: left;
 }
@@ -1201,6 +1185,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 2.25rem;
 }
 
+.text-lg{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -1209,11 +1198,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-6xl{
   font-size: 3.75rem;
   line-height: 1;
-}
-
-.text-lg{
-  font-size: 1.125rem;
-  line-height: 1.75rem;
 }
 
 .text-sm{
@@ -1868,6 +1852,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     display: flex;
   }
 
+  .sm\:max-h-\[50vh\]{
+    max-height: 50vh;
+  }
+
+  .sm\:max-w-\[50vw\]{
+    max-width: 50vw;
+  }
+
   .sm\:gap-6{
     gap: 1.5rem;
   }
@@ -1954,10 +1946,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:h-40{
     height: 10rem;
-  }
-
-  .md\:h-96{
-    height: 24rem;
   }
 
   .md\:h-28{
