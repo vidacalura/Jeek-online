@@ -1,6 +1,6 @@
 const painelDoadores = document.getElementById("painel-doadores");
 
-fetch("http://localhost:4000/api/titulos/doadores")
+fetch("https://jeek-online.vercel.app/api/titulos/doadores")
 .then((res) => { return res.json(); })
 .then((res) => {
     if (res.doadores.length > 0){

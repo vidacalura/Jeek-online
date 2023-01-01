@@ -10,7 +10,7 @@ fetch("https://jeek-online.vercel.app/api/usuarios/" + username)
     gerarGrafico(res.jogos, res.elo);
     mostrarPerfil(res);
 
-    fetch("http://localhost:4000/api/usuarios/titulos/" + username)
+    fetch("https://jeek-online.vercel.app/api/usuarios/titulos/" + username)
     .then((res) => { return res.json(); })
     .then((res) => {
         if (res.titulos[0]){
