@@ -109,7 +109,7 @@ router.put("/usuarios", async (req, res) => {
                     ])
                     .then(([rows3]) => {
                         res.status(200).json({ "message": "Usuário atualizado com sucesso" });
-                    })
+                    });
                 });
             })
             .catch((error) => {
@@ -125,7 +125,7 @@ router.put("/usuarios", async (req, res) => {
                     else {
                         res.status(500).json({ "error": "Erro ao atualizar nome do usuário" });
                     }
-                })
+                });
             });
         }
         else if (senhaAtual && senhaNova){
