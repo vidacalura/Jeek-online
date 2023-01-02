@@ -96,7 +96,21 @@ router.put("/usuarios", async (req, res) => {
                 username
             ])
             .then(() => {
-                res.status(200).json({ "message": "Usuário atualizado com sucesso" });
+                db.promise()
+                .execute("UPDATE jogos SET username_jogador1 = ? WHERE username_jogador1 = ?;", [
+                    usernameNovo,
+                    username
+                ])
+                .then(([rows2]) => {
+                    db.promise()
+                    .execute("UPDATE jogos SET username_jogador2 = ? WHERE username_jogador2 = ?;", [
+                        usernameNovo,
+                        username
+                    ])
+                    .then(([rows3]) => {
+                        res.status(200).json({ "message": "Usuário atualizado com sucesso" });
+                    })
+                });
             })
             .catch((error) => {
                 // Checar se nome já está em uso
