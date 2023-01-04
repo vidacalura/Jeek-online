@@ -324,7 +324,7 @@ router.get("/usuarios/:username", (req, res) => {
             // Pega as últimas partidas do usuário
             db.promise()
             .execute(`SELECT * FROM jogos \
-            WHERE username_jogador1 = ? OR username_jogador2 = ?;`, [
+            WHERE username_jogador1 = ? OR username_jogador2 = ? ORDER BY cod_jogo DESC LIMIT 10;`, [
                 username,
                 username
             ])
