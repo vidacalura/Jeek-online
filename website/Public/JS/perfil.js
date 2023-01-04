@@ -90,9 +90,18 @@ function gerarGrafico(jogos, eloAtual){
 
 function mostrarJogos(jogos){
 
-    console.log(jogos);
+    let jogosRecentes = [];
 
-    for (const j of jogos){
+    // Inverte a ordem dos jogos para mais recente
+    // a mais antigo
+    for (let i = 9; i >= 0; i--){
+        console.log(jogos[i]);
+        if (jogos[i]){
+            jogosRecentes.push(jogos[i]);
+        }
+    }
+
+    for (const j of jogosRecentes){
 
         // fazer q href de a = "/jogos/" + cod_jogo
 
