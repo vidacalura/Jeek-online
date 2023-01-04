@@ -94,7 +94,7 @@ function mostrarJogos(jogos){
 
     // Inverte a ordem dos jogos para mais recente
     // a mais antigo
-    for (let i = 9; i >= 0; i--){
+    for (let i = jogos.length - 1; i >= jogos.length - 10; i--){
         console.log(jogos[i]);
         if (jogos[i]){
             jogosRecentes.push(jogos[i]);
