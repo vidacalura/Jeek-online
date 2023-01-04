@@ -559,7 +559,6 @@ async function endGame(brancasGanham, roomNumber){
         && rooms[roomNumber].player.pretas.username != "Anônimo"
         && rooms[roomNumber].player.brancas.lances > 0
         && rooms[roomNumber].player.brancas.username != rooms[roomNumber].player.pretas.username){
-            console.log(true)
             const PJNEncoder = require("./Public/JS/PJN");
             const PJN = PJNEncoder({ casasAtivas: rooms[roomNumber].dados.casasAtivas, brancasGanham });
 

@@ -57,7 +57,7 @@ router.post("/usuarios/login", (req, res) => {
     if (token == process.env.token){
         if (username && senha.length == 128){
             db.promise()
-            .execute("SELECT cod_usuario FROM usuarios WHERE username = ? AND senha = ?;", [
+            .execute("SELECT cod_usuario FROM usuarios WHERE BINARY username = ? AND senha = ?;", [
                 username,
                 senha
             ])
@@ -172,7 +172,7 @@ router.delete("/usuarios", (req, res) => {
     if (token == process.env.token){
         if (username && senha){
             db.promise()
-            .execute("DELETE FROM usuarios WHERE username = ? AND senha = ?;", [
+            .execute("DELETE FROM usuarios WHERE BINARY username = ? AND senha = ?;", [
                 username,
                 senha
             ])
@@ -225,11 +225,12 @@ router.post("/jogos", (req, res) => {
         if (brancasGanham != null && PJN && usernameBrancas && usernamePretas){
             // Achar código dos usuários
             db.promise()
-            .execute("SELECT cod_usuario, elo, username FROM usuarios WHERE username = ? OR username = ?;", [
+            .execute("SELECT cod_usuario, elo, username FROM usuarios WHERE BINARY username = ? OR BINARY username = ?;", [
                 usernameBrancas,
                 usernamePretas
             ])
             .then(([rows]) => {
+                console.log(rows);
                 if (rows[1] != null){
                     if (rows[0].username == usernameBrancas){
                         codJogador1 = rows[0].cod_usuario;
@@ -316,7 +317,7 @@ router.get("/usuarios/:username", (req, res) => {
 
     // Pega as informações do usuário
     db.promise()
-    .execute("SELECT cod_usuario, elo, data_cad FROM usuarios WHERE username = ?;", [
+    .execute("SELECT cod_usuario, elo, data_cad FROM usuarios WHERE BINARY username = ?;", [
         username
     ])
     .then(([rows]) => {
