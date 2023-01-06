@@ -364,7 +364,7 @@ function isConnected(x, y, dados){
 
         if ((y != ultimoLanceY + 1) && (y != ultimoLanceY - 1) &&
         (x != ultimoLanceX + 1) && (x != ultimoLanceX - 1)){
-                return false;  
+            return false;  
         } 
 
         if ((y == ultimoLanceY + 1) || (y == ultimoLanceY - 1)){
@@ -409,32 +409,37 @@ function isConnected(x, y, dados){
     // Verfica se os lances são simétricos (2 e 3)
     if (!dados.dados.vezBrancas){
         if (lances_brancas == lances_pretas + 1){
-            let pecas_brancas = [];
-            let pecas_pretas = [];
+            if (lances_brancas <= 3 && lances_pretas <= 3){
+                let pecas_brancas = [];
+                let pecas_pretas = [];
 
-            for (let i = 0; i < lances_brancas; i++){
-                lance = Object.values(dados.pecas_brancas); 
-                pecas_brancas.push(4 * Number(lance[i].y) + Number(lance[i].x));
-            }
+                for (let i = 0; i < lances_brancas; i++){
+                    lance = Object.values(dados.pecas_brancas); 
+                    console.log(lance)
+                    pecas_brancas.push(4 * Number(lance[i].y) + Number(lance[i].x));
+                }
 
-            for (let i = 0; i < lances_pretas; i++){
-                lance = Object.values(dados.pecas_pretas); 
-                pecas_pretas.push(4 * Number(lance[i].y) + Number(lance[i].x));
-            }
-            pecas_pretas.push(4 * y + x);
+                for (let i = 0; i < lances_pretas; i++){
+                    lance = Object.values(dados.pecas_pretas); 
+                    pecas_pretas.push(4 * Number(lance[i].y) + Number(lance[i].x));
+                }
+                pecas_pretas.push(4 * y + x);
 
 
-            if (dados.dados.jogadas == 1){
-                if (pecas_brancas[0] + pecas_brancas[1] + pecas_brancas[2] ==
-                    (15 - pecas_pretas[0]) + (15 - pecas_pretas[1]) + (15 - pecas_pretas[2])){
-                        return false;
-                    }
-            }
-            if (dados.dados.jogadas == 2){
-                if (pecas_brancas[0] + pecas_brancas[1] ==
-                    (15 - pecas_pretas[0]) + (15 - pecas_pretas[1])){
-                        return false;
-                    }
+                if (dados.dados.jogadas == 1){
+                    if (pecas_brancas[0] + pecas_brancas[1] + pecas_brancas[2] ==
+                        (15 - pecas_pretas[0]) + (15 - pecas_pretas[1]) + (15 - pecas_pretas[2])){
+                            return false;
+                        }
+                }
+                if (dados.dados.jogadas == 2){
+                    console.log(pecas_brancas)
+                    console.log(pecas_pretas)
+                    if (pecas_brancas[0] + pecas_brancas[1] ==
+                        (15 - pecas_pretas[0]) + (15 - pecas_pretas[1])){
+                            return false;
+                        }
+                }
             }
         }
     }

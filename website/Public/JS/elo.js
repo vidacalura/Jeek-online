@@ -20,6 +20,6 @@ const eloCalculator = (obj) => {
 
 }
 
-console.log(eloCalculator({ ratingBrancas: 1700, ratingPretas: 1800, brancasGanham: false }));
+// console.log(eloCalculator({ ratingBrancas: 1400, ratingPretas: 2000, brancasGanham: false }));
 
 module.exports = eloCalculator;
