@@ -571,14 +571,14 @@ async function trocarLados(data){
     nickBrancas
     + await fetch("https://jeek-online.vercel.app/api/usuarios/elo/" + nickBrancas)
     .then((res) => { return res.json() })
-    .then((res) => { return (res.elo != null ? `(${res.elo})` : "") })
+    .then((res) => { return (res.elo != null ? ` (${res.elo})` : "") })
     );
 
     nickPretas = (!nickPretas ? "Anônimo" :
     nickPretas
-    + await fetch("https://jeek-online.vercel.app/api/usuarios/elo/" + nickBrancas)
+    + await fetch("https://jeek-online.vercel.app/api/usuarios/elo/" + nickPretas)
     .then((res) => { return res.json() })
-    .then((res) => { return (res.elo != null ? `(${res.elo})` : "") })
+    .then((res) => { return (res.elo != null ? ` (${res.elo})` : "") })
     );
 
     if (gameRoom == roomNumber){
