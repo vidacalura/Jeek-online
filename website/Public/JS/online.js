@@ -317,12 +317,10 @@ function latencia(data){
         else if (resTime <= 200){
             icon = "./imgs/ping_medio.png";
         }
-        else if (resTime < 10000) {
+        else {
             icon = "./imgs/ping_ruim.png";
         }
-        else {
-            socket.disconnect();
-        }
+        // else { socket.disconnect(); }
 
         switch (cor){
             case "Brancas":

@@ -337,7 +337,7 @@ function isConnected(x, y, dados){
     if ((x < 0 || x > 3) || (y < 0 || y > 3))
         return false;
 
-    if (dados.dados.jogadas == 3 && dados.player.brancas.lances == 1){
+    if (dados.dados.jogadas == 3 && lances_brancas == 1 && lances_pretas == 0){
         // Verificação de lance simétrico (1)
         if (dados.pecas_brancas.peca_branca1.x + dados.pecas_brancas.peca_branca1.y + x + y == 6){
             return false;
