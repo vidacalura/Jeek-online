@@ -432,9 +432,7 @@ function isConnected(x, y, dados){
                             return false;
                         }
                 }
-                if (dados.dados.jogadas == 2){
-                    console.log(pecas_brancas)
-                    console.log(pecas_pretas)
+                if (dados.dados.jogadas == 2 && lances_brancas == 2){
                     if (pecas_brancas[0] + pecas_brancas[1] ==
                         (15 - pecas_pretas[0]) + (15 - pecas_pretas[1])){
                             return false;
