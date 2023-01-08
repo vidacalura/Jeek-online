@@ -526,10 +526,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 1rem;
 }
 
-.bottom-0{
-  bottom: 0px;
-}
-
 .z-20{
   z-index: 20;
 }
@@ -808,6 +804,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 12rem;
 }
 
+.w-\[50vw\]{
+  width: 50vw;
+}
+
+.w-\[80vw\]{
+  width: 80vw;
+}
+
 .rotate-180{
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -821,16 +825,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   list-style-type: disc;
 }
 
-.grid-cols-6{
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
 .grid-cols-2{
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-rows-6{
-  grid-template-rows: repeat(6, minmax(0, 1fr));
 }
 
 .justify-end{
@@ -845,6 +841,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   justify-content: space-between;
 }
 
+.gap-4{
+  gap: 1rem;
+}
+
 .gap-1{
   gap: 0.25rem;
 }
@@ -857,10 +857,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 1.5rem;
 }
 
-.gap-4{
-  gap: 1rem;
-}
-
 .gap-12{
   gap: 3rem;
 }
@@ -871,10 +867,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .overflow-x-hidden{
   overflow-x: hidden;
-}
-
-.overflow-y-hidden{
-  overflow-y: hidden;
 }
 
 .overflow-y-scroll{
@@ -1040,6 +1032,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 2rem;
 }
 
+.py-8{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .px-3{
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -1065,14 +1062,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.75rem;
 }
 
-.py-8{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
 .py-12{
   padding-top: 3rem;
   padding-bottom: 3rem;
+}
+
+.px-1{
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pt-4{
@@ -1107,6 +1109,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 3rem;
 }
 
+.pt-32{
+  padding-top: 8rem;
+}
+
 .pt-\[10vh\]{
   padding-top: 10vh;
 }
@@ -1121,6 +1127,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pr-2{
   padding-right: 0.5rem;
+}
+
+.pt-20{
+  padding-top: 5rem;
 }
 
 .pt-10{
@@ -1175,10 +1185,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 14%;
 }
 
-.pt-20{
-  padding-top: 5rem;
-}
-
 .pl-\[3\.5vw\]{
   padding-left: 3.5vw;
 }
@@ -1193,6 +1199,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-\[0\.2rem\]{
   padding-top: 0.2rem;
+}
+
+.pb-1{
+  padding-bottom: 0.25rem;
+}
+
+.pt-16{
+  padding-top: 4rem;
 }
 
 .text-left{
@@ -1241,6 +1255,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-5xl{
   font-size: 3rem;
   line-height: 1;
+}
+
+.text-base{
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .font-bold{
@@ -1306,14 +1325,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(33 33 33 / var(--tw-text-opacity));
 }
 
+.text-gold{
+  --tw-text-opacity: 1;
+  color: rgb(212 172 43 / var(--tw-text-opacity));
+}
+
 .text-green-100{
   --tw-text-opacity: 1;
   color: rgb(180 255 159 / var(--tw-text-opacity));
 }
 
-.text-gold{
+.text-jeek-gray-400{
   --tw-text-opacity: 1;
-  color: rgb(212 172 43 / var(--tw-text-opacity));
+  color: rgb(95 95 95 / var(--tw-text-opacity));
 }
 
 .underline{
@@ -2067,6 +2091,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding: 0.5rem;
   }
 
+  .md\:px-12{
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
   .md\:px-0{
     padding-left: 0px;
     padding-right: 0px;
@@ -2087,14 +2116,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-bottom: 5rem;
   }
 
-  .md\:px-12{
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-
   .md\:px-\[25vw\]{
     padding-left: 25vw;
     padding-right: 25vw;
+  }
+
+  .md\:px-1{
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
   }
 
   .md\:pl-16{

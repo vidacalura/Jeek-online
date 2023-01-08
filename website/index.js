@@ -62,6 +62,10 @@ app.get("/doadores", (req, res) => {
     res.status(200).sendFile("./Public/doadores.html", { root: __dirname });
 });
 
+app.get("/apoiar", (req, res) => {
+    res.status(200).sendFile("./Public/apoiar.html", { root: __dirname });
+});
+
 // Manejo de sessão
 app.get("/cadastro", (req, res) => {
     if (!req.session.username)

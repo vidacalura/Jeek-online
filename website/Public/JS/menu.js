@@ -47,7 +47,7 @@ menuCloseBtn.addEventListener("click", () => {
 });
 
 doarBtn.addEventListener("click", () => {
-    window.open('https://www.vakinha.com.br/vaquinha/ajudar-no-desenvolvimento-do-jeek-online');
+    window.open('/apoiar');
     window.location.href = "/doadores";
 });
 
