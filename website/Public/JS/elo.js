@@ -1,5 +1,5 @@
 const winProbability = (ratingA, ratingB) => {
-
+    
     return 1 / (1 + 10 ** ((ratingB - ratingA) / 400));
 
 }
@@ -7,6 +7,13 @@ const winProbability = (ratingA, ratingB) => {
 const eloCalculator = (obj) => {
 
     let { ratingBrancas, ratingPretas, brancasGanham } = obj;
+
+    if (ratingBrancas - ratingPretas > 300 && brancasGanham){
+        return { ratingBrancas: ratingBrancas + 2, ratingPretas: ratingPretas - 2 }
+    }
+    else if (ratingPretas - ratingBrancas > 300 && !brancasGanham){
+        return { ratingBrancas: ratingBrancas - 2, ratingPretas: ratingPretas + 2 }
+    }
 
     // Novo rating brancas
     const scoreBrancas = (brancasGanham == true ? 1 : 0);
@@ -20,6 +27,6 @@ const eloCalculator = (obj) => {
 
 }
 
-// console.log(eloCalculator({ ratingBrancas: 1400, ratingPretas: 2000, brancasGanham: false }));
+console.log(eloCalculator({ ratingBrancas: 1800, ratingPretas: 1200, brancasGanham: false }));
 
 module.exports = eloCalculator;
