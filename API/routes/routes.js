@@ -401,8 +401,9 @@ router.get("/usuarios/elo/:username", (req, res) => {
 router.get("/ranking", (req, res) => {
 
     db.promise()
-    .execute("SELECT username, elo FROM usuarios ORDER BY elo DESC LIMIT 10;")
+    .execute("SELECT username, elo FROM usuarios ORDER BY elo DESC LIMIT 100;")
     .then(([rows]) => {
+        
         res.status(200).json(rows);
     })
     .catch((error) => {
@@ -488,6 +489,13 @@ const winProbability = (ratingA, ratingB) => {
 const eloCalculator = (obj) => {
 
     let { ratingBrancas, ratingPretas, brancasGanham } = obj;
+
+    if (ratingBrancas - ratingPretas > 300 && brancasGanham){
+        return { ratingBrancas: ratingBrancas + 2, ratingPretas: ratingPretas - 2 }
+    }
+    else if (ratingPretas - ratingBrancas > 300 && !brancasGanham){
+        return { ratingBrancas: ratingBrancas - 2, ratingPretas: ratingPretas + 2 }
+    }
 
     // Novo rating brancas
     const scoreBrancas = (brancasGanham == true ? 1 : 0);

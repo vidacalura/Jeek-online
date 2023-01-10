@@ -24,4 +24,4 @@ Frontend e Backend feitos por <a href="https://github.com/vidacalura"> Vidacalur
 Design feito por <a href="https://www.instagram.com/caiafa.borges/"> Mirg </a>
 
 
-Um agradecimento especial a Fábio Hiro e Raffles, este site não teria sido possível sem vocês.
+Um agradecimento especial a Fábio Hiro e a todos apoiadores do Jeek Online. Este site não teria sido possível sem vocês!
