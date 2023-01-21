@@ -576,6 +576,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 1rem;
 }
 
+.my-6{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .ml-12{
   margin-left: 3rem;
 }
@@ -646,6 +651,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-\[21rem\]{
   margin-top: 21rem;
+}
+
+.mb-8{
+  margin-bottom: 2rem;
 }
 
 .block{
@@ -926,6 +935,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(58 58 58 / var(--tw-bg-opacity));
 }
 
+.bg-gold{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 172 43 / var(--tw-bg-opacity));
+}
+
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -970,6 +984,56 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgba(22,22,22,0.7);
 }
 
+.bg-\[\#F5EA5A\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 234 90 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#FFE15D\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 225 93 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#f5d859\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 216 89 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#EEE\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(238 238 238 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#acacac\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(172 172 172 / var(--tw-bg-opacity));
+}
+
+.bg-jeek-gray-200{
+  --tw-bg-opacity: 1;
+  background-color: rgb(171 171 171 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#755000\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(117 80 0 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#815902\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(129 89 2 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#b87333\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(184 115 51 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#B87333\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(184 115 51 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-70{
   --tw-bg-opacity: 0.7;
 }
@@ -996,6 +1060,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-12{
   padding: 3rem;
+}
+
+.p-4{
+  padding: 1rem;
 }
 
 .px-6{
@@ -1185,6 +1253,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-\[0\.2rem\]{
   padding-top: 0.2rem;
+}
+
+.pr-4{
+  padding-right: 1rem;
+}
+
+.pr-3{
+  padding-right: 0.75rem;
+}
+
+.pt-\[0\.125rem\]{
+  padding-top: 0.125rem;
 }
 
 .text-left{
