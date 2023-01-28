@@ -4,11 +4,8 @@ const doarBtn = document.getElementById("doar-btn");
 const menuCloseBtn = document.getElementById("menu-x");
 const menuNav = document.getElementById("menu-nav");
 const menuNavBtn = document.getElementById("menu-hamburger");
-const menuOptions = document.getElementById("menu-options");
 menuNavBtn.addEventListener("click", () => {
     menuNav.classList.remove("hidden");
-    menuOptions.style.width = "20vw";
-    menuOptions.classList.add("w-screen");
 });
 const btnJogarLocal = document.getElementById("btn-jogar-local");
 btnJogarLocal.addEventListener("click", mostrarMenuJogarLocal);
@@ -42,16 +39,11 @@ createGrid();
 simulacao();
 
 menuNav.addEventListener("click", (e) => {
-    if (e.target.id == menuNav.id){
+    if (e.target.id == menuNav.id)
         menuNav.classList.add("hidden");
-        menuOptions.style.width = "0vw";
-        menuOptions.classList.remove("w-screen");
-    }
 });
 menuCloseBtn.addEventListener("click", () => {
     menuNav.classList.add("hidden");
-    menuOptions.style.width = "0vw";
-    menuOptions.classList.remove("w-screen");
 });
 
 doarBtn.addEventListener("click", () => {

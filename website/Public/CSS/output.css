@@ -816,14 +816,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 14rem;
 }
 
-.w-20{
-  width: 5rem;
-}
-
-.w-12{
-  width: 3rem;
-}
-
 .rotate-180{
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1486,16 +1478,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 #menu-options{
-  width: 0vw;
-  transition: width 0.15s;
   top: 0px;
   float: right;
   height: 100vh;
+  width: 100vw;
   --tw-bg-opacity: 1;
   background-color: rgb(33 33 33 / var(--tw-bg-opacity));
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@media (min-width: 768px){
+  #menu-options{
+    width: 20vw;
+  }
 }
 
 .menu-option{
@@ -2042,10 +2039,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:w-96{
     width: 24rem;
-  }
-
-  .md\:w-\[20vw\]{
-    width: 20vw;
   }
 
   .md\:w-\[28rem\]{
