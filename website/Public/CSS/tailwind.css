@@ -53,7 +53,9 @@
 
 #menu-options{
 
-    @apply md:w-[20vw] w-screen h-screen top-0 float-right bg-jeek-gray-700 shadow-lg;
+    width: 0vw;
+    transition: width 0.15s;
+    @apply h-screen top-0 float-right bg-jeek-gray-700 shadow-lg;
 
 }
 .menu-option{

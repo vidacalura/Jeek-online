@@ -40,21 +40,38 @@ fetch("https://jeek-online.vercel.app/api/usuarios/" + username)
 
 
 function mostrarPerfil(res){
-    const { elo, dataCad, partidas, vitorias, derrotas, jogos } = res;
+    const { elo, dataCad, descPerfil, pais, partidas, vitorias, derrotas, jogos } = res;
 
     const usernameView = document.getElementById("username-view");
     usernameView.textContent = username;
     const eloView = document.getElementById("elo-view");
     eloView.textContent = elo;
     const dataCadView = document.getElementById("data-cad-view");
-    console.log(dataCad)
     dataCadView.textContent = `${dataCad.slice(8, 10)}/${dataCad.slice(5, 7)}/${dataCad.slice(0, 4)}`;
+    const descPerfilView = document.getElementById("desc-perfil");
+    descPerfilView.textContent = descPerfil;
     const partidasView = document.getElementById("jogos-jogados-view");
     partidasView.textContent = partidas;
     const vitoriasView = document.getElementById("vitorias-view");
     vitoriasView.textContent = vitorias;
     const derrotasView = document.getElementById("derrotas-view");
     derrotasView.textContent = derrotas;
+
+    const paisPerfilView = document.getElementById("pais-perfil");
+    switch(pais) {
+        case "BR":
+            paisPerfilView.src = "../imgs/br.png";
+            paisPerfilView.title = "Brasil";
+            break;
+        case "PT":
+            paisPerfilView.src = "../imgs/pt.png";
+            paisPerfilView.title = "Portugal";
+            break;
+        case "AO":
+            paisPerfilView.src = "../imgs/ao.png";
+            paisPerfilView.title = "Angola";
+            break;
+    }
 
     mostrarJogos(jogos);
 
@@ -95,7 +112,6 @@ function mostrarJogos(jogos){
     // Inverte a ordem dos jogos para mais recente
     // a mais antigo
     for (let i = jogos.length - 1; i >= jogos.length - 10; i--){
-        console.log(jogos[i]);
         if (jogos[i]){
             jogosRecentes.push(jogos[i]);
         }

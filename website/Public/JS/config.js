@@ -1,13 +1,17 @@
 const updateBtn = document.getElementById("update-usuario-btn");
+const updatePerfilBtn = document.getElementById("update-perfil-btn");
 const mudarUpdateBtn = document.getElementById("mudar-update");
 const usernameUpdateTextbox = document.getElementById("update-nome");
 const senhaTextbox = document.getElementById("senha-antiga");
 const senhaUpdateTextbox = document.getElementById("update-senha");
 const updateSenhaDiv = document.getElementById("update-senha-div");
 const updateUsernameDiv = document.getElementById("update-username-div");
+const updateDescricaoPerfil = document.getElementById("update-desc");
+const updatePais = document.getElementById("update-pais");
 const deletarContaBtn = document.getElementById("delete-usuario-btn");
 deletarContaBtn.addEventListener("click", mostrarMenuDeletarUsuario);
 const deletarUsuarioContainer = document.getElementById("deletar-usuario-container");
+deletarUsuarioContainer.addEventListener("click", (e) => { mostrarMenuDeletarUsuario(e) });
 const senhaDeletarTextbox = document.getElementById("senha-deletar-usuario");
 const deletarUsuarioBtn = document.getElementById("deletar-conta-btn")
 
@@ -77,6 +81,37 @@ updateBtn.addEventListener("click", async (e) => {
 
 });
 
+updatePerfilBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    // Update descrição de perfil
+    if (updateDescricaoPerfil.value && updatePais.value) {
+        await fetch("/usuarios", {
+            method: "PUT",
+            headers: {
+                "Content-type": "Application/JSON"
+            },
+            body: JSON.stringify({
+                descPerfil: updateDescricaoPerfil.value.trim(),
+                pais: updatePais.value
+            })
+        })
+        .then((rawRes) => { return rawRes.json(); })
+        .then((response) => {
+            if (!response.error){
+                alert("Perfil atualizado com sucesso!")
+            }
+            else {
+                alert(response.error);
+            }
+        });
+    }
+    else {
+        alert("Preencha os dois campos antes de enviar.");
+    }
+
+});
+
 deletarUsuarioBtn.addEventListener("click", async (e) => {
     e.preventDefault();
 
@@ -103,10 +138,14 @@ deletarUsuarioBtn.addEventListener("click", async (e) => {
 });
 
 
-function mostrarMenuDeletarUsuario(){
+function mostrarMenuDeletarUsuario(e){
 
     if (deletarUsuarioContainer.className.includes("hidden")){
         deletarUsuarioContainer.classList.remove("hidden");
+    }
+    else {
+        if (e.target.id == "deletar-usuario-container")
+            deletarUsuarioContainer.classList.add("hidden");
     }
 
 }

@@ -171,7 +171,7 @@ app.get("/usuarios/:username", async (req, res) => {
 
 app.put("/usuarios", async (req, res) => {
 
-    const { usernameNovo, senhaAtual, senhaNova } = req.body;
+    const { usernameNovo, senhaAtual, senhaNova, descPerfil, pais } = req.body;
 
     if (usernameNovo){
         await fetch(process.env.API + "usuarios", {
@@ -193,6 +193,29 @@ app.put("/usuarios", async (req, res) => {
             
             res.json(response);
         });
+    }
+    else if (descPerfil && pais) {
+        if (descPerfil.length <= 255 && descPerfil.length > 0 && pais.length == 2) {
+            await fetch(process.env.API + "usuarios", {
+                method: "PUT",
+                headers: {
+                    "Content-type": "Application/JSON"
+                },
+                body: JSON.stringify({
+                    username: req.session.username,
+                    descPerfil,
+                    pais,
+                    token: process.env.token
+                })
+            })
+            .then((rawRes) => { return rawRes.json(); })
+            .then((response) => {
+                res.json(response);
+            });
+        }
+        else {
+            res.json({ "error": "Descrição de perfil inválida. A descrição deve ter entre 1 e 255 caracteres" });
+        }
     }
     else if (senhaAtual && senhaNova){
         if (senhaNova.length < 8){

@@ -86,7 +86,7 @@ router.post("/usuarios/login", (req, res) => {
 
 router.put("/usuarios", async (req, res) => {
 
-    const { username, usernameNovo, senhaAtual, senhaNova, token } = req.body;
+    const { username, usernameNovo, senhaAtual, senhaNova, descPerfil, pais, token } = req.body;
 
     if (token == process.env.token){
         if (username && usernameNovo){
@@ -153,6 +153,31 @@ router.put("/usuarios", async (req, res) => {
                 else {
                     res.status(422).json({ "error": "Senha incorreta ou inválida" });
                 }
+            });
+        }
+        else if (descPerfil && pais) {
+            db.promise()
+            .execute("UPDATE usuarios SET pais_origem = ? WHERE username = ?;", [
+                pais,
+                username
+            ])
+            .then(() => {
+                db.promise()
+                .execute("UPDATE usuarios SET perfil_desc = ? WHERE username = ?;", [
+                    descPerfil,
+                    username
+                ])
+                .then(() => {
+                    res.status(200).json({ "message": "Perfil atualizado com sucesso!" });
+                })
+                .catch((error) => {
+                    console.log(error);
+                    res.status(422).json({ "error": "Erro ao atualizar país" });
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+                res.status(422).json({ "error": "Erro ao atualizar país" });
             });
         }
         else {
@@ -317,7 +342,7 @@ router.get("/usuarios/:username", (req, res) => {
 
     // Pega as informações do usuário
     db.promise()
-    .execute("SELECT cod_usuario, elo, data_cad FROM usuarios WHERE BINARY username = ?;", [
+    .execute("SELECT cod_usuario, elo, data_cad, pais_origem, perfil_desc FROM usuarios WHERE BINARY username = ?;", [
         username
     ])
     .then(([rows]) => {
@@ -349,6 +374,8 @@ router.get("/usuarios/:username", (req, res) => {
                             username,
                             elo: rows[0].elo,
                             dataCad: rows[0].data_cad,
+                            descPerfil: rows[0].perfil_desc,
+                            pais: rows[0].pais_origem,
                             partidas,
                             vitorias,
                             derrotas,
