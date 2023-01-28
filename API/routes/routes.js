@@ -16,7 +16,7 @@ router.post("/usuarios/cadastro", async (req, res) => {
     if (token == process.env.token){
         if (username && senha.length == 128){
             db.promise()
-            .execute("INSERT INTO usuarios VALUES(?, ?, ?, CURDATE(), ?);", [
+            .execute("INSERT INTO usuarios (cod_usuario, username, elo, data_cad, senha) VALUES(?, ?, ?, CURDATE(), ?);", [
                 randCod(),
                 username,
                 1000,
