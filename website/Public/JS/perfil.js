@@ -71,6 +71,10 @@ function mostrarPerfil(res){
             paisPerfilView.src = "../imgs/ao.png";
             paisPerfilView.title = "Angola";
             break;
+        case "IT":
+            paisPerfilView.src = "../imgs/internacional.png";
+            paisPerfilView.title = "Internacional";
+            break;
     }
 
     mostrarJogos(jogos);
