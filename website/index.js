@@ -491,11 +491,11 @@ function regLance(lance, quant_lances, data){
 
     data.vezBrancas = rooms[roomNumber].dados.vezBrancas;
 
+    rooms[roomNumber].dados.casasAtivas.push([data.y, data.x, rooms[roomNumber].dados.vezBrancas]);
+
     checkTurn(data);
     
     io.sockets.emit("addPecaBackend", data);
-
-    rooms[roomNumber].dados.casasAtivas.push([data.y, data.x, rooms[roomNumber].dados.vezBrancas]);
 
     const casasAtivas = rooms[roomNumber].dados.casasAtivas;
 

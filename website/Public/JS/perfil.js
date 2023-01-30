@@ -71,6 +71,10 @@ function mostrarPerfil(res){
             paisPerfilView.src = "../imgs/ao.png";
             paisPerfilView.title = "Angola";
             break;
+        case "KR":
+            paisPerfilView.src = "../imgs/kr.png";
+            paisPerfilView.title = "Coreia do Sul";
+            break;
         case "IT":
             paisPerfilView.src = "../imgs/internacional.png";
             paisPerfilView.title = "Internacional";
