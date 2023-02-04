@@ -6,70 +6,83 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="CSS/output.css">
-        <script src="JS/analise.js" defer>  </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js">  </script>
-        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="/CSS/output.css">
+        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous">  </script>
         <link rel="shortcut icon" href="imgs/aberturadomestre.ico" type="image/x-icon">
+        <script src="/JS/analise.js" type="module" defer> </script>
         <title> Jeek Online </title>
 
     </head>
 
 
-    <body class="bg-jeek-gray-600 text-white overflow-x-hidden">
+    <body class="bg-jeek-gray-600 text-white overflow-x-hidden md:overflow-y-hidden">
 
-        <script>
-            if (window.innerWidth < 768) {
-                window.location = "/analise-cel";
-            }
-        </script>
+        <nav class="pt-4 px-6 flex justify-between">
+            <div class="flex">
+                <a href="/">
+                    <img src="/imgs/aberturadomestre.ico" class="rounded-md w-8 h-auto shadow-md" alt="Logo Jeek Online">
+                </a>
+                <a href="/">
+                    <h1 class="text-jeek-gray-100 font-bold pt-1 pl-4 flex"> Jeek Online <p class="text-jeek-gray-200 pl-2"> Beta </p> </h1>
+                </a>
+            </div>
 
-        <nav class="pt-4 px-6 flex">
-            <a href="/" class="z-20">
-                <img src="imgs/aberturadomestre.ico" class="rounded-md w-8 h-auto shadow-md" alt="Logo Jeek Online">
-            </a>
-            <a href="/" class="z-20">
-                <h1 class="text-jeek-gray-100 font-bold pt-1 pl-4 flex"> Jeek Online <p class="text-jeek-gray-200 pl-2"> Beta </p> </h1>
-            </a>
+            <div class="pt-2 text-jeek-gray-100 block cursor-pointer md:hidden"> <i id="chat-hamburger" class="fa-solid fa-comments"></i> </div>
         </nav>
 
-        <main class="flex">
+        </div>
 
-            <section class="aside-div w-40 text-center ml-12 flex md:inline-block pt-40">
+        <main class="pt-8">
 
-                <!-- Botões -->
-                <div class="botoes">
-                    <button class="botao-jogo botao-passar" title="Passar a vez. Dica: Você também pode apertar a tecla 'p' para passar a vez "> <i class="fa fa-arrow-right"> </i> </button> <br>
-                </div>
+            <div class="px-16 md:flex md:pl-[38vw] justify-between">
 
-            </section>
-
-            <div class="px-16 flex justify-center">
-                <div class="tabuleiro-div">
-
+                <div class="flex justify-center md:block tabuleiro-div">
                     <!-- Tabuleiro -->
-                    <section id="tabuleiro" class="tabuleiro w-auto mt-12">
+                    <div class="tabuleiro mt-12">
+                        
+                    </div>
 
-
-
-                    </section>
-
-                    <div class="absolute top-[34.3rem] w-[28rem] flex justify-between text-2xl">
+                    <!-- Botões de voltar/avançar lance -->
+                    <div class="absolute top-96 md:top-[36.7rem] w-64 md:w-[28rem] flex justify-between text-2xl">
                         <button class="move-back"> <i class="fa-solid fa-angle-left">  </i> </button>
                         <button class="move-forward"> <i class="fa-solid fa-angle-right"></i> </button>
                     </div>
-
                 </div>
 
-            </div>
+                <section>
+                    <!-- Texto de conclusão do jogo -->
+                    <div class="w-auto md:w-40 pt-48 text-center">
+                        <p class="endgame-p italic text-lg">  </p>
+                    </div>
+                </section>
 
-            <!-- PJN Reader -->
-            <div class="flex justify-center">
-                <div class="pt-12 w-[28rem]">
-                    <label for="pjn-reader"> PJN (Portable Jeek Notation): </label>
+                <div class="left-div-container hidden w-screen h-screen bg-jeek-gray-600 opacity-[0.98] md:w-auto md:h-auto md:bg-none md:opacity-100 md:block md:absolute top-20 md:left-12">
 
-                    <div class="flex justify-center">
-                        <textarea name="pjn-reader" id="pjn-reader" class="text-black h-[24rem] w-full" readonly> </textarea>
+                    <!-- Menu de conexão -->
+                    <div class="conexao-div bg-jeek-gray-300 ml-[5vw] w-[90vw] md:ml-0 md:w-80 h-32 rounded-lg p-6 shadow-lg">
+                        <div class="flex">
+                            <div class="flex w-full gap-4">
+                                <div class="peca-branca-chat"> </div>
+                                <div class="flex pt-1 gap-4">
+                                    <p class="anon-brancas font-bold"> Anônimo </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex pt-4">
+                            <div class="flex w-full gap-4">
+                                <div class="peca-preta-chat"> </div>
+                                <div class="flex pt-1 gap-4">
+                                    <p class="anon-pretas font-bold"> Anônimo </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PJN -->
+                    <div id="pjn-div" class="mt-8">
+                        <h3 class="text-lg text-jeek-gray-200 font-bold pb-2"> PJN: </h3>
+                        <textarea id="pjn-textbox" cols="25" rows="6" 
+                        class="bg-jeek-gray-700 text-jeek-gray-100 text-lg rounded-lg p-4 shadow-md outline-none" readonly></textarea>
                     </div>
                 </div>
             </div>

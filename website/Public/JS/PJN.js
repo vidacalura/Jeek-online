@@ -48,10 +48,10 @@ const PJNEncoder = (obj) => {
 
 }
 
-
 const PJNDecoder = (str) => {
-
     let decodedPJN = { casasAtivas: [], brancasGanham: null }
+
+    str = str.replace("10.", "");
 
     // Remove os números dos lances
     for (let i = 0; i < 17; i++){
@@ -74,12 +74,13 @@ const PJNDecoder = (str) => {
 
         switch (str[i]){
             case " ":
+                arr.push(vezBrancas);
+
                 if (str[i + 1] == " "){
-                    (vezBrancas == true ? false : true);
+                    vezBrancas = (vezBrancas == true ? false : true);
                     i++;
                 }
 
-                arr.push(vezBrancas);
                 break;
 
             // Pega X
@@ -130,4 +131,4 @@ const PJNDecoder = (str) => {
 
 }
 
-module.exports = PJNEncoder;
+export { PJNEncoder, PJNDecoder };

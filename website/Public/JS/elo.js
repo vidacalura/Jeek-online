@@ -27,6 +27,6 @@ const eloCalculator = (obj) => {
 
 }
 
-console.log(eloCalculator({ ratingBrancas: 1800, ratingPretas: 1200, brancasGanham: false }));
+console.log(eloCalculator({ ratingBrancas: 1088, ratingPretas: 948, brancasGanham: true }));
 
 module.exports = eloCalculator;

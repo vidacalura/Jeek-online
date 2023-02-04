@@ -129,6 +129,12 @@ function mostrarJogos(jogos){
 
         // fazer q href de a = "/jogos/" + cod_jogo
 
+        const a = document.createElement("a");
+        if (j.cod_jogo > 150){
+            a.href = "/jogos/" + j.cod_jogo;
+            a.target = "_blank";
+        }
+
         const jogoDiv = document.createElement("div");
         jogoDiv.className = "w-full px-12 py-8 transition-all ease-in-out cursor-pointer hover:bg-jeek-gray-400 hover:shadow-sm";
 
@@ -193,7 +199,8 @@ function mostrarJogos(jogos){
         jogoContainer.appendChild(pretasDiv);
         jogoDiv.appendChild(jogoContainer);
         jogoDiv.appendChild(resultado);
-        jogosDivMain.appendChild(jogoDiv);
+        a.appendChild(jogoDiv)
+        jogosDivMain.appendChild(a);
 
     }
 

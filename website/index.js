@@ -66,6 +66,10 @@ app.get("/apoiar", (req, res) => {
     res.status(200).sendFile("./Public/apoiar.html", { root: __dirname });
 });
 
+app.get("/jogos/:codJogo", (req, res) => {
+    res.status(200).sendFile("./Public/analise.html", { root: __dirname });
+});
+
 // Manejo de sessão
 app.get("/cadastro", (req, res) => {
     if (!req.session.username)

@@ -228,7 +228,10 @@ router.get("/jogos/:codJogo", (req, res) => {
             codJogo
         ])
         .then(([rows]) => {
-            res.status(200).json(rows);
+            if (rows[0])
+                res.status(200).json(rows);
+            else
+                res.status(404).json({ "error": "Jogo não encontrado" });
         })
         .catch((error) => {
             res.status(404).json({ "error": "Jogo não encontrado" });
