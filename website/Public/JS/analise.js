@@ -17,7 +17,7 @@ if (Number(codJogo) < 110) {
     window.location = "/404";
 }
 
-fetch("https://jeek-online.vercel.app/api/" + codJogo)
+fetch("https://jeek-online.vercel.app/api/jogos/" + codJogo)
 .then((rawRes) => { return rawRes.json(); })
 .then((res) => {
     if (res.error) {
