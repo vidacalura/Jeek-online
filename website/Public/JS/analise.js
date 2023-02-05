@@ -28,6 +28,27 @@ fetch("https://jeek-online.vercel.app/api/jogos/" + codJogo)
     mostrarDados(res[0]);
 });
 
+const infoHamburger = document.getElementById("info-hamburger");
+infoHamburger.addEventListener("click", () => {
+    const containerLeft = document.querySelector(".left-div-container");
+
+    if (containerLeft.className.includes("hidden")){
+        containerLeft.classList.remove("hidden");
+        containerLeft.classList.add("absolute");
+        containerLeft.classList.add("top-20");
+        containerLeft.classList.add("left-0");
+        containerLeft.classList.add("z-100");
+
+        infoHamburger.className = "fa-solid fa-xmark";
+    }
+    else{
+        containerLeft.className = "left-div-container hidden w-screen h-screen bg-jeek-gray-600 \
+        opacity-[0.98] md:w-auto md:h-auto md:bg-none md:opacity-100 md:block md:absolute top-20 md:left-12";
+
+        infoHamburger.className = "fa-solid fa-info rounded-full border border-white py-1 px-2";
+    }
+});
+
 function createGrid(){
 
     let count = 0;
