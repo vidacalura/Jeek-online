@@ -1,5 +1,6 @@
 from random import shuffle
 from flask import Flask
+from flask_cors import CORS, cross_origin
 from flask import request
 
 class Jogo:
@@ -163,6 +164,11 @@ def converter_movimento(movimento):
 
 
 app = Flask(__name__)
+cors = CORS(app)
+
+@app.route("/ping", methods=["GET"])
+def pong():
+    return "Pong!"
 
 # Jeekens (600)
 @app.route("/jeekens/600elo", methods=["POST"])
@@ -187,10 +193,10 @@ def receber_movimento():
 
 
     jogo = Jogo()
-    jogo.turno = request.json['turno'] # "turno": "P" || "B"
-    jogo.tabuleiro = request.json['tabuleiro'] # "tabuleiro": [[], [], [], []]
-    jogo.movimentos.append(request.json['movimentos']) # "movimentos": "A1 A2" (ex)
-    jogo.lances = request.json['lances'] # "lances": 3
+    jogo.turno = request.json['turno']                      # "turno": "P" || "B"
+    jogo.tabuleiro = request.json['tabuleiro']              # "tabuleiro": [[], [], [], []]
+    jogo.movimentos.append(request.json['movimentos'][:-1]) # "movimentos": "A1 A2" (ex)
+    jogo.lances = request.json['lances']                    # "lances": 3
     lances = request.json['lances']
 
     movimento = None
