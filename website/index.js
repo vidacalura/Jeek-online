@@ -34,6 +34,10 @@ app.get("/analise", (req, res) => {
     res.status(200).sendFile("./Public/analise.html", { root: __dirname });
 });
 
+app.get("/jeekens", (req, res) => {
+    res.status(200).sendFile("./Public/bot.html", { root: __dirname });
+});
+
 app.get("/offline", (req, res) => {
     res.status(200).sendFile("./Public/offline.html", { root: __dirname });
 });
