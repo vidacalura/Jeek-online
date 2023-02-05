@@ -170,8 +170,8 @@ cors = CORS(app)
 def pong():
     return "Pong!"
 
-# Jeekens (600)
-@app.route("/jeekens/600elo", methods=["POST"])
+# Jeekens (400)
+@app.route("/jeekens/400elo", methods=["POST"])
 def receber_movimento():
 
     jogo = Jogo()
