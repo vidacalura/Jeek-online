@@ -56,6 +56,7 @@ app.get("/primeiro-torneio", (req, res) => {
 
 app.get("/candidatos-mar2023", (req, res) => {
     res.status(200).sendFile("./Public/candidatos.html", { root: __dirname });
+    //res.status(200).sendFile("./Public/candidatosmar23.html", { root: __dirname });
 });
 
 app.get("/ranking", (req, res) => {
@@ -72,6 +73,10 @@ app.get("/apoiar", (req, res) => {
 
 app.get("/jogos/:codJogo", (req, res) => {
     res.status(200).sendFile("./Public/analise.html", { root: __dirname });
+});
+
+app.get("/mundial-2023", (req, res) => {
+    res.status(200).sendFile("./Public/mundial1.html", { root: __dirname });
 });
 
 // Manejo de sessão

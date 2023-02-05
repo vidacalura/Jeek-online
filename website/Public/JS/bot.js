@@ -171,10 +171,6 @@ function gridEventListener(){
         });
     }
 
-    if (jeekens.lado == "white" && turn == "white"){
-        jeekensMovimentoRequest();
-    }
-
 }
 
 async function jeekensMovimentoRequest(){
@@ -519,6 +515,9 @@ restartBtn.addEventListener("click", () => {
 
     endgame_p.textContent = "";
     startSound.play();
+
+    if (jeekens.lado == "white")
+        jeekensMovimentoRequest();
 });
 
 /* Chat */

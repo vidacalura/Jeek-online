@@ -2064,6 +2064,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 18rem;
   }
 
+  .md\:w-\[70vw\]{
+    width: 70vw;
+  }
+
+  .md\:w-\[75vw\]{
+    width: 75vw;
+  }
+
   .md\:grid-cols-6{
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
@@ -2165,6 +2173,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:pl-\[22\%\]{
     padding-left: 22%;
+  }
+
+  .md\:pt-6{
+    padding-top: 1.5rem;
   }
 
   .md\:text-lg{
