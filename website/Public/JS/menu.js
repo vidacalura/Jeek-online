@@ -103,39 +103,42 @@ async function simulacao(){
         peca_preta[i].classList.add("peca-preta");
     }
 
+    // 1. A1 2. D1
     casas[0].appendChild(peca_branca[0]);
     await sleep(sleepTime);
-    casas[1].appendChild(peca_branca[1]);
-    await sleep(sleepTime);
-    casas[2].appendChild(peca_branca[2]);
+    casas[3].appendChild(peca_preta[0]);
     await sleep(sleepTime);
 
-    casas[5].appendChild(peca_preta[0]);
+    // 3. B3 4. C2 C3 C4
+    casas[9].appendChild(peca_branca[1]);
     await sleep(sleepTime);
     casas[6].appendChild(peca_preta[1]);
     await sleep(sleepTime);
-    casas[7].appendChild(peca_preta[2]);
+    casas[10].appendChild(peca_preta[2]); 
+    await sleep(sleepTime);
+    casas[14].appendChild(peca_preta[3]); 
     await sleep(sleepTime);
 
-    casas[4].appendChild(peca_branca[3]);
+    // 5. A3 6. D2
+    casas[8].appendChild(peca_branca[2]);
+    await sleep(sleepTime);
+    casas[7].appendChild(peca_preta[4]);
     await sleep(sleepTime);
 
-    casas[11].appendChild(peca_preta[3]);
+    // 7. B1 B2 8. D3
+    casas[1].appendChild(peca_branca[3]);
     await sleep(sleepTime);
-    casas[15].appendChild(peca_preta[4]);
-    await sleep(sleepTime);  
-    
-    casas[12].appendChild(peca_branca[4]);
+    casas[5].appendChild(peca_branca[4]);
     await sleep(sleepTime);
-
-    casas[9].appendChild(peca_preta[5]);
-    await sleep(sleepTime);
-
-    casas[13].appendChild(peca_branca[5]);
-    await sleep(sleepTime);
-    casas[14].appendChild(peca_branca[6]);
+    casas[11].appendChild(peca_preta[5]);
     await sleep(sleepTime);
     
+    // 9. A4 B4 { Brancas ganham }
+    casas[12].appendChild(peca_branca[5]);
+    await sleep(sleepTime);
+    casas[13].appendChild(peca_branca[6]);
+    await sleep(sleepTime);
+
 }
 
 function entrarSala(){
