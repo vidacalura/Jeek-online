@@ -131,4 +131,4 @@ const PJNDecoder = (str) => {
 
 }
 
-export { PJNEncoder, PJNDecoder };
+module.exports = { PJNEncoder, PJNDecoder };

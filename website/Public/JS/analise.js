@@ -1,5 +1,4 @@
 const codJogo = window.location.pathname.split("/")[window.location.pathname.split("/").length - 1];
-import { PJNDecoder } from "./PJN.js";
 
 /* Jogo */
 const endgame_p = document.querySelector(".endgame-p");
