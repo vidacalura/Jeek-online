@@ -433,7 +433,6 @@ router.get("/ranking", (req, res) => {
     db.promise()
     .execute("SELECT username, elo FROM usuarios ORDER BY elo DESC LIMIT 100;")
     .then(([rows]) => {
-        
         res.status(200).json(rows);
     })
     .catch((error) => {
@@ -488,6 +487,19 @@ router.get("/usuarios/titulos/:username", (req, res) => {
     else{
         res.status(422).json({ "error": "Dados insuficientes" });
     }
+
+});
+
+router.get("/aije/ranking", async (req, res) => {
+
+    db.promise()
+    .execute("SELECT username, elo_aije FROM rankingAIJe ORDER BY elo_aije DESC;")
+    .then(([rows]) => {
+        res.status(200).json({ "ranking": rows });
+    })
+    .catch((error) => {
+        res.status(500).json({ "error": "Erro ao conectar com o banco de dados" });
+    });
 
 });
 
