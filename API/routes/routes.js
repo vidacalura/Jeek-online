@@ -503,6 +503,29 @@ router.get("/aije/ranking", async (req, res) => {
 
 });
 
+router.get("/aije/elo/:username", (req, res) => {
+    const username = req.params.username;
+
+    db.promise()
+    .execute("SELECT elo_aije FROM rankingAIJe WHERE username = ?;", [
+        username
+    ])
+    .then(([rows]) => {
+        console.log(rows);
+        if (rows[0] != null){
+            res.status(200).json({ "elo": rows[0].elo_aije });
+        }
+        else {
+            res.status(422).json({ "error": "Não foi possível encontrar o usuário" });
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+        res.status(500).json({ "error": "Erro ao conectar com o banco de dados" });
+    });
+
+});
+
 module.exports = router;
 
 function randCod(){
