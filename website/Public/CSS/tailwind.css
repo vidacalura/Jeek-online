@@ -286,3 +286,31 @@
     @apply py-4;
 
 }
+
+#torneios-trofeus {
+    
+    @apply py-16 md:px-[6vw]; 
+
+}
+.torneio-div {
+
+    @apply bg-jeek-gray-700 rounded-lg w-full mb-16 py-10 px-8 md:px-12 shadow-lg;
+
+}
+
+.torneios-trofeus-h2 {
+
+    @apply text-2xl text-jeek-gray-100 font-bold underline;
+
+}
+.jogador-aije-container {
+
+    @apply px-8 py-4 flex gap-3 bg-jeek-gray-700 rounded-lg shadow-md mx-8 my-4 text-xl font-bold
+    cursor-pointer transition-all ease-in-out hover:bg-jeek-gray-500;
+
+}
+.jogador-aije-dados-container {
+
+    @apply p-8 bg-jeek-gray-700 text-white rounded-lg shadow-md mx-8 my-4 text-lg transition-all ease-in-out;
+
+}

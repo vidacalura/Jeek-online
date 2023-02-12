@@ -50,6 +50,10 @@ app.get("/torneios", (req, res) => {
     res.status(200).sendFile("./Public/torneios.html", { root: __dirname });
 });
 
+app.get("/galeria-trofeus", (req, res) => {
+    res.status(200).sendFile("./Public/trofeus.html", { root: __dirname });
+});
+
 app.get("/primeiro-torneio", (req, res) => {
     res.status(200).sendFile("./Public/torneio1.html", { root: __dirname });
 });
