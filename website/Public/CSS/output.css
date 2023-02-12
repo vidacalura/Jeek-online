@@ -780,6 +780,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 8rem;
 }
 
+.w-\[96vw\]{
+  width: 96vw;
+}
+
 .w-40{
   width: 10rem;
 }
@@ -830,6 +834,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-24{
   width: 6rem;
+}
+
+.w-\[92vw\]{
+  width: 92vw;
+}
+
+.w-\[94vw\]{
+  width: 94vw;
 }
 
 .rotate-180{
@@ -1105,6 +1117,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 3rem;
 }
 
+.px-\[2vw\]{
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
 .py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -1113,6 +1130,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-16{
   padding-top: 4rem;
   padding-bottom: 4rem;
+}
+
+.px-\[4vw\]{
+  padding-left: 4vw;
+  padding-right: 4vw;
+}
+
+.px-\[3vw\]{
+  padding-left: 3vw;
+  padding-right: 3vw;
 }
 
 .pt-4{
@@ -1243,8 +1270,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 14%;
 }
 
-.pl-\[3\.5vw\]{
-  padding-left: 3.5vw;
+.pl-7{
+  padding-left: 1.75rem;
 }
 
 .pr-\[0\.5vw\]{

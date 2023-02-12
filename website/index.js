@@ -396,11 +396,8 @@ function isConnected(x, y, dados){
     }
 
     // se já houver peças nesta casa -> falso
-    console.log(x + " " + y);
     Object.values(dados.pecas_brancas).forEach((peca) => {
         if (peca.x != null)
-            console.log("Peças:" + peca.x + " " + peca.y);
-
         if (x == peca.x && y == peca.y) {
             return false;
         }
