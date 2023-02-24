@@ -1037,21 +1037,25 @@ io.on("connection", (socket) => {
         }        
     });
 
-    socket.on("desistir", (data) => {
-        desistir(socket.id, data);
+    socket.on("desistir", (roomNumber) => {
+        if (!rooms[roomNumber].dados.isGameOver)
+            desistir(socket.id, roomNumber);
     });
 
-    socket.on("passarVez", (data) => {
-        passarVez(socket.id, data);
+    socket.on("passarVez", (roomNumber) => {
+        if (!rooms[roomNumber].dados.isGameOver)
+            passarVez(socket.id, roomNumber);
     });
 
     socket.on("pedirRevanche", (data) => {
-        if (rooms[data].player.brancas.playerId == socket.id || rooms[data].player.pretas.playerId == socket.id)
+        if (rooms[data].player.brancas.playerId == socket.id || rooms[data].player.pretas.playerId == socket.id
+            && rooms[data].dados.isGameOver)
             io.sockets.emit("confirmarRevanche", data);
     });
 
     socket.on("aceitarRevanche", (data) => {
-        if (rooms[data].player.brancas.playerId == socket.id || rooms[data].player.pretas.playerId == socket.id){
+        if (rooms[data].player.brancas.playerId == socket.id || rooms[data].player.pretas.playerId == socket.id
+            && rooms[data].dados.isGameOver) {
             restart(data);
             io.sockets.emit("restart", data);
         }
@@ -1080,7 +1084,8 @@ io.on("connection", (socket) => {
     });
 
     socket.on("recusarRevanche", (data) => {
-        if (rooms[data].player.brancas.playerId == socket.id || rooms[data].player.pretas.playerId == socket.id)
+        if (rooms[data].player.brancas.playerId == socket.id || rooms[data].player.pretas.playerId == socket.id
+            && rooms[data].dados.isGameOver)
             io.sockets.emit("revancheRecusada", data);
     });
 
