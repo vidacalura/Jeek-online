@@ -526,6 +526,28 @@ router.get("/aije/elo/:username", (req, res) => {
 
 });
 
+router.get("/skin/:username", async (req, res) => {
+    const username = req.params.username;
+
+    db.promise()
+    .execute("SELECT class_skin FROM skins WHERE username = ?;", [
+        username
+    ])
+    .then(([rows]) => {
+        if (rows[0] != null) {
+            res.status(200).json({ "skinClass": rows[0].class_skin });
+        }
+        else {
+            res.status(200).json({ "message": "Este usuário não tem skins" });
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+        res.status(500).json({ "error": "Erro ao conectar com o banco de dados" });
+    });
+    
+});
+
 module.exports = router;
 
 function randCod(){
