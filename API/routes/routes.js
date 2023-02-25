@@ -548,6 +548,28 @@ router.get("/skin/:username", async (req, res) => {
     
 });
 
+router.get("/skin/inventario/:username", async (req, res) => {
+    const username = req.params.username;
+
+    db.promise()
+    .execute("SELECT class_skin FROM inventario_skins WHERE username = ?;", [
+        username
+    ])
+    .then(([rows]) => {
+        if (rows[0] != null) {
+            res.status(200).json({ "skinClass": rows });
+        }
+        else {
+            res.status(200).json({ "message": "Este usuário não tem skins" });
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+        res.status(500).json({ "error": "Erro ao conectar com o banco de dados" });
+    });
+    
+});
+
 module.exports = router;
 
 function randCod(){
