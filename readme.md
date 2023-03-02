@@ -10,11 +10,11 @@ Aprenda mais sobre o jogo: <a href="https://www.youtube.com/channel/UCgKpJ2iuC_e
 
 # Jeek Online
 
-O Jeek online é um site feito em HTML, CSS (com Tailwind CSS) e JavaScript padrão para o frontend,
-junto das tecnologias Express.js e Node.js para o backend.
+O Jeek online é um site 100% open source e gratuito, que permite que qualquer um jogue
+Jeek a qualquer hora em qualquer lugar e em qualquer aparelho.
 
 
-Você pode acessar o site pela URL: <a href="https://jeek-online.up.railway.app/"> Jeek Online </a>
+Você pode acessar o site aqui: <a href="https://jeek-online.up.railway.app/"> Jeek Online </a>
 
 #
 
