@@ -59,8 +59,8 @@ app.get("/primeiro-torneio", (req, res) => {
 });
 
 app.get("/candidatos-mar2023", (req, res) => {
-    res.status(200).sendFile("./Public/candidatos.html", { root: __dirname });
-    //res.status(200).sendFile("./Public/candidatosmar23.html", { root: __dirname });
+    //res.status(200).sendFile("./Public/candidatos.html", { root: __dirname });
+    res.status(200).sendFile("./Public/candidatosmar23.html", { root: __dirname });
 });
 
 app.get("/ranking", (req, res) => {
@@ -334,8 +334,8 @@ for (let i = 0; i < 100; i++){
             'isGameOver': false
         },
         player: {
-            'brancas': { playerId: null, username: null, pontos: 0, lances: 0, tempo: tempo },
-            'pretas': { playerId: null, username: null, pontos: 0, lances: 0, tempo: tempo }
+            'brancas': { playerId: null, username: null, pontos: 0, lances: 0, tempo: tempo, skin: null },
+            'pretas': { playerId: null, username: null, pontos: 0, lances: 0, tempo: tempo, skin: null }
         },
         pecas_brancas: {
             'peca_branca1': { x: null, y: null },
@@ -725,15 +725,37 @@ async function createRoom(p1, p2){
     const id2 = p2[0]
     const uname1 = p1[1];
     const uname2 = p2[1];
+    let skin1 = null, skin2 = null;
+
+    if (uname1) {
+        await fetch(process.env.API + "skin/" + uname1) 
+        .then((res) => { return res.json(); })
+        .then((res) => {
+            if (res.skinClass) 
+                skin1 = res.skinClass;
+        });
+    }
+
+    if (uname2) {
+        await fetch(process.env.API + "skin/" + uname2) 
+        .then((res) => { return res.json(); })
+        .then((res) => {
+            if (res.skinClass) 
+                skin2 = res.skinClass;
+        });
+    }
 
     if (rooms_count.length > 0){
+        console.log(skin1, skin2);
         if (rooms[rooms_count[0]].player.brancas.playerId == null){
             rooms[rooms_count[0]].player.brancas.playerId = id1;
             rooms[rooms_count[0]].player.brancas.username = (uname1 != null ? uname1 : "Anônimo");
+            rooms[rooms_count[0]].player.brancas.skin = skin1;
         }
         if (rooms[rooms_count[0]].player.pretas.playerId == null){
             rooms[rooms_count[0]].player.pretas.playerId = id2;
             rooms[rooms_count[0]].player.pretas.username = (uname2 != null ? uname2 : "Anônimo");
+            rooms[rooms_count[0]].player.pretas.skin = skin2;
         }
 
         io.sockets.emit("regRoom", {
@@ -961,6 +983,7 @@ io.on("connection", (socket) => {
                 rooms[room].player.brancas.lances++;
 
                 const lance = Object.values(rooms[room].pecas_brancas); 
+                data.skin = rooms[room].player.brancas.skin;
 
                 regLance(lance, quant_lances, data);
             }
@@ -969,6 +992,7 @@ io.on("connection", (socket) => {
                 rooms[room].player.pretas.lances++;
 
                 const lance = Object.values(rooms[room].pecas_pretas); 
+                data.skin = rooms[room].player.pretas.skin;
 
                 regLance(lance, quant_lances, data);
             }

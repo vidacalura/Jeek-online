@@ -780,8 +780,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 8rem;
 }
 
-.w-\[96vw\]{
-  width: 96vw;
+.w-\[94vw\]{
+  width: 94vw;
 }
 
 .w-40{
@@ -834,14 +834,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-24{
   width: 6rem;
-}
-
-.w-\[92vw\]{
-  width: 92vw;
-}
-
-.w-\[94vw\]{
-  width: 94vw;
 }
 
 .rotate-180{
@@ -1025,6 +1017,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgba(22,22,22,0.7);
 }
 
+.bg-blue{
+  --tw-bg-opacity: 1;
+  background-color: rgb(146 180 236 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-70{
   --tw-bg-opacity: 0.7;
 }
@@ -1117,9 +1114,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 3rem;
 }
 
-.px-\[2vw\]{
-  padding-left: 2vw;
-  padding-right: 2vw;
+.px-\[3vw\]{
+  padding-left: 3vw;
+  padding-right: 3vw;
 }
 
 .py-3{
@@ -1127,19 +1124,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.75rem;
 }
 
+.py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .py-16{
   padding-top: 4rem;
   padding-bottom: 4rem;
-}
-
-.px-\[4vw\]{
-  padding-left: 4vw;
-  padding-right: 4vw;
-}
-
-.px-\[3vw\]{
-  padding-left: 3vw;
-  padding-right: 3vw;
 }
 
 .pt-4{
@@ -1724,8 +1716,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .peca-preta, .peca-branca{
   margin: 0.75rem;
+  display: flex;
   height: 2.5rem;
   width: 2.5rem;
+  justify-content: center;
   border-radius: 9999px;
 }
 
@@ -1734,12 +1728,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin: 1rem;
     height: 5rem;
     width: 5rem;
+    font-size: 40px;
   }
 }
 
 .peca-preta,
 .peca-branca{
   box-shadow: -2px -2px 8px #C9C9C9, 6px 6px 14px rgba(0, 0, 0, 0.4);
+  align-items: center;
 }
 
 .peca-branca-chat, .peca-preta-chat{
@@ -1767,6 +1763,46 @@ Ensure the default browser behavior of the `hidden` attribute.
 .peca-preta, .peca-preta-chat, .peca-preta-loading{
   --tw-bg-opacity: 1;
   background-color: rgb(48 48 48 / var(--tw-bg-opacity));
+}
+
+.skin-inventario-div{
+  cursor: pointer;
+  border-radius: 0.375rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(58 58 58 / var(--tw-bg-opacity));
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.skin-inventario-div:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(95 95 95 / var(--tw-bg-opacity));
+}
+
+.skin-inventario-active{
+  cursor: pointer;
+  border-radius: 0.375rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(95 95 95 / var(--tw-bg-opacity));
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.cor-inventario{
+  margin: 0.5rem;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 9999px;
+}
+
+@media (min-width: 768px){
+  .cor-inventario{
+    margin: 0.75rem;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
 }
 
 .relogio-brancas, .relogio-pretas{
@@ -2044,6 +2080,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(146 180 236 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-white:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-jeek-gray-100:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(199 199 199 / var(--tw-bg-opacity));
@@ -2066,6 +2107,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:text-white:hover{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-blue:hover{
+  --tw-text-opacity: 1;
+  color: rgb(146 180 236 / var(--tw-text-opacity));
 }
 
 .hover\:shadow-lg:hover{
@@ -2314,6 +2360,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   .md\:px-\[6vw\]{
     padding-left: 6vw;
     padding-right: 6vw;
+  }
+
+  .md\:py-12{
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 
   .md\:pl-\[38vw\]{
