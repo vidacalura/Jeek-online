@@ -26,7 +26,10 @@ const shinobu = new Jogador(
     null,
     "BR",
     false,
-    [ "Jeek Online Open I - 2º Lugar" ]
+    [
+        "Jeek Online Open I - 2º Lugar", "Torneio de Candidatos Jeek Online I - 3º Lugar",
+        "Torneio de Candidatos Jeek Online I - Melhor espírito esportivo"
+    ]
 );
 
 const batman = new Jogador(
@@ -35,14 +38,28 @@ const batman = new Jogador(
     null,
     "BR",
     false,
-    [ "Jeek Online Open I - 3º Lugar"] //, "Campeonato Mundial de Jeek Online - 2º Lugar" ]
+    [
+        "Jeek Online Open I - 3º Lugar", "Torneio de Candidatos Jeek Online I - 1º Lugar",
+        "Torneio de Candidatos Jeek Online I - Melhor jogada do Torneio",
+        "Torneio de Candidatos Jeek Online I - Jogador revelação",
+        //, "Campeonato Mundial de Jeek Online - 2º Lugar" ]
+    ]
+);
+
+const leonestri = new Jogador(
+    "LeoNestri",
+    null,
+    null,
+    "BR",
+    false,
+    [ "Torneio de Candidatos Jeek Online I - 2º Lugar" ]
 );
 
 let jogadores = [];
 jogadores.push(vidacalura);
 jogadores.push(shinobu);
 jogadores.push(batman);
-
+jogadores.push(leonestri);
 
 // Cria elementos
 const premiosPorUserDiv = document.getElementById("premios-por-usuario");
@@ -125,6 +142,8 @@ jogadores.forEach(async (j) => {
 
     const trofeusDiv = document.createElement("div");
     trofeusDiv.classList.add("px-3");
+    trofeusDiv.classList.add("flex");
+    trofeusDiv.classList.add("gap-4");
 
     j.titulos.forEach((t) => {
         const trofeu = document.createElement("i");
@@ -155,8 +174,12 @@ jogadores.forEach(async (j) => {
             trofeu.classList.add("fa-medal");
         }
         else {
+            if (t.includes("revelação")) {
+                trofeu.classList.add("text-[#b69d4d]");
+            }
+
             trofeu.classList.add("text-jeek-gray-500");
-            trofeu.classList.add("fa-medal");
+            trofeu.classList.add("fa-award");
         }
 
         trofeusDiv.appendChild(trofeu);
