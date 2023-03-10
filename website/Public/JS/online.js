@@ -200,12 +200,11 @@ function criarSalaPrivada(){
 
 }
 
-function addPeca(y, x, vezBrancas, room){
+function addPeca(y, x, vezBrancas, skin, room){
     if (gameRoom == room){
-
         // Registro do lance - Visual
         const peca = document.createElement("div");
-                        
+
         if (vezBrancas == true)
             peca.classList.add("peca-branca");
         else
@@ -214,6 +213,13 @@ function addPeca(y, x, vezBrancas, room){
         if (movesBack > 0){
             peca.classList.add("hidden");
             movesBack++;
+        }
+
+        if (skin && false){
+            const skinPeca = document.createElement("i");
+            skinPeca.className = skin;
+
+            peca.appendChild(skinPeca);
         }
 
         tabuleiro[y][x].appendChild(peca);
@@ -416,7 +422,7 @@ function moveBack(){
     const x = casasAtivas[lastIndex][1];
     const y = casasAtivas[lastIndex][0];
 
-    tabuleiro[y][x].firstChild.classList.add("hidden");
+    tabuleiro[y][x].firstChild.style.display = "none";
 
 }
 
@@ -427,7 +433,7 @@ function moveForward(){
     const x = casasAtivas[lastIndex][1];
     const y = casasAtivas[lastIndex][0];
 
-    tabuleiro[y][x].firstChild.classList.remove("hidden");
+    tabuleiro[y][x].firstChild.style.display = "flex";
 
     if (movesBack > 0)
         movesBack--;
@@ -695,7 +701,7 @@ socket.on("chat", (data) => {
 });
 
 socket.on("addPecaBackend", (data) => {
-    addPeca(data.y, data.x, data.vezBrancas, data.room);
+    addPeca(data.y, data.x, data.vezBrancas, data.skin, data.room);
 });
 
 socket.on("endGame", (data) => {

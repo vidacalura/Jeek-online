@@ -274,13 +274,13 @@ function goBack(){
     if (movesBack < casas_ativas.length)
         movesBack++;
 
-    casas[Number(casas_ativas[casas_ativas.length - movesBack])].firstChild.classList.add("hidden");
+    casas[Number(casas_ativas[casas_ativas.length - movesBack])].firstChild.style.display = "none";
 
 }
 
 function goForward(){
 
-    casas[Number(casas_ativas[casas_ativas.length - movesBack])].firstChild.classList.remove("hidden");
+    casas[Number(casas_ativas[casas_ativas.length - movesBack])].firstChild.style.display = "flex";
 
     if (movesBack > 0)
         movesBack--;

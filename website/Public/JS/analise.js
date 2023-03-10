@@ -139,14 +139,14 @@ function goBack(){
         movesBack++;
 
     todasCasas[casasAtivas[casasAtivas.length - movesBack][0]][casasAtivas[casasAtivas.length - movesBack][1]]
-    .firstChild.classList.add("hidden");
+    .firstChild.style.display = "none";
 
 }
 
 function goForward(){
 
     todasCasas[casasAtivas[casasAtivas.length - movesBack][0]][casasAtivas[casasAtivas.length - movesBack][1]]
-    .firstChild.classList.remove("hidden");
+    .firstChild.style.display = "flex";
 
     if (movesBack > 0)
         movesBack--;

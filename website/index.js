@@ -746,7 +746,6 @@ async function createRoom(p1, p2){
     }
 
     if (rooms_count.length > 0){
-        console.log(skin1, skin2);
         if (rooms[rooms_count[0]].player.brancas.playerId == null){
             rooms[rooms_count[0]].player.brancas.playerId = id1;
             rooms[rooms_count[0]].player.brancas.username = (uname1 != null ? uname1 : "Anônimo");
