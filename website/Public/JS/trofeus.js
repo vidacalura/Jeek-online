@@ -17,7 +17,7 @@ const vidacalura = new Jogador(
     null,
     "BR",
     true,
-    [ "Jeek Online Open I - 1º Lugar"] //, "Campeonato Mundial de Jeek Online - 1º Lugar" ]
+    [ "Jeek Online Open I - 1º Lugar", "Campeonato Mundial de Jeek Online - 1º Lugar" ]
 );
 
 const shinobu = new Jogador(
@@ -42,7 +42,7 @@ const batman = new Jogador(
         "Jeek Online Open I - 3º Lugar", "Torneio de Candidatos Jeek Online I - 1º Lugar",
         "Torneio de Candidatos Jeek Online I - Melhor jogada do Torneio",
         "Torneio de Candidatos Jeek Online I - Jogador revelação",
-        //, "Campeonato Mundial de Jeek Online - 2º Lugar" ]
+        "Campeonato Mundial de Jeek Online - 2º Lugar"
     ]
 );
 
