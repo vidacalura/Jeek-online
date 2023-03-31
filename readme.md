@@ -21,7 +21,7 @@ Você pode acessar o site aqui: <a href="https://jeek-online.up.railway.app/"> J
 Frontend e Backend feitos por <a href="https://github.com/vidacalura"> Vidacalura </a>
 
 
-Design feito por <a href="https://www.instagram.com/caiafa.borges/"> Mirg </a>
+Design feito por <a href="https://github.com/TulioTheGreat"> Mirg </a>
 
 
 Um agradecimento especial a Fábio Hiro e a todos apoiadores do Jeek Online. Este site não teria sido possível sem vocês!
