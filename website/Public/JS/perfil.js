@@ -24,7 +24,7 @@ fetch("https://jeek-online.vercel.app/api/usuarios/" + username)
                         break;
                     case "doador":
                         iframe.className = "fa-solid fa-gem text-blue py-1 px-3";
-                        iframe.title = "Doador";
+                        iframe.title = "Apoiador";
                         break;
                 }
                 iframe.classList.add("text-2xl");

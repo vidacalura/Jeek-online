@@ -1074,6 +1074,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 4rem;
 }
 
+.px-8{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .py-2{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1099,11 +1109,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 3rem;
 }
 
-.px-8{
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
 .py-4{
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -1122,11 +1127,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.py-6{
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
 }
 
 .py-16{
@@ -1170,12 +1170,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 12rem;
 }
 
-.pt-16{
-  padding-top: 4rem;
-}
-
 .pt-12{
   padding-top: 3rem;
+}
+
+.pt-16{
+  padding-top: 4rem;
 }
 
 .pl-3{
@@ -1350,6 +1350,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(171 171 171 / var(--tw-text-opacity));
 }
 
+.text-\[\#EEE\]{
+  --tw-text-opacity: 1;
+  color: rgb(238 238 238 / var(--tw-text-opacity));
+}
+
 .text-jeek-gray-300{
   --tw-text-opacity: 1;
   color: rgb(169 169 169 / var(--tw-text-opacity));
@@ -1370,11 +1375,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(146 180 236 / var(--tw-text-opacity));
 }
 
-.text-\[\#EEE\]{
-  --tw-text-opacity: 1;
-  color: rgb(238 238 238 / var(--tw-text-opacity));
-}
-
 .text-gold{
   --tw-text-opacity: 1;
   color: rgb(212 172 43 / var(--tw-text-opacity));
@@ -1383,11 +1383,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-copper{
   --tw-text-opacity: 1;
   color: rgb(184 115 51 / var(--tw-text-opacity));
-}
-
-.text-jeek-gray-500{
-  --tw-text-opacity: 1;
-  color: rgb(58 58 58 / var(--tw-text-opacity));
 }
 
 .text-jeek-gray-400{
@@ -1403,6 +1398,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-jeek-gray-600{
   --tw-text-opacity: 1;
   color: rgb(44 44 44 / var(--tw-text-opacity));
+}
+
+.text-jeek-gray-500{
+  --tw-text-opacity: 1;
+  color: rgb(58 58 58 / var(--tw-text-opacity));
 }
 
 .text-green-100{
@@ -2322,6 +2322,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding: 0.5rem;
   }
 
+  .md\:px-0{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   .md\:px-12{
     padding-left: 3rem;
     padding-right: 3rem;
@@ -2330,11 +2335,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   .md\:px-1{
     padding-left: 0.25rem;
     padding-right: 0.25rem;
-  }
-
-  .md\:px-0{
-    padding-left: 0px;
-    padding-right: 0px;
   }
 
   .md\:px-6{
@@ -2352,6 +2352,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-bottom: 5rem;
   }
 
+  .md\:py-12{
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
   .md\:px-\[25vw\]{
     padding-left: 25vw;
     padding-right: 25vw;
@@ -2360,11 +2365,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   .md\:px-\[6vw\]{
     padding-left: 6vw;
     padding-right: 6vw;
-  }
-
-  .md\:py-12{
-    padding-top: 3rem;
-    padding-bottom: 3rem;
   }
 
   .md\:pl-\[38vw\]{
