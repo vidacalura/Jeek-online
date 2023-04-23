@@ -87,6 +87,32 @@ app.get("/torneio-aniversario-jeek-2023", (req, res) => {
     res.status(200).sendFile("./Public/aniversario1.html", { root: __dirname });
 });
 
+app.get("/jeek-open", (req, res) => {
+    res.status(200).sendFile("./Public/jeekopen.html", { root: __dirname });
+});
+
+app.get("/jeek-open/inscricao", async (req, res) => {
+    if (req.session.username) {
+        await fetch(process.env.API + "", {
+            method: "POST",
+            headers: {
+                "Content-type": "Application/JSON"
+            },
+            body: JSON.stringify({
+                username: req.session.username,
+                token: process.env.token
+            })
+        })
+        .then((rawRes) => { return rawRes.json(); })
+        .then((response) => {
+            res.json(response);
+        });
+    }
+    else {
+        res.status(400).json({ "error": "Você precisa estar logado para se cadastrar no evento." });
+    }
+});
+
 // Manejo de sessão
 app.get("/cadastro", (req, res) => {
     if (!req.session.username)
