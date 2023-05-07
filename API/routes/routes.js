@@ -406,6 +406,31 @@ router.get("/usuarios/:username", (req, res) => {
 
 });
 
+router.post("/jeek-open/inscricao", async (req, res) => {
+    const { username, token } = req.body;
+
+    if (username == null || username == "") {
+        res.status(400).json({ "error": "Nome de usuário inválido." });
+        return
+    }
+
+    if (token == process.env.token) {
+        db.promise()
+        .execute("INSERT INTO jeek_open_07_2023 (username) VALUES(?);", [
+            username
+        ])
+        .then(() => {
+            res.status(200).json({ "message": "Cadastro realizado com sucesso!" });
+        })
+        .catch((error) => {
+            res.status(500).json({ "error": "Não foi possível cadastrar usuário no torneio Jeek Open 2023." });
+        });
+    }
+    else {
+        res.json({ "error": "Você não tem as permissões necessárias para efetuar esta ação" });
+    }
+});
+
 router.get("/usuarios/elo/:username", (req, res) => {
 
     const username = req.params.username;
