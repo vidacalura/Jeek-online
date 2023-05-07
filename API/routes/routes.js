@@ -410,13 +410,13 @@ router.post("/jeek-open/inscricao", async (req, res) => {
     const { username, token } = req.body;
 
     if (username == null || username == "") {
-        res.status(400).json({ "error": "Nome de usuário inválido." });
+        res.status(400).json({ "error": "Usuário inválido." });
         return
     }
 
     if (token == process.env.token) {
         db.promise()
-        .execute("INSERT INTO jeek_open_07_2023 (username) VALUES(?);", [
+        .execute("INSERT INTO jeek_open_07_2023 (username, data_insc) VALUES(?, CURDATE());", [
             username
         ])
         .then(() => {
