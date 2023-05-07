@@ -416,11 +416,11 @@ router.post("/jeek-open/inscricao", async (req, res) => {
 
     if (token == process.env.token) {
         db.promise()
-        .execute("INSERT INTO jeek_open_07_2023 (username, data_insc) VALUES(?, CURDATE());", [
+        .execute("INSERT INTO jeek_open_07_2023_temp (username, data_insc) VALUES(?, CURDATE());", [
             username
         ])
         .then(() => {
-            res.status(200).json({ "message": "Cadastro realizado com sucesso!" });
+            res.status(200).json({ "message": "Seu pedido de cadastro foi enviado ao sistema e será avaliado por um administrador." });
         })
         .catch((error) => {
             res.status(500).json({ "error": "Não foi possível cadastrar usuário no torneio Jeek Open 2023." });
@@ -431,8 +431,18 @@ router.post("/jeek-open/inscricao", async (req, res) => {
     }
 });
 
-router.get("/usuarios/elo/:username", (req, res) => {
+router.get("/jeek-open", (req, res) => {
+    db.promise()
+    .execute("SELECT posicao_tabela, username FROM jeek_open_07_2023 ORDER BY posicao_tabela;")
+    .then(([rows]) => {
+        res.status(200).json({ "usuarios": rows });
+    })
+    .catch((error) => {
+        res.status(500).json({ "error": "Erro ao conectar com o banco de dados. Tente novamente mais tarde." });
+    });
+});
 
+router.get("/usuarios/elo/:username", (req, res) => {
     const username = req.params.username;
 
     db.promise()
