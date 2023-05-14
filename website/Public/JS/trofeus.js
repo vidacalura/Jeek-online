@@ -55,11 +55,21 @@ const leonestri = new Jogador(
     [ "Torneio de Candidatos Jeek Online 2023 - 2º Lugar" ]
 );
 
+const php = new Jogador(
+    "Php",
+    null,
+    null,
+    "BR",
+    false,
+    [ "Nomeação de Árbitro Classe D" ]
+);
+
 let jogadores = [];
 jogadores.push(vidacalura);
 jogadores.push(shinobu);
 jogadores.push(batman);
 jogadores.push(leonestri);
+jogadores.push(php);
 
 // Cria elementos
 const premiosPorUserDiv = document.getElementById("premios-por-usuario");
@@ -122,8 +132,10 @@ jogadores.forEach(async (j) => {
     eloOnlineH3.classList.add("pb-2");
 
     const eloAIJeH3 = document.createElement("h3");
-    eloAIJeH3.textContent = "Elo AIJe: " + j.eloAIJe;
     eloAIJeH3.classList.add("pb-6");
+    if (j.eloAIJe) {
+        eloAIJeH3.textContent = "Elo AIJe: " + j.eloAIJe;
+    }
 
     dadosJogadorDiv.classList.add("jogador-aije-dados-container");
     dadosJogadorDiv.classList.add("hidden");
@@ -172,6 +184,22 @@ jogadores.forEach(async (j) => {
         else if (t.includes("3º")) {
             trofeu.classList.add("text-copper");
             trofeu.classList.add("fa-medal");
+        }
+        else if (t.includes("Árbitro")) {
+            if (t.includes("Classe D")) {
+                trofeu.classList.add("text-jeek-gray-500");
+            }
+            else if (t.includes("Classe C")) {
+                trofeu.classList.add("text-copper");
+            }
+            else if (t.includes("Classe B")) {
+                trofeu.classList.add("text-jeek-gray-200");
+            }
+            else if (t.includes("Classe A")) {
+                trofeu.classList.add("text-gold");
+            }
+
+            trofeu.classList.add("fa-award");
         }
         else {
             if (t.includes("revelação")) {

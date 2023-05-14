@@ -81,12 +81,12 @@
     box-shadow: 9px 9px 5px rgba(0, 0, 0, 0.2);
 
 }
-.msgs::-webkit-scrollbar {
+*::-webkit-scrollbar {
 
     width: 6px; 
 
 }
-.msgs::-webkit-scrollbar-thumb{
+*::-webkit-scrollbar-thumb{
 
     height: 10%;
     border-radius: 20px;
@@ -281,10 +281,34 @@
 
 }
 
+.linha-btn {
+    @apply w-full text-left px-5 py-2 outline-none text-white hover:bg-jeek-gray-400;
+}
+
+.norma{
+
+    @apply text-white text-lg pt-1 font-bold rounded px-2 ml-4 shadow-md;
+
+}
+.norma-ai {
+
+    box-shadow: 1px 1px 7px rgba(255, 255, 255, 0.4);
+
+}
+
 .user-container{
 
     @apply mb-2 shadow-sm flex justify-between py-4 px-8 rounded-md;
 
+}
+.user-container-inscricao{
+
+    @apply mb-4 shadow-sm flex justify-around py-4 px-8 rounded-md;
+
+}
+
+#barra-analise {
+    transition: all ease-in-out 0.75s
 }
 
 #candidatos-main a{

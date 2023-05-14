@@ -16,7 +16,7 @@ fetch("https://jeek-online.vercel.app/api/usuarios/" + username)
         if (res.titulos[0]){
             const usernameDiv = document.getElementById("username-div");
             res.titulos.forEach((t) => {
-                const iframe = document.createElement("i");
+                let iframe = document.createElement("i");
                 switch(t){
                     case "campeão":
                         iframe.className = "fa-solid fa-crown text-gold py-1 px-4";
@@ -25,6 +25,35 @@ fetch("https://jeek-online.vercel.app/api/usuarios/" + username)
                     case "doador":
                         iframe.className = "fa-solid fa-gem text-blue py-1 px-3";
                         iframe.title = "Apoiador";
+                        break;
+                    case "ANP":
+                        iframe = document.createElement("div");
+                        iframe.classList.add("norma");
+                        iframe.classList.add("bg-jeek-gray-500");
+                        iframe.textContent = "ANP";
+                        iframe.title = "Árbitro Nacional Provisório";
+                        break;
+                    case "AN":
+                        iframe = document.createElement("div");
+                        iframe.classList.add("norma");
+                        iframe.classList.add("bg-copper");
+                        iframe.textContent = "AN";
+                        iframe.title = "Árbitro Nacional";
+                        break;
+                    case "AJ":
+                        iframe = document.createElement("div");
+                        iframe.classList.add("norma");
+                        iframe.classList.add("bg-gold");
+                        iframe.textContent = "AJ";
+                        iframe.title = "Árbitro Oficial Jeek Online";
+                        break;
+                    case "AI":
+                        iframe = document.createElement("div");
+                        iframe.classList.add("norma");
+                        iframe.classList.add("bg-gold");
+                        iframe.classList.add("norma-ai");
+                        iframe.textContent = "AI";
+                        iframe.title = "Árbitro Internacional";
                         break;
                 }
                 iframe.classList.add("text-2xl");

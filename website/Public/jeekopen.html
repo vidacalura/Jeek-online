@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="CSS/output.css">
+        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"></script>
+        <script src="/JS/jeekopen.js" defer> </script>
+        <link rel="shortcut icon" href="imgs/aberturadomestre.ico" type="image/x-icon">
+        <title> Jeek Online </title>
+
+    </head>
+
+    <body class="bg-jeek-gray-600 text-white overflow-x-hidden">
+
+        <nav class="pt-4 px-6 flex justify-between">
+            <div class="flex">
+                <a href="/">
+                    <img src="/imgs/aberturadomestre.ico" class="rounded-md w-8 h-auto shadow-md" alt="Logo Jeek Online">
+                </a>
+                <a href="/">
+                    <h1 class="text-jeek-gray-100 font-bold pt-1 pl-4 flex"> Jeek Online <p class="text-jeek-gray-200 pl-2"> Beta </p> </h1>
+                </a>
+            </div>
+        </nav>
+
+        <main class="pt-16 px-8 md:px-0 md:pl-16 md:pr-[25vw]">
+            <section id="inscricao">
+                <h1 class="text-white font-bold underline text-3xl"> Inscrições para o Jeek Online Open - 2ª edição (xx/07/2023) </h1>
+
+                <p class="pt-8">
+                    O Jeek Online Open é um torneio rankeado aberto a qualquer um que tiver uma conta no 
+                    site e desejar ingressar. <br> <br>
+
+                    O torneio acontece 1/2 vezes ao ano e diferentemente do torneio de candidatos, funciona 
+                    em formato de chaves, e não de pontos corridos. Por mais que este torneio não tenha 
+                    premiações, ele permite que jogadores com boas classificações se classifiquem para o 
+                    torneio de candidatos conquistando rating AIJe durante o torneio. <br> <br>
+
+                    Você pode checar o <a href="#regulamento" class="underline"> regulamento completo aqui </a> <br>
+
+                    Você pode checar a <a href="/jeek-open/inscritos" class="underline"> tabela de inscritos aqui </a>
+                </p>
+
+                <div class="flex justify-center">
+                    <button id="inscricao-btn" class="rounded-full outline-none bg-blue font-bold text-xl shadow-md px-6 py-3 my-8">
+                        Quero me inscrever!
+                    </button>
+                </div>
+
+                <p class="text-sm text-jeek-gray-200">
+                    Caso você deseje cancelar sua inscrição, contate um ADM do
+                    <a href="https://discord.gg/uDKkRk8ABr" target="_blank" class="underline">nosso servidor do discord</a>
+                </p>
+            </section>
+
+            <section id="regulamento" class="mt-16 mb-8 bg-jeek-gray-700 py-8 px-6 text-sm md:text-base md:px-12 rounded-lg shadow-lg">
+                <h2 class="text-white font-bold text-2xl underline pb-8"> Regulamento: </h2>
+
+                <h3 class="text-white font-bold text-xl underline pb-4"> Participantes: </h3>
+                <p>
+                    Todos aqueles que tiverem uma conta no site do Jeek Online 
+                    podem competir de forma gratuita, independente de elo ou 
+                    experiência prévia com torneios ou mesmo o jogo em si.
+                </p>
+
+                <h3 class="text-white font-bold text-xl underline pt-8 pb-4"> Sistema de jogo: </h3>
+                <p>
+                    As partidas se darão como eliminatórias, isto é, aquele que vencer
+                    segue para a próxima fase, enquanto aquele que perder é eliminado
+                    do torneio. <br> <br>
+
+                    As partidas ocorrerão como "melhores de 5" (primeiro a vencer 3 rodadas ganha),
+                    até as finais e disputas de 3º colocado, que por fim serão uma "melhor de 9"
+                    (primeiro a vencer 5 rodadas ganha).
+                </p>
+
+                <h3 class="text-white font-bold text-xl underline py-8 pb-4"> Pareamento: </h3>
+                <p>
+                    Os chaveamentos acontecem de forma a impedir que o top 1 e top 2 se encontrem antes das
+                    finais. A ordem dos jogos das chaves são escolhidas aleatoriamente, as chaves, porém, 
+                    não. Os jogadores em posições ímpares da tabela ficam na chave 1, e os jogadores em
+                    posições pares ficam na chave 2, que então são embaralhadas. <br>
+                    Exemplo: <br> <br>
+
+                    Chave 1: <br>
+                    1º colocado do ranking AIJe <br>
+                    3º colocado do ranking AIJe <br>
+                    5º colocado do ranking AIJe <br>
+                    ... <br> <br>
+                    
+                    Chave 2: <br>
+                    2º colocado do ranking AIJe <br>
+                    4º colocado do ranking AIJe <br>
+                    6º colocado do ranking AIJe <br>
+                    ... <br> <br>
+
+                    Caso o jogador não possua rating AIJe, sua pontuação será dada pelo seu rating online.
+                    Contudo, independente de quanto de elo o jogador possua, jamais ficará posicionado acima de um
+                    jogador com rating oficial AIJe na tabela, o qual será sempre prioritário. <br>
+                    O rating online do jogador só será considerado caso este possua 10 ou mais partidas 
+                    rankeadas no site. Caso contrário, este jogador não terá nenhum rating atribuído a ele,
+                    e será posicionado ao final da tabela. <br> <br>
+
+                    Em caso de número de jogadores não exatos (4, 8, 16, 32, 64, ...), ocorrerá uma primeira
+                    rodada sem os jogadores mais altos da tabela, que serão automaticamente classificados para
+                    a próxima rodada. <br>
+                    Exemplo: se houverem 12 jogadores, os 4 jogadores com maior rating passam
+                    para a próxima fase imediatamente, enquanto os outros 8 jogam a primeira rodada para decidir
+                    quem segue.
+                </p>
+
+                <h3 class="text-white font-bold text-xl py-8 pb-4"> Sorteio: </h3>
+                <p>
+                    O sorteio das chaves se dará ao vivo
+                    <a href="https://www.youtube.com/channel/UCgKpJ2iuC_ew9ZLVVkQEEnw" class="underline"> em nosso canal do youtube</a>
+                    alguns dias antes do torneio. Geralmente, o sorteio ocorre 1 ou 2 dias com antecedência ao
+                    torneio, mas podem haver alterações de data.
+                </p>
+
+                <h3 class="text-white font-bold text-xl underline pt-8 pb-4"> Considerações finais: </h3>
+                <p>
+                    As partidas não necessariamente valerão elo online, mas sempre contarão para o elo 
+                    oficial de torneios AIJe. <br> <br>
+
+                    As partidas não ocorrem de forma simultânea sem estarem acompanhadas
+                    de um árbitro que estará analisando a partida e o placar, além de estar gravando
+                    a partida caso necessário ou requisitado. <br> <br>
+
+                    Em caso de problemas técnicos ou impossibilidade de se seguir a partida,
+                    fica a critério do árbitro a melhor forma de prosseguir, podendo suspender
+                    temporariamente, ou até mesmo cancelar a partida se dado necessário.
+                </p>
+                
+            </section>
+        </main>
+
+    </body>
+
+</html>

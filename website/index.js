@@ -34,6 +34,10 @@ app.get("/analise", (req, res) => {
     res.status(200).sendFile("./Public/analise.html", { root: __dirname });
 });
 
+app.get("/aberturas/analise", (req, res) => {
+    res.status(200).sendFile("./Public/aberturas.html", { root: __dirname });
+});
+
 app.get("/jeekens", (req, res) => {
     res.status(200).sendFile("./Public/bot.html", { root: __dirname });
 });
@@ -91,9 +95,13 @@ app.get("/jeek-open", (req, res) => {
     res.status(200).sendFile("./Public/jeekopen.html", { root: __dirname });
 });
 
+app.get("/jeek-open/inscritos", (req, res) => {
+    res.status(200).sendFile("./Public/jeekopeninscritos.html", { root: __dirname });
+});
+
 app.get("/jeek-open/inscricao", async (req, res) => {
     if (req.session.username) {
-        await fetch(process.env.API + "", {
+        await fetch(process.env.API + "jeek-open/inscricao", {
             method: "POST",
             headers: {
                 "Content-type": "Application/JSON"
