@@ -17,7 +17,11 @@ const vidacalura = new Jogador(
     null,
     "BR",
     true,
-    [ "Jeek Online Open I - 1º Lugar", "Campeonato Mundial de Jeek Online (2023) - 1º Lugar" ]
+    [
+        "Jeek Online Open I - 1º Lugar",
+        "Campeonato Mundial de Jeek Online (2023) - 1º Lugar",
+        "Torneio de aniversário de 1 ano - 1º Lugar"
+    ]
 );
 
 const shinobu = new Jogador(
@@ -64,12 +68,32 @@ const php = new Jogador(
     [ "Nomeação de Árbitro Classe D" ]
 );
 
+const rafflesblack = new Jogador(
+    "Rafflesblack",
+    null,
+    null,
+    "BR",
+    false,
+    [ "Torneio de aniversário de 1 ano - 3º Lugar" ]
+);
+
+const fabiohiro = new Jogador(
+    "Fábio Hiro",
+    null,
+    null,
+    "BR",
+    false,
+    [ "Torneio de aniversário de 1 ano - 2º Lugar" ]
+);
+
 let jogadores = [];
 jogadores.push(vidacalura);
 jogadores.push(shinobu);
 jogadores.push(batman);
 jogadores.push(leonestri);
 jogadores.push(php);
+jogadores.push(rafflesblack);
+jogadores.push(fabiohiro);
 
 // Cria elementos
 const premiosPorUserDiv = document.getElementById("premios-por-usuario");
@@ -127,14 +151,14 @@ jogadores.forEach(async (j) => {
     const dadosJogadorDiv = document.createElement("div");
 
     const eloOnlineH3 = document.createElement("h3");
-    eloOnlineH3.textContent = "Elo Online: " + j.eloOnline;
+    eloOnlineH3.textContent = "Elo Online: " + (j.eloOnline != null ? j.eloOnline : "-");
     eloOnlineH3.classList.add("pt-6");
     eloOnlineH3.classList.add("pb-2");
 
     const eloAIJeH3 = document.createElement("h3");
     eloAIJeH3.classList.add("pb-6");
     if (j.eloAIJe) {
-        eloAIJeH3.textContent = "Elo AIJe: " + j.eloAIJe;
+        eloAIJeH3.textContent = "Elo AIJe: " + (j.eloAIJe != null ? j.eloAIJe : "-");
     }
 
     dadosJogadorDiv.classList.add("jogador-aije-dados-container");
