@@ -91,7 +91,7 @@ app.get("/torneio-aniversario-jeek-2023", (req, res) => {
     res.status(200).sendFile("./Public/aniversario1.html", { root: __dirname });
 });
 
-app.get("/jeek-open", (req, res) => {
+app.get("/jeek-open/2023", (req, res) => {
     res.status(200).sendFile("./Public/jeekopen.html", { root: __dirname });
 });
 
