@@ -14,8 +14,8 @@ const deletarUsuarioContainer = document.getElementById("deletar-usuario-contain
 deletarUsuarioContainer.addEventListener("click", (e) => { mostrarMenuDeletarUsuario(e) });
 const senhaDeletarTextbox = document.getElementById("senha-deletar-usuario");
 const deletarUsuarioBtn = document.getElementById("deletar-conta-btn")
-const usarSkinBtn = document.getElementById("usar-skin-btn");
-const desativarSkinBtn = document.getElementById("desativar-skins-btn");
+//const usarSkinBtn = document.getElementById("usar-skin-btn");
+//const desativarSkinBtn = document.getElementById("desativar-skins-btn");
 
 mudarUpdateBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -139,18 +139,6 @@ deletarUsuarioBtn.addEventListener("click", async (e) => {
 
 });
 
-usarSkinBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
-
-
-});
-
-desativarSkinBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
-
-    
-});
-
 function mostrarMenuDeletarUsuario(e){
 
     if (deletarUsuarioContainer.className.includes("hidden")){
@@ -169,7 +157,7 @@ deletarUsuarioContainer.addEventListener("click", (e) => {
     }
 });
 
-/* Skins */
+/* Skins 
 let skinSelecionada = null, corSelecionada = null;
 
 fetch("/getSessao")
@@ -206,6 +194,7 @@ fetch("/getSessao")
         }
     });
 });
+*/
 
 function mostrarSkins(skins) {
     const inventarioSkinDiv = document.getElementById("inventario-skins");
