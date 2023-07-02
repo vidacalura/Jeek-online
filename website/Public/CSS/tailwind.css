@@ -20,6 +20,11 @@
     @apply bg-jeek-gray-350 rounded;
 
 }
+.chave-0 {
+
+    @apply mb-2;
+
+}
 .chave-1{
 
     @apply mb-2;
