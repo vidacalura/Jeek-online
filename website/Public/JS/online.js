@@ -132,26 +132,12 @@ function renderGridRequest(roomNumber){
 }
 
 function renderGrid(data){
-
-    const { roomNumber, id } = data;
+    const { roomNumber, id, casasAtivas } = data;
 
     if (socket.id == id){
-
-        casasAtivas = data.casasAtivas;
-
-        const { casasAtivasBrancas, casasAtivasPretas } = data;
-
-        for (const casa of Object.values(casasAtivasBrancas)){
-            if (casa.y != null){
-                addPeca(casa.y, casa.x, true, roomNumber);
-            }
+        for (const casa of casasAtivas) {
+            addPeca(casa[0], casa[1], casa[2], gameRoom);
         }
-        for (const casa of Object.values(casasAtivasPretas)){
-            if (casa.y != null){
-                addPeca(casa.y, casa.x, false, roomNumber);
-            }
-        }
-
     }
 
 }
@@ -203,7 +189,8 @@ function criarSalaPrivada(){
 
 }
 
-function addPeca(y, x, vezBrancas, skin, room){
+function addPeca(y, x, vezBrancas, room){
+    console.log(room)
     if (gameRoom == room){
         // Registro do lance - Visual
         const peca = document.createElement("div");
@@ -216,13 +203,6 @@ function addPeca(y, x, vezBrancas, skin, room){
         if (movesBack > 0){
             peca.classList.add("hidden");
             movesBack++;
-        }
-
-        if (skin && false){
-            const skinPeca = document.createElement("i");
-            skinPeca.className = skin;
-
-            peca.appendChild(skinPeca);
         }
 
         tabuleiro[y][x].appendChild(peca);
@@ -704,7 +684,7 @@ socket.on("chat", (data) => {
 });
 
 socket.on("addPecaBackend", (data) => {
-    addPeca(data.y, data.x, data.vezBrancas, data.skin, data.room);
+    addPeca(data.y, data.x, data.vezBrancas, data.room);
 });
 
 socket.on("endGame", (data) => {
