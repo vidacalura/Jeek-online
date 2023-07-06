@@ -8,13 +8,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/CSS/output.css">
         <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"></script>
-        <script src="/JS/jeekopen.js" defer> </script>
         <link rel="shortcut icon" href="/imgs/aberturadomestre.ico" type="image/x-icon">
         <title> Jeek Online </title>
 
     </head>
 
-    <body class="bg-jeek-gray-600 text-white overflow-x-hidden">
+    <body class="bg-jeek-gray-600 text-white md:overflow-x-hidden">
 
         <nav class="pt-4 px-6 flex justify-between">
             <div class="flex">
@@ -27,114 +26,350 @@
             </div>
         </nav>
 
-        <main class="pt-16 px-8 md:px-0 md:pl-16 md:pr-[25vw]">
-            <section id="inscricao">
-                <h1 class="text-white font-bold underline text-3xl"> Inscrições para o Jeek Online Open - 2ª edição (08/07/2023) </h1>
+        <main class="mt-8">
+            <!-- <section id="torneios-trofeus">
+                <div id="torneio-candidatos-mar-2023" class="torneio-div">
+                    <h2 class="font-bold text-xl"> Torneio de Candidatos - Março 2023 </h2>
 
-                <p class="pt-8">
-                    O Jeek Online Open é um torneio rankeado aberto a qualquer um que tiver uma conta no 
-                    site e desejar ingressar. <br> <br>
+                    <div class="flex justify-center gap-4 md:gap-12 py-12">
+                        <div class="text-center relative w-16 md:w-24">
+                            <div class="absolute bottom-0">
+                                <i class="fa-solid fa-medal text-jeek-gray-200 text-2xl md:text-7xl pb-4"></i>
+                                <p class="md:text-xl text-jeek-gray-100"> </p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <i class="fa-solid fa-trophy text-gold text-4xl md:text-9xl pb-4"></i>
+                            <p class="md:text-2xl text-jeek-gray-100 font-bold"> </p>
+                        </div>
+                        <div class="text-center relative w-16 md:w-24">
+                            <div class="absolute bottom-0">
+                                <i class="fa-solid fa-medal text-copper text-xl md:text-6xl pb-4"></i>
+                                <p class="md:text-lg text-jeek-gray-100">  </p>
+                            </div>
+                        </div>
+                    </div>
 
-                    O torneio acontece 1/2 vezes ao ano e diferentemente do torneio de candidatos, funciona 
-                    em formato de chaves, e não de pontos corridos. Por mais que este torneio não tenha 
-                    premiações, ele permite que jogadores com boas classificações se classifiquem para o 
-                    torneio de candidatos conquistando rating AIJe durante o torneio. <br> <br>
+                    <div class="flex justify-center gap-12 py-12">
+                        <div class="text-center w-32">
+                            <p class="font-bold text-jeek-gray-100 text-lg pb-8"> Partida mais popular </p>
+                            <i class="fa-solid fa-award text-jeek-gray-400 text-6xl pb-4"></i>
+                            <p class="text-sm text-jeek-gray-100"> __ X __ (X - X) </p>
+                        </div>
+                        <div class="text-center w-32">
+                            <p class="font-bold text-jeek-gray-100 text-lg pb-8"> Melhor espírito esportivo </p>
+                            <i class="fa-solid fa-award text-jeek-gray-400 text-6xl pb-4"></i>
+                            <p class="text-xl text-jeek-gray-100">  </p>
+                        </div>
+                        <div class="text-center w-32">
+                            <p class="font-bold text-jeek-gray-100 text-lg pb-4"> Melhor jogada do torneio </p>
+                            <i class="fa-solid fa-award text-jeek-gray-300 text-8xl pb-4"></i>
+                            <p class="text-xl text-jeek-gray-100">  </p>
+                        </div>
+                        <div class="text-center w-32">
+                            <p class="font-bold text-jeek-gray-100 text-xl pb-4"> Jogador revelação </p>
+                            <i class="fa-solid fa-award text-[#b69d4d] text-8xl pb-4"></i>
+                            <p class="text-xl text-jeek-gray-100"> </p>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
 
-                    Você pode checar o <a href="#regulamento" class="underline"> regulamento completo aqui </a> <br>
+            <section class="flex md:justify-around text-jeek-gray-100">
+                <div class="mr-24 ml-12 md:m-0">
+                    <div class="torneio-chave mt-6 chave-0">
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> liuzis </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> Cabeça </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                    </div>
 
-                    Você pode checar a <a href="/jeek-open/inscritos" class="underline"> tabela de inscritos aqui </a>
-                </p>
+                    <div class="torneio-chave chave-0">
+                        <div class="torneio-participante"> 
+                            <p class="pt-3 text-sm px-4"> AngolanoF*da </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> RDuppret </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                    </div>
 
-                <div class="flex justify-center">
-                    <button id="inscricao-btn" class="rounded-full outline-none bg-blue font-bold text-xl shadow-md px-6 py-3 my-8">
-                        Quero me inscrever!
-                    </button>
+                    <div class="torneio-chave chave-0">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> The_Jaw </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> Polar </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                    </div>
+
+                    <div class="torneio-chave chave-0">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> mirg </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="pt-3 text-sm px-4"> bergcutedickk </p> 
+                            <div class="pontuacao text-sm"> </div>
+                        </div>
+                    </div>
+
+                    <div class="torneio-chave chave-0">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> CivicLine </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> Laura </p> 
+                            <div class="pontuacao text-sm"> </div>
+                        </div>
+                    </div>
+
+                    <div class="torneio-chave chave-0">
+                        <div class="torneio-participante"> 
+                            <p class="pt-3 text-sm px-3"> Jotinhamatador </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> Rafflesblack </p>
+                            <div class="pontuacao">  </div>
+                        </div>
+                    </div>
+
+                    <div class="torneio-chave chave-0">
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> Holtz </p> 
+                            <div class="pontuacao text-sm"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> pontinhajeek </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                    </div>
                 </div>
 
-                <p class="text-sm text-jeek-gray-200">
-                    Caso você deseje cancelar sua inscrição, contate um ADM do
-                    <a href="https://discord.gg/uDKkRk8ABr" target="_blank" class="underline">nosso servidor do discord</a>
-                </p>
-            </section>
+                <div class="mr-24 ml-12 md:m-0">
+                    <div class="torneio-chave chave-1">
+                        <div class="torneio-participante"> 
+                            <p class="pt-3 px-4 text-sm"> Scooby222doo </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4">  </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                    </div>
 
-            <section id="regulamento" class="mt-16 mb-8 bg-jeek-gray-700 py-8 px-6 text-sm md:text-base md:px-12 rounded-lg shadow-lg">
-                <h2 class="text-white font-bold text-2xl underline pb-8"> Regulamento: </h2>
+                    <div class="torneio-chave chave-1">
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> luizin </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4">  </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                    </div>
 
-                <h3 class="text-white font-bold text-xl underline pb-4"> Participantes: </h3>
-                <p>
-                    Todos aqueles que tiverem uma conta no site do Jeek Online 
-                    podem competir de forma gratuita, independente de elo ou 
-                    experiência prévia com torneios ou mesmo o jogo em si.
-                </p>
+                    <div class="torneio-chave chave-1">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> LeoNestri </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4">  </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                    </div>
 
-                <h3 class="text-white font-bold text-xl underline pt-8 pb-4"> Sistema de jogo: </h3>
-                <p>
-                    As partidas se darão como eliminatórias, isto é, aquele que vencer
-                    segue para a próxima fase, enquanto aquele que perder é eliminado
-                    do torneio. <br> <br>
+                    <div class="torneio-chave chave-1">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> vidacalura </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4">  </p> 
+                            <div class="pontuacao text-sm"> </div>
+                        </div>
+                    </div>
 
-                    As partidas ocorrerão como "melhores de 5" (primeiro a vencer 3 rodadas ganha),
-                    até as finais e disputas de 3º colocado, que por fim serão uma "melhor de 9"
-                    (primeiro a vencer 5 rodadas ganha).
-                </p>
+                    <div class="torneio-chave chave-1">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> valter-voll </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4">  </p> 
+                            <div class="pontuacao text-sm"> </div>
+                        </div>
+                    </div>
 
-                <h3 class="text-white font-bold text-xl underline py-8 pb-4"> Pareamento: </h3>
-                <p>
-                    Os chaveamentos acontecem de forma a impedir que o top 1 e top 2 se encontrem antes das
-                    finais. A ordem dos jogos das chaves são escolhidas aleatoriamente, as chaves, porém, 
-                    não. Os jogadores em posições ímpares da tabela ficam na chave 1, e os jogadores em
-                    posições pares ficam na chave 2, que então são embaralhadas. <br>
-                    Exemplo: <br> <br>
+                    <div class="torneio-chave chave-1">
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> Shinobu </p> 
+                            <div class="pontuacao">  </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4">  </p>
+                            <div class="pontuacao">  </div>
+                        </div>
+                    </div>
 
-                    Chave 1: <br>
-                    1º colocado do ranking AIJe <br>
-                    3º colocado do ranking AIJe <br>
-                    5º colocado do ranking AIJe <br>
-                    ... <br> <br>
-                    
-                    Chave 2: <br>
-                    2º colocado do ranking AIJe <br>
-                    4º colocado do ranking AIJe <br>
-                    6º colocado do ranking AIJe <br>
-                    ... <br> <br>
+                    <div class="torneio-chave chave-1">
+                        <div class="torneio-participante"> 
+                            <p class="pt-3 px-3 text-sm"> Batman220206 </p> 
+                            <div class="pontuacao text-sm"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                    </div>
 
-                    Caso o jogador não possua rating AIJe, sua pontuação será dada pelo seu rating online.
-                    Contudo, independente de quanto de elo o jogador possua, jamais ficará posicionado acima de um
-                    jogador com rating oficial AIJe na tabela, o qual será sempre prioritário. <br>
-                    O rating online do jogador só será considerado caso este possua 10 ou mais partidas 
-                    rankeadas no site. Caso contrário, este jogador não terá nenhum rating atribuído a ele,
-                    e será posicionado ao final da tabela. <br> <br>
+                    <div class="torneio-chave chave-1">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> Php </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> Kurumiw </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                    </div>
+                </div>
 
-                    Em caso de número de jogadores não exatos (4, 8, 16, 32, 64, ...), ocorrerá uma primeira
-                    rodada sem os jogadores mais altos da tabela, que serão automaticamente classificados para
-                    a próxima rodada. <br>
-                    Exemplo: se houverem 12 jogadores, os 4 jogadores com maior rating passam
-                    para a próxima fase imediatamente, enquanto os outros 8 jogam a primeira rodada para decidir
-                    quem segue.
-                </p>
+                <div class="mr-24 md:m-0">
+                    <div class="torneio-chave chave-2">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                    </div>
 
-                <h3 class="text-white font-bold text-xl py-8 pb-4"> Sorteio: </h3>
-                <p>
-                    O sorteio das chaves se dará ao vivo
-                    <a href="https://discord.gg/uDKkRk8ABr" class="underline"> em nosso servidor no discord</a>
-                    alguns dias antes do torneio. Geralmente, o sorteio ocorre 1 ou 2 dias com antecedência ao
-                    torneio, mas podem haver alterações de data.
-                </p>
+                    <div class="torneio-chave chave-2">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                    </div>
 
-                <h3 class="text-white font-bold text-xl underline pt-8 pb-4"> Considerações finais: </h3>
-                <p>
-                    As partidas não necessariamente valerão elo online, mas sempre contarão para o elo 
-                    oficial de torneios AIJe. <br> <br>
+                    <div class="torneio-chave chave-2">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                    </div>
 
-                    As partidas não ocorrem de forma simultânea sem estarem acompanhadas
-                    de um árbitro que estará analisando a partida e o placar, além de estar gravando
-                    a partida caso necessário ou requisitado. <br> <br>
+                    <div class="torneio-chave chave-2">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                    </div>
+                </div>
 
-                    Em caso de problemas técnicos ou impossibilidade de se seguir a partida,
-                    fica a critério do árbitro a melhor forma de prosseguir, podendo suspender
-                    temporariamente, ou até mesmo cancelar a partida se dado necessário.
-                </p>
-                
+                <div class="mr-24 md:m-0">
+                    <div class="torneio-chave chave-3">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                    </div>
+
+                    <div class="torneio-chave chave-3">
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mr-24 md:m-0">
+                    <div class="torneio-chave chave-4 mt-[19.5rem]">
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                    </div>
+
+                    <div class="torneio-chave chave-4 mt-16">
+                        <div class="torneio-participante"> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                        <div class="h-[0.1rem] w-40 bg-jeek-gray-600"> </div>
+                        <div class="torneio-participante "> 
+                            <p class="py-2 px-4"> </p> 
+                            <div class="pontuacao"> </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="torneio-participante bg-gold mt-[21rem] rounded">
+                    <div class="flex py-2 px-4 font-bold text-white">
+                        <i class="fa-solid fa-star pt-[0.2rem] pr-2"> </i>
+                        <p> </p>
+                    </div>
+                </div>
+
             </section>
         </main>
 
