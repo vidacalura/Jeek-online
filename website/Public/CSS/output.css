@@ -652,8 +652,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2.5rem;
 }
 
+.mr-10{
+  margin-right: 2.5rem;
+}
+
 .ml-12{
   margin-left: 3rem;
+}
+
+.mt-6{
+  margin-top: 1.5rem;
 }
 
 .mt-\[19\.5rem\]{
@@ -668,16 +676,32 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 21rem;
 }
 
-.mt-6{
-  margin-top: 1.5rem;
-}
-
 .mt-10{
   margin-top: 2.5rem;
 }
 
 .mt-20{
   margin-top: 5rem;
+}
+
+.mr-8{
+  margin-right: 2rem;
+}
+
+.mr-6{
+  margin-right: 1.5rem;
+}
+
+.mr-4{
+  margin-right: 1rem;
+}
+
+.mr-1{
+  margin-right: 0.25rem;
+}
+
+.mr-0{
+  margin-right: 0px;
 }
 
 .mt-4{
@@ -1304,6 +1328,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 0.25rem;
 }
 
+.pr-\[0\.125rem\]{
+  padding-right: 0.125rem;
+}
+
 .pr-6{
   padding-right: 1.5rem;
 }
@@ -1342,6 +1370,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-\[0\.15rem\]{
   padding-top: 0.15rem;
+}
+
+.pt-\[0\.625rem\]{
+  padding-top: 0.625rem;
+}
+
+.pl-8{
+  padding-left: 2rem;
 }
 
 .text-left{
@@ -2427,6 +2463,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:w-96{
     width: 24rem;
+  }
+
+  .md\:w-32{
+    width: 8rem;
   }
 
   .md\:w-\[55vw\]{

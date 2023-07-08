@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Outros 
+todo.txt
+APIpseudocode.txt
+*.sql
+__pycache__
+crypto.js

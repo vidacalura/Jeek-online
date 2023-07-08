@@ -20,7 +20,8 @@ const vidacalura = new Jogador(
     [
         "Jeek Online Open I - 1º Lugar",
         "Campeonato Mundial de Jeek Online (2023) - 1º Lugar",
-        "Torneio de aniversário de 1 ano - 1º Lugar"
+        "Torneio de aniversário de 1 ano - 1º Lugar",
+        "Jeek Online Open II - 1º Lugar"
     ]
 );
 
@@ -36,6 +37,18 @@ const shinobu = new Jogador(
     ]
 );
 
+const scooby = new Jogador(
+    "Scooby222doo",
+    null,
+    null,
+    "PT",
+    false,
+    [
+        "Jeek Online Open II - 3º Lugar", 
+        "Jeek Online Open II - Jogador revelação" 
+    ]
+);
+
 const batman = new Jogador(
     "Batman220206",
     null,
@@ -46,7 +59,9 @@ const batman = new Jogador(
         "Jeek Online Open I - 3º Lugar", "Torneio de Candidatos Jeek Online 2023 - 1º Lugar",
         "Torneio de Candidatos Jeek Online 2023 - Melhor jogada do Torneio",
         "Torneio de Candidatos Jeek Online 2023 - Jogador revelação",
-        "Campeonato Mundial de Jeek Online (2023) - 2º Lugar"
+        "Campeonato Mundial de Jeek Online (2023) - 2º Lugar",
+        "Jeek Online Open II - 2º Lugar",
+        "Jeek Online Open II - Melhor jogada do Torneio"
     ]
 );
 
@@ -89,6 +104,7 @@ const fabiohiro = new Jogador(
 let jogadores = [];
 jogadores.push(vidacalura);
 jogadores.push(shinobu);
+jogadores.push(scooby);
 jogadores.push(batman);
 jogadores.push(leonestri);
 jogadores.push(php);
