@@ -26,6 +26,41 @@ fetch("https://jeek-online.vercel.app/api/usuarios/" + username)
                         iframe.className = "fa-solid fa-gem text-blue py-1 px-3";
                         iframe.title = "Apoiador";
                         break;
+                    case "NM":
+                        iframe = document.createElement("div");
+                        iframe.classList.add("norma");
+                        iframe.classList.add("bg-jeek-gray-500");
+                        iframe.textContent = "NM";
+                        iframe.title = "Mestre Nacional";
+                        break;
+                    case "CMA":
+                        iframe = document.createElement("div");
+                        iframe.classList.add("norma");
+                        iframe.classList.add("bg-jeek-gray-500");
+                        iframe.textContent = "CMA";
+                        iframe.title = "Candidato a Mestre AIJe";
+                        break;
+                    case "MA":
+                        iframe = document.createElement("div");
+                        iframe.classList.add("norma");
+                        iframe.classList.add("bg-copper");
+                        iframe.textContent = "MA";
+                        iframe.title = "Mestre AIJe";
+                        break;
+                    case "IM":
+                        iframe = document.createElement("div");
+                        iframe.classList.add("norma");
+                        iframe.classList.add("bg-gold");
+                        iframe.textContent = "IM";
+                        iframe.title = "Mestre Internacional";
+                        break;
+                    case "GM":
+                        iframe = document.createElement("div");
+                        iframe.classList.add("norma");
+                        iframe.classList.add("bg-red");
+                        iframe.textContent = "GM";
+                        iframe.title = "Grão-Mestre";
+                        break;
                     case "ANP":
                         iframe = document.createElement("div");
                         iframe.classList.add("norma");

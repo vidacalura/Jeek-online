@@ -87,6 +87,10 @@ app.get("/mundial-2023", (req, res) => {
     res.status(200).sendFile("./Public/mundial1.html", { root: __dirname });
 });
 
+app.get("/torneio-times-AIJe", (req, res) => {
+    res.status(200).sendFile("./Public/timesAIJe.html", { root: __dirname });
+});
+
 app.get("/torneio-aniversario-jeek-2023", (req, res) => {
     res.status(200).sendFile("./Public/aniversario1.html", { root: __dirname });
 });

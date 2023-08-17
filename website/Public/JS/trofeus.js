@@ -80,7 +80,7 @@ const php = new Jogador(
     null,
     "BR",
     false,
-    [ "Nomeação de Árbitro Classe D" ]
+    [ "Nomeação de Árbitro Classe D", "Nomeação de Árbitro Classe C" ]
 );
 
 const rafflesblack = new Jogador(
