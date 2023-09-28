@@ -65,6 +65,33 @@ const batman = new Jogador(
     ]
 );
 
+const holtz = new Jogador(
+    "Holtz",
+    null,
+    null,
+    "BR",
+    false,
+    [ "1º Torneio Clássico Brasileiro AIJe - 1º Lugar" ]
+);
+
+const mirg = new Jogador(
+    "mirg",
+    null,
+    null,
+    "BR",
+    false,
+    [ "1º Torneio Clássico Brasileiro AIJe - 3º Lugar" ]
+);
+
+const kurumiw = new Jogador(
+    "Kurumiw",
+    null,
+    null,
+    "BR",
+    false,
+    [ "Nomeação de Árbitro Classe D" ]
+);
+
 const leonestri = new Jogador(
     "LeoNestri",
     null,
@@ -80,7 +107,7 @@ const php = new Jogador(
     null,
     "BR",
     false,
-    [ "Nomeação de Árbitro Classe D", "Nomeação de Árbitro Classe C" ]
+    [ "Nomeação de Árbitro Classe D", "Nomeação de Árbitro Classe C", "Nomeação de Árbitro Classe B" ]
 );
 
 const rafflesblack = new Jogador(
@@ -89,7 +116,7 @@ const rafflesblack = new Jogador(
     null,
     "BR",
     false,
-    [ "Torneio de aniversário de 1 ano - 3º Lugar" ]
+    [ "Torneio de aniversário de 1 ano - 3º Lugar", "1º Torneio Clássico Brasileiro AIJe - 2º Lugar" ]
 );
 
 const fabiohiro = new Jogador(
@@ -105,6 +132,9 @@ let jogadores = [];
 jogadores.push(vidacalura);
 jogadores.push(shinobu);
 jogadores.push(scooby);
+jogadores.push(holtz);
+jogadores.push(mirg);
+jogadores.push(kurumiw);
 jogadores.push(batman);
 jogadores.push(leonestri);
 jogadores.push(php);
@@ -203,51 +233,54 @@ jogadores.forEach(async (j) => {
 
         trofeu.className = "fa-solid text-5xl cursor-pointer";
 
-        if (t.includes("1º")) {
-            trofeu.classList.add("text-gold");
-            trofeu.classList.add("fa-trophy");
-
-            if (t.includes("Mundial")) {
-                trofeu.classList.remove("fa-trophy");
-                trofeu.classList.add("fa-crown");
-            }
-        }
-        else if (t.includes("2º")) {
-            trofeu.classList.add("text-jeek-gray-200");
-            trofeu.classList.add("fa-medal");
-
-            if (t.includes("Mundial")) {
-                trofeu.classList.remove("fa-medal");
-                trofeu.classList.add("fa-crown");
-            }
-        }
-        else if (t.includes("3º")) {
-            trofeu.classList.add("text-copper");
-            trofeu.classList.add("fa-medal");
-        }
-        else if (t.includes("Árbitro")) {
-            if (t.includes("Classe D")) {
-                trofeu.classList.add("text-jeek-gray-500");
-            }
-            else if (t.includes("Classe C")) {
-                trofeu.classList.add("text-copper");
-            }
-            else if (t.includes("Classe B")) {
-                trofeu.classList.add("text-jeek-gray-200");
-            }
-            else if (t.includes("Classe A")) {
+        try {
+            if (t.split("-")[1].includes("1º")) {
                 trofeu.classList.add("text-gold");
-            }
+                trofeu.classList.add("fa-trophy");
 
-            trofeu.classList.add("fa-award");
-        }
-        else {
-            if (t.includes("revelação")) {
-                trofeu.classList.add("text-[#b69d4d]");
+                if (t.includes("Mundial")) {
+                    trofeu.classList.remove("fa-trophy");
+                    trofeu.classList.add("fa-crown");
+                }
             }
+            else if (t.split("-")[1].includes("2º")) {
+                trofeu.classList.add("text-jeek-gray-200");
+                trofeu.classList.add("fa-medal");
 
-            trofeu.classList.add("text-jeek-gray-500");
-            trofeu.classList.add("fa-award");
+                if (t.includes("Mundial")) {
+                    trofeu.classList.remove("fa-medal");
+                    trofeu.classList.add("fa-crown");
+                }
+            }
+            else if (t.split("-")[1].includes("3º")) {
+                trofeu.classList.add("text-copper");
+                trofeu.classList.add("fa-medal");
+            }
+        } catch (err) {
+            if (t.includes("Árbitro")) {
+                if (t.includes("Classe D")) {
+                    trofeu.classList.add("text-jeek-gray-500");
+                }
+                else if (t.includes("Classe C")) {
+                    trofeu.classList.add("text-copper");
+                }
+                else if (t.includes("Classe B")) {
+                    trofeu.classList.add("text-jeek-gray-200");
+                }
+                else if (t.includes("Classe A")) {
+                    trofeu.classList.add("text-gold");
+                }
+
+                trofeu.classList.add("fa-award");
+            }
+            else {
+                if (t.includes("revelação")) {
+                    trofeu.classList.add("text-[#b69d4d]");
+                }
+
+                trofeu.classList.add("text-jeek-gray-500");
+                trofeu.classList.add("fa-award");
+            }
         }
 
         trofeusDiv.appendChild(trofeu);
