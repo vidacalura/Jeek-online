@@ -32,8 +32,10 @@ const shinobu = new Jogador(
     "BR",
     false,
     [
-        "Jeek Online Open I - 2º Lugar", "Torneio de Candidatos Jeek Online I - 3º Lugar",
-        "Torneio de Candidatos Jeek Online 2023 - Melhor espírito esportivo"
+        "Jeek Online Open I - 2º Lugar",
+        "Torneio de Candidatos Jeek Online I - 3º Lugar",
+        "Torneio de Candidatos Jeek Online 2023 - Melhor espírito esportivo",
+        "1º Torneio de Times AIJe - 2º Lugar"
     ]
 );
 
@@ -45,7 +47,8 @@ const scooby = new Jogador(
     false,
     [
         "Jeek Online Open II - 3º Lugar", 
-        "Jeek Online Open II - Jogador revelação" 
+        "Jeek Online Open II - Jogador revelação",
+        "1º Torneio de Times AIJe - 1º Lugar"
     ]
 );
 
@@ -61,7 +64,8 @@ const batman = new Jogador(
         "Torneio de Candidatos Jeek Online 2023 - Jogador revelação",
         "Campeonato Mundial de Jeek Online (2023) - 2º Lugar",
         "Jeek Online Open II - 2º Lugar",
-        "Jeek Online Open II - Melhor jogada do Torneio"
+        "Jeek Online Open II - Melhor jogada do Torneio",
+        "1º Torneio de Times AIJe - 3º Lugar"
     ]
 );
 
@@ -80,7 +84,10 @@ const mirg = new Jogador(
     null,
     "BR",
     false,
-    [ "1º Torneio Clássico Brasileiro AIJe - 3º Lugar" ]
+    [
+        "1º Torneio Clássico Brasileiro AIJe - 3º Lugar",
+        "1º Torneio de Times AIJe - 1º Lugar"
+    ]
 );
 
 const kurumiw = new Jogador(
@@ -107,7 +114,12 @@ const php = new Jogador(
     null,
     "BR",
     false,
-    [ "Nomeação de Árbitro Classe D", "Nomeação de Árbitro Classe C", "Nomeação de Árbitro Classe B" ]
+    [
+        "Nomeação de Árbitro Classe D",
+        "Nomeação de Árbitro Classe C",
+        "Nomeação de Árbitro Classe B",
+        "1º Torneio de Times AIJe - 1º Lugar"
+    ]
 );
 
 const rafflesblack = new Jogador(
@@ -116,7 +128,38 @@ const rafflesblack = new Jogador(
     null,
     "BR",
     false,
-    [ "Torneio de aniversário de 1 ano - 3º Lugar", "1º Torneio Clássico Brasileiro AIJe - 2º Lugar" ]
+    [
+        "Torneio de aniversário de 1 ano - 3º Lugar",
+        "1º Torneio Clássico Brasileiro AIJe - 2º Lugar",
+        "1º Torneio de Times AIJe - 3º Lugar"
+    ]
+);
+
+const pontinhhajeek = new Jogador(
+    "pontinhajeek",
+    null,
+    null,
+    "BR",
+    false,
+    [ "1º Torneio de Times AIJe - 3º Lugar" ]
+);
+
+const ysavspacial = new Jogador(
+    "ysavspacial",
+    null,
+    null,
+    "BR",
+    false,
+    [ "1º Torneio de Times AIJe - 2º Lugar" ]
+);
+
+const azulcolorido = new Jogador(
+    "AzulColorido84",
+    null,
+    null,
+    "BR",
+    false,
+    [ "1º Torneio de Times AIJe - 2º Lugar" ]
 );
 
 const fabiohiro = new Jogador(
@@ -139,6 +182,9 @@ jogadores.push(batman);
 jogadores.push(leonestri);
 jogadores.push(php);
 jogadores.push(rafflesblack);
+jogadores.push(pontinhhajeek);
+jogadores.push(ysavspacial);
+jogadores.push(azulcolorido);
 jogadores.push(fabiohiro);
 
 // Cria elementos
