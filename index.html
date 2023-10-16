@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Site para se jogar Jeek online"/>    
+        <meta name="keywords" content="Board game, Jeek, Jeek Online"/>
+        <link rel="stylesheet" type="text/css" href="CSS/output.css">
+        <script src="JS/menu.js" defer>  </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js">  </script>
+        <script src="https://kit.fontawesome.com/de94e301a2.js" crossorigin="anonymous"></script> 
+        <link rel="shortcut icon" href="imgs/aberturadomestre.ico" type="image/x-icon">
+        <title> Jeek Online </title>
+
+    </head>
+
+
+    <body class="bg-jeek-gray-600 text-white overflow-x-hidden md:overflow-y-hidden">
+        
+        <nav class="pt-4 md:px-6 px-3 justify-between flex">
+            <div class="flex"> 
+                <img src="imgs/aberturadomestre.ico" class="rounded-md w-8 h-8 shadow-md" alt="Logo Jeek Online">
+                <h2 class="text-jeek-gray-100 font-bold pt-1 pl-4 flex"> Jeek Online <p class="text-jeek-gray-200 pl-2"> Beta </p> </h2>
+            </div>
+
+            <div class="flex md:gap-3 gap-1">
+                <a id="doar-btn" href="./agradecimentos.html"
+                class="py-1 px-2 md:px-3 text-xl transition-all ease-in-out rounded-lg md:hover:bg-blue cursor-pointer">
+                    <i class="fa-solid fa-heart text-red font-bold"> </i>
+                </a>
+
+                <div id="menu-hamburger" class="bg-jeek-gray-700 py-2 px-3 rounded-lg cursor-pointer transition ease-in-out hover:font-bold hover:bg-jeek-gray-500" title="Menu">
+                    <i class="fa-solid fa-bars"> </i> 
+                </div>
+            </div>
+
+            <div id="menu-nav" class="w-screen transition-all h-screen absolute top-0 left-0 bg-jeek-gray-600 bg-opacity-70 z-20 hidden">
+                <div id="menu-options" class="pt-10">
+                    <div class="float-right top-0 right-0 absolute md:p-2 py-2 px-6">
+                        <i id="menu-x" class="fa-solid fa-xmark cursor-pointer"> </i>
+                    </div>
+
+                    <a href="./torneios.html">
+                        <div class="menu-option">
+                            <i class="fa-solid fa-trophy"> </i>
+
+                            <h3> Torneios </h3>
+                        </div>
+                    </a>
+
+                    <a href="https://jeek.fandom.com/pt-br/wiki/A_história_do_Jeek" target="_blank">
+                        <div class="menu-option">
+                            <i class="fa-solid fa-book"> </i>
+
+                            <h3> História do Jeek </h3>
+                        </div>
+                    </a>
+
+                    <div class="w-full flex justify-center gap-2 text-xl pt-8">
+                        <a href="https://www.youtube.com/channel/UCgKpJ2iuC_ew9ZLVVkQEEnw"> <i class="fa-brands fa-youtube pt-3 pr-2 cursor-pointer transition ease-in-out hover:text-[#FF4444]"> </i> </a>
+                        <a href="https://discord.gg/uDKkRk8ABr" target="_blank"> <i class="fa-brands fa-discord pt-3 pr-2 cursor-pointer transition ease-in-out hover:text-[#738ADB]"> </i> </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="md:flex w-screen sm:pt-16 pt-4">
+
+            <!-- Parte da esquerda -->
+            <div class="md:w-[50%] md:pt-20 px-12 sm:px-20 pb-12 md:py-20 text-center">
+
+                <h1 class="font-bold text-6xl menu-title"> Jeek Online </h1>
+
+                <p class="pt-10 text-lg"> 
+                    Obrigado a todos por terem participado desta experiência única! <br>
+                    Que Fábio Hiro esteja sempre com vocês :)
+                </p>
+
+                <div class="w-full sm:flex justify-center gap-2 sm:gap-6 pt-8">
+                    <button id="btn-jogar-local" class="p-3 py-4 rounded-full border-2 border-white w-40 text-xl font-bold shadow-md transition-all hover:shadow-lg hover:scale-110"> Jogar local </button>
+                </div>
+
+                <!-- Menu Jogar local -->
+                <div id="menu-jogar-local" class="hidden z-20 w-screen h-screen top-0 left-0 bg-jeek-gray-600 bg-opacity-50">
+                    <div class="flex justify-center pt-60">
+                        <div class="bg-jeek-gray-500 w-72 md:w-96 py-2 px-6 rounded-lg shadow-md">
+                            <div class="flex justify-end">
+                                <div id="x-menu-jogar-local" class="cursor-pointer"> <i class="fa-solid fa-xmark"> </i> </div>
+                            </div>
+                            <h2 class="text-3xl font-bold pb-8"> Jogar local </h2>
+                            <div class="flex justify-center gap-6 pb-4">
+                                <a href="./offline.html"> <button title="Jogar com um amigo local" class="py-2 px-4 rounded-full bg-white text-jeek-gray-500 text-3xl shadow-md transition-all hover:scale-110"> <i class="fa-solid fa-play"> </i> </button> </a>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Tabuleiro -->
+            <div class="w-full md:w-[50%] flex justify-center">
+                <div class="tabuleiro-simulacao shadow-lg rounded-[20px] lg:mr-20">
+
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="md:absolute md:bottom-0 m-2 mx-4 text-jeek-gray-300 text-sm cursor-pointer transition-all hover:text-white">
+            <a href="https://github.com/vidacalura/Jeek-online" class="flex" target="_blank">
+                <i class="fa-brands fa-github">  </i>
+                <p class="pl-1"> Jeek online </p>
+            </a>
+        </footer>
+
+    </body>
+
+</html>
