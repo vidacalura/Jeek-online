@@ -14,7 +14,7 @@ O Jeek online é um site 100% open source e gratuito, que permite que qualquer u
 Jeek a qualquer hora em qualquer lugar e em qualquer aparelho.
 
 
-Você pode acessar o site aqui: <a href="https://jeek-online.up.railway.app/"> Jeek Online </a>
+Você pode acessar o site aqui: <a href="https://vidacalura.github.io/Jeek-online/"> Jeek Online </a>
 
 #
 
