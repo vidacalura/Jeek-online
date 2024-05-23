@@ -10,11 +10,13 @@ Aprenda mais sobre o jogo: <a href="https://www.youtube.com/channel/UCgKpJ2iuC_e
 
 # Jeek Online
 
-O Jeek online é um site 100% open source e gratuito, que permite que qualquer um jogue
-Jeek a qualquer hora em qualquer lugar e em qualquer aparelho.
+O projeto do Jeek online é 100% open source e gratuito, o que permitiu que qualquer um jogasse
+Jeek a qualquer hora em qualquer lugar e em qualquer aparelho. Infelizmente, devido aos gastos com 
+servidores e reduzida atividade no site, atualmente ele se encontra hospedado de forma reduzida.
+Assim, possuindo apenas as funções locais do jogo
 
 
-Você pode acessar o site aqui: <a href="https://vidacalura.github.io/Jeek-online/"> Jeek Online </a>
+Você pode acessar a versão reduzida do site aqui: <a href="https://vidacalura.github.io/Jeek-online/"> Jeek Online </a>
 
 #
 
